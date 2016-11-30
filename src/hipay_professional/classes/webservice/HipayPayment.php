@@ -77,7 +77,7 @@ class HipayPayment extends HipayWS
         $accept_url = $this->context->link->getModuleLink($this->module->name, 'confirmation', array('cart_id' => $cart_id, 'secure_key' => $secure_key), true);
         $callback_url = $this->context->link->getModuleLink($this->module->name, 'validation', array('cart_id' => $cart_id, 'secure_key' => $secure_key), true);
         $cancel_url = $this->context->link->getPageLink('order', null, null, array('step' => '3'), true);
-        $decline_url = $this->context->link->getModuleLink($this->module->name, 'confirmation', array('cart_id' => $cart_id, 'secure_key' => $secure_key), true);
+        $decline_url = $this->context->link->getModuleLink($this->module->name, 'confirmation', array('cart_id' => $cart_id, 'failure'=>true, 'secure_key' => $secure_key), true);
         $logo_url = $this->context->link->getMediaLink(_PS_IMG_ . Configuration::get('PS_LOGO'));
 
         $params = [
