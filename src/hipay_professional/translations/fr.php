@@ -23,7 +23,7 @@ $_MODULE['<{hipay_professional}prestashop>hipay_professional_8122bc8efdd66b48266
 $_MODULE['<{hipay_professional}prestashop>hipay_professional_54ca4e3c1de003e33c12cf52ea1a50d8'] = 'Erreur - méthode captcha non autorisée.';
 $_MODULE['<{hipay_professional}prestashop>hipay_professional_5a092fc16cf693e9cea9ed7a1cb95f72'] = 'Votre compte n\'est pas activé, si vous rencontrez un problème contactez le support HiPay à support.direct@hipay.com';
 $_MODULE['<{hipay_professional}prestashop>hipay_professional_38a28566c2fe20a0c49a93fef2a38b6d'] = 'Veuillez fournir vos informations bancaires sur votre back office marchand HiPay.';
-$_MODULE['<{hipay_professional}prestashop>hipay_professional_b83909e9e2882eab42fff673c7cefa93'] = 'Afin de vous identifier, nous vous invitons à télécharger les documents suivants et à nous les envoyer pour validation sur votre back office marchand HiPay.';
+$_MODULE['<{hipay_professional}prestashop>hipay_professional_b83909e9e2882eab42fff673c7cefa93'] = 'Vous pouvez maintenant accéder à votre back-office HiPay. Nous vous invitons à télécharger les documents demandés à la rubrique « identification » de votre espace personnel pour pouvoir utiliser notre solution. En cas de besoin, vous pouvez nous contacter à l’adresse suivant : commercial@hipay.com';
 $_MODULE['<{hipay_professional}prestashop>hipay_professional_309e57debf2e5e5417974acd9a866c69'] = 'Authentification échouée !';
 $_MODULE['<{hipay_professional}prestashop>hipay_professional_644364624cf90ef4821b1233b2a3a2e8'] = 'Les informations d\'identification que vous avez saisies ne sont pas valides. Veuillez réessayer.';
 $_MODULE['<{hipay_professional}prestashop>hipay_professional_76b9ac11645f808186d436222ccdcf87'] = 'Si vous avez perdu ces informations, connectez-vous à votre compte HiPay pour le récupérer';
@@ -121,11 +121,11 @@ $_MODULE['<{hipay_professional}prestashop>faq_7f83d9cfb931b276a431b9eddee66e96']
 $_MODULE['<{hipay_professional}prestashop>faq_3e0713db889c0b166df9b9a17f7038b8'] = 'Où trouver plus d\'informations ?';
 $_MODULE['<{hipay_professional}prestashop>faq_c485a84c8ed97acb89d7cc7ca3d2927e'] = 'N\'hésitez pas à vous connecter à votre compte HiPay pour avoir plus d\'informations sur votre compte et vos transactions.';
 $_MODULE['<{hipay_professional}prestashop>marketing_a13f6972fce564891e91a11f66a6825d'] = 'Une solution simple sécurisée et complète';
-$_MODULE['<{hipay_professional}prestashop>marketing_e8954362b3c32a6ccf080598e0e6e46b'] = 'Bienvuenu sur HiPay Professional !';
-$_MODULE['<{hipay_professional}prestashop>marketing_c14ff0607d47aef11bc06731dc859f34'] = 'Votre boutique peut maintenant accepter à 8 devises';
+$_MODULE['<{hipay_professional}prestashop>marketing_e8954362b3c32a6ccf080598e0e6e46b'] = 'Bienvenue sur HiPay Professional !';
+$_MODULE['<{hipay_professional}prestashop>marketing_c14ff0607d47aef11bc06731dc859f34'] = 'Votre boutique peut maintenant accepter jusqu\'à 8 devises';
 $_MODULE['<{hipay_professional}prestashop>marketing_41a0c40abad3df30edd3cee9bee9edb7'] = 'Vous devriez avoir reçu par e-mail vos informations d\'identification pour vous connecter à votre compte HiPay.';
 $_MODULE['<{hipay_professional}prestashop>marketing_510069c984b4cf6bdb6a9befa204d44e'] = 'Si vous avez des questions, n\'hésitez pas à nous contacter à support.direct@hipay.com.';
-$_MODULE['<{hipay_professional}prestashop>marketing_d42da9b7a5ed2972ccea6d106f447768'] = 'Bonne vente !';
+$_MODULE['<{hipay_professional}prestashop>marketing_d42da9b7a5ed2972ccea6d106f447768'] = 'Bonnes ventes !';
 $_MODULE['<{hipay_professional}prestashop>marketing_71948aa4f6e12cdaa5e2e63a5eb8f142'] = 'Plus d\'infos';
 $_MODULE['<{hipay_professional}prestashop>marketing_6bf2e63d07f25c77e1f21dc57e907e50'] = 'À partir de 1% + 0,25€ par transaction !';
 $_MODULE['<{hipay_professional}prestashop>marketing_16c95b6c9d39253b5089c5784f56a7ac'] = 'Un tarif qui s\'adapte à votre volume d\'activité';
@@ -176,7 +176,7 @@ $_MODULE['<{hipay_professional}prestashop>settings_436af72484236fc6e3e565fb2e8cc
 $_MODULE['<{hipay_professional}prestashop>settings_bfc6756ac55b47de90e35ddc728ff374'] = 'Utiliser le mode test';
 $_MODULE['<{hipay_professional}prestashop>settings_93cba07454f06a4a960172bbd6e2a435'] = 'Oui';
 $_MODULE['<{hipay_professional}prestashop>settings_bafd7322c6e97d25b6299b5d6fe8920b'] = 'Non';
-$_MODULE['<{hipay_professional}prestashop>settings_6f744347d54de2e46edf108f065b377c'] = 'Configuration de la production';
+$_MODULE['<{hipay_professional}prestashop>settings_6f744347d54de2e46edf108f065b377c'] = 'Configuration de production';
 $_MODULE['<{hipay_professional}prestashop>settings_a002bc877c38a545ef07467b16d4a517'] = 'Type de contenu';
 $_MODULE['<{hipay_professional}prestashop>settings_9c1fa4585da0962c56817072809d5d82'] = '--- Sélectionner le Type de contenu ---';
 $_MODULE['<{hipay_professional}prestashop>settings_1fa9394b6cfed212b7202c346cbc9883'] = 'Pas de Type de contenu';
@@ -191,7 +191,7 @@ $_MODULE['<{hipay_professional}prestashop>settings_15e36b48fa5ac11a00f3fe55dd34c
 $_MODULE['<{hipay_professional}prestashop>settings_4e143e76807e6a2eb4115fbf825fee09'] = 'pas de Account ID';
 $_MODULE['<{hipay_professional}prestashop>settings_482b24eb576e7c8966e9df16b9e8a1d6'] = '--- Website ID ---';
 $_MODULE['<{hipay_professional}prestashop>settings_4420330dcabfbaefc6f7a7101e80a68c'] = 'Pas de Website ID';
-$_MODULE['<{hipay_professional}prestashop>settings_32d798df7254f6703ed2262024e0e174'] = 'configuration de Test ';
+$_MODULE['<{hipay_professional}prestashop>settings_32d798df7254f6703ed2262024e0e174'] = 'Configuration de test ';
 $_MODULE['<{hipay_professional}prestashop>settings_ad7b0367556ecb647d1a4d49f6149ec6'] = 'Votre compte de test n\'est pas encore connecté. Entrez l\'identifiant et le mot de passe du service Web du compte test pour utiliser un test';
 $_MODULE['<{hipay_professional}prestashop>settings_e1d87e21e5406494d96b4e52baa77d72'] = 'Connecter le compte de test';
 $_MODULE['<{hipay_professional}prestashop>settings_cff89277d60b84f4bdbd98514048a6a5'] = 'Si vous n\'avez pas encore de compte de test, vous pouvez en créer un sur le';

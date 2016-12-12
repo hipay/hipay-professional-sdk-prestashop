@@ -114,8 +114,13 @@
                                            id="payment_button_{$index|escape:'htmlall':'UTF-8'}"
                                            value="{$image|escape:'htmlall':'UTF-8'}" {if isset($config_hipay.button_images) && $config_hipay.button_images == $image} checked="checked"{/if} />
                                     <label style="width: auto"
-                                           for="payment_button_{$index|escape:'htmlall':'UTF-8'}"><img
-                                                src="{$url_images|escape:'htmlall':'UTF-8'}{$image|escape:'htmlall':'UTF-8'}"/></label>
+                                           for="payment_button_{$index|escape:'htmlall':'UTF-8'}">
+                                           {if $image == 'no_image'}
+                                           {l s='No image'}
+                                           {else}
+                                           <img src="{$url_images|escape:'htmlall':'UTF-8'}{$image|escape:'htmlall':'UTF-8'}"/>
+                                           {/if}
+                                    </label>
                                 </li>
                             {/foreach}
                         {/if}

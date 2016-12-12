@@ -83,10 +83,10 @@ class Hipay_Professional extends PaymentModule
         ];
 
         $this->hipay_rating = [
-            ['key' => 'ALL', 'name' => $this->l('For all ages', 'HipayConfig')],
-            ['key' => '+12', 'name' => $this->l('For ages 12 and over', 'HipayConfig')],
-            ['key' => '+16', 'name' => $this->l('For ages 16 and over', 'HipayConfig')],
-            ['key' => '+18', 'name' => $this->l('For ages 18 and over', 'HipayConfig')],
+            ['key' => 'ALL', 'name' => $this->l('For all ages')],
+            ['key' => '+12', 'name' => $this->l('For ages 12 and over')],
+            ['key' => '+16', 'name' => $this->l('For ages 16 and over')],
+            ['key' => '+18', 'name' => $this->l('For ages 18 and over')],
         ];
 
         $this->limited_currencies = array_keys($this->currencies_titles);
@@ -402,6 +402,7 @@ class Hipay_Professional extends PaymentModule
 
             // get button images
             $images = $this->getImageButtons();
+            array_push($images, 'no_image');
             $url_img = $this->_path . 'views/img/payment_buttons/';
 
             $this->context->smarty->assign(array(

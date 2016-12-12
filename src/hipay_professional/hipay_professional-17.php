@@ -50,10 +50,14 @@ class HipayProfessionalNew extends Hipay_Professional
     {
         $lang = Tools::strtolower($this->context->language->iso_code);
 
+        $this->context->smarty->assign(array(
+            'module_dir' => $this->_path,
+            'config_hipay' => $this->objectToArray($this->configHipay),
+        ));
         $newOption = new PaymentOption();
         $newOption->setCallToActionText(($lang == 'fr' ? $this->configHipay->button_text_fr : $this->configHipay->button_text_en))
             ->setAction($this->context->link->getModuleLink($this->name, 'redirect', array(), true))
-            ->setLogo(Media::getMediaPath($this->getPaymentButton()));
+            ->setAdditionalInformation($this->context->smarty->fetch('module:hipay_professional/views/templates/front/17_payment_infos.tpl'));
 
         return $newOption;
     }

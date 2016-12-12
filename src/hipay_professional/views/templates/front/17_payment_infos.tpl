@@ -11,5 +11,9 @@
 *}
 
 <section>
-    <p>{l s='Add some details about the payment option' mod='hipay_professional'}</p>
+    <p>
+    {if $configHipay.button_image != 'no_image'}
+        <img src="{$smarty.server.HTTP_HOST}{$smarty.server.REQUEST_URI}{$configHipay.button_image}" />
+    {/if}
+    </p>
 </section>
