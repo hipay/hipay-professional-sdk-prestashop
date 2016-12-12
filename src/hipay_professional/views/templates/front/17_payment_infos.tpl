@@ -12,8 +12,8 @@
 
 <section>
     <p>
-    {if $configHipay.button_image != 'no_image'}
-        <img src="{$smarty.server.HTTP_HOST}{$smarty.server.REQUEST_URI}{$configHipay.button_image}" />
+    {if $config_hipay.button_images != 'no_image'}
+        <img src="{$module_dir}views/img/payment_buttons/{$config_hipay.button_images}" />
     {/if}
     </p>
 </section>
