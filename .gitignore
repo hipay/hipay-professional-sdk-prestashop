@@ -1,0 +1,9 @@
+*.log
+.DS_Store
+.buildpath
+.settings
+.project
+_$*
+*.lock
+.idea
+.vscode
