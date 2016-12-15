@@ -10,6 +10,7 @@
  */
 
 require_once(dirname(__FILE__) . '/HipayREST.php');
+
 class HipayLocale extends HipayREST
 {
 

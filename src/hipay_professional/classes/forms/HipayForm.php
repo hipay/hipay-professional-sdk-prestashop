@@ -63,42 +63,53 @@ class HipayForm extends HipayFormInputs
      */
     public function getLoginForm()
     {
-        // init variables
-        $form = [];
-
+        $form = array();
         $this->helper->tpl_vars['fields_value'] = $this->getLoginFormValues();
 
         // WS Login
-        $form['form']['input'][] = $this->generateInputText('install_ws_login', $this->module->l('WS Login', 'HipayForm'), array(
-            'class' => 'fixed-width-xxl',
-            'hint' => $this->module->l('You can find it on your HiPay account, section "Integration > API", under "Webservice access"', 'HipayForm'),
-            'required' => true,
-        ));
+        $text = 'You can find it on your HiPay account, section "Integration > API", under "Webservice access"';
+        $form['form']['input'][] = $this->generateInputText(
+            'install_ws_login',
+            $this->module->l('WS Login', 'HipayForm'),
+            array(
+                'class' => 'fixed-width-xxl',
+                'hint' => $this->module->l($text, 'HipayForm'),
+                'required' => true,
+            )
+        );
         // WS Password
-        $form['form']['input'][] = $this->generateInputText('install_ws_password', $this->module->l('WS Password', 'HipayForm'), array(
-            'class' => 'fixed-width-xxl',
-            'hint' => $this->module->l('You can find it on your HiPay account, section "Integration > API", under "Webservice access"', 'HipayForm'),
-            'required' => true,
-        ));
+        $form['form']['input'][] = $this->generateInputText(
+            'install_ws_password',
+            $this->module->l('WS Password', 'HipayForm'),
+            array(
+                'class' => 'fixed-width-xxl',
+                'hint' => $this->module->l($text, 'HipayForm'),
+                'required' => true,
+            )
+        );
         // Button actions
-        $form['form']['buttons'][] = $this->generateSubmitButton($this->module->l('Reset', 'HipayForm'), array(
-            'class' => 'pull-left',
-            'name' => 'submitReset',
-            'icon' => 'process-icon-eraser',
-        ));
-        $form['form']['buttons'][] = $this->generateSubmitButton($this->module->l('Log in', 'HipayForm'), array(
-            'name' => 'submitLogin',
-            'icon' => 'process-icon-next',
-        ));
+        $form['form']['buttons'][] = $this->generateSubmitButton(
+            $this->module->l('Reset', 'HipayForm'),
+            array(
+                'class' => 'pull-left',
+                'name' => 'submitReset',
+                'icon' => 'process-icon-eraser',
+            )
+        );
+        $form['form']['buttons'][] = $this->generateSubmitButton(
+            $this->module->l('Log in', 'HipayForm'),
+            array(
+                'name' => 'submitLogin',
+                'icon' => 'process-icon-next',
+            )
+        );
 
         return $this->helper->generateForm(array($form));
     }
 
     public function getLoginFormValues()
     {
-        // init variables
-        $values = [];
-
+        $values = array();
         $values['install_ws_login'] = Tools::getValue('install_ws_login');
         $values['install_ws_password'] = Tools::getValue('install_ws_password');
     }
@@ -108,9 +119,7 @@ class HipayForm extends HipayFormInputs
      */
     public function getRegisterForm($captcha)
     {
-        // init variables
-        $form = [];
-
+        $form = array();
         $this->helper->tpl_vars['fields_value'] = $this->getRegisterFormValues($captcha);
 
         // email
@@ -123,17 +132,25 @@ class HipayForm extends HipayFormInputs
             )
         );
         // First name
-        $form['form']['input'][] = $this->generateInputText('register_firstname', $this->module->l('Firstname', 'HipayForm'), array(
-            'class' => 'fixed-width-xxl',
-            'hint' => $this->module->l('Please, enter your firstname in the field above', 'HipayForm'),
-            'required' => true,
-        ));
+        $form['form']['input'][] = $this->generateInputText(
+            'register_firstname',
+            $this->module->l('Firstname', 'HipayForm'),
+            array(
+                'class' => 'fixed-width-xxl',
+                'hint' => $this->module->l('Please, enter your firstname in the field above', 'HipayForm'),
+                'required' => true,
+            )
+        );
         // Last name
-        $form['form']['input'][] = $this->generateInputText('register_lastname', $this->module->l('Lastname', 'HipayForm'), array(
-            'class' => 'fixed-width-xxl',
-            'hint' => $this->module->l('Please, enter your lastname in the field above', 'HipayForm'),
-            'required' => true,
-        ));
+        $form['form']['input'][] = $this->generateInputText(
+            'register_lastname',
+            $this->module->l('Lastname', 'HipayForm'),
+            array(
+                'class' => 'fixed-width-xxl',
+                'hint' => $this->module->l('Please, enter your lastname in the field above', 'HipayForm'),
+                'required' => true,
+            )
+        );
         // CAPTCHA
         // init hidden field contain captcha_id
         $form['form']['input'][] = array(
@@ -142,14 +159,23 @@ class HipayForm extends HipayFormInputs
             'name' => 'register_captcha_id',
         );
         // init the field contains the captcha answer
-        $form['form']['input'][] = $this->generateInputText('register_captcha_img', $this->module->l('Insert the security code:', 'HipayForm'), array(
-            'class' => 'fixed-width-xxl captcha-form',
-            'hint' => $this->module->l('You must fill this captcha to validate the form', 'HipayForm'),
-            'required' => true,
-            'suffix' => '<div id="img-captcha">' . (!empty($captcha) ? $captcha->captcha_img : '') . '</div><button type="button" class="btn captcha" name="reloadCaptcha" id="reload-captcha">' . $this->module->l('New captcha', 'HipayForm') . '</button>',
-        ));
+        $html_suffix = '<div id="img-captcha">' . (!empty($captcha) ? $captcha->captcha_img : '');
+        $html_suffix.= '</div><button type="button" class="btn captcha" name="reloadCaptcha" id="reload-captcha">';
+        $html_suffix.= $this->module->l('New captcha', 'HipayForm') . '</button>';
+
+        $form['form']['input'][] = $this->generateInputText(
+            'register_captcha_img',
+            $this->module->l('Insert the security code:', 'HipayForm'),
+            array(
+                'class' => 'fixed-width-xxl captcha-form',
+                'hint' => $this->module->l('You must fill this captcha to validate the form', 'HipayForm'),
+                'required' => true,
+                'suffix' =>  $html_suffix,
+            )
+        );
         // init terms & conditions
-        $label_cgv = '<a href="' . $this->url_cgv . '" target="_blank">' . $this->module->l('I agree with the terms and conditions', 'HipayForm') . '</a>';
+        $label_cgv = '<a href="' . $this->url_cgv . '" target="_blank">' .
+                        $this->module->l('I agree with the terms and conditions', 'HipayForm') . '</a>';
         $form['form']['input'][] = array(
             'type' => 'checkbox',
             'name' => 'register_cgv',
@@ -167,21 +193,28 @@ class HipayForm extends HipayFormInputs
         );
 
         // BUTTON Reset & Save
-        $form['form']['buttons'][] = $this->generateSubmitButton($this->module->l('Reset', 'HipayForm'), array(
-            'class' => 'pull-left',
-            'name' => 'submitReset',
-            'icon' => 'process-icon-eraser',
-        ));
-        $form['form']['buttons'][] = $this->generateSubmitButton($this->module->l('Sign up', 'HipayForm'), array(
-            'name' => 'submitRegister',
-            'icon' => 'process-icon-next',
-        ));
+        $form['form']['buttons'][] = $this->generateSubmitButton(
+            $this->module->l('Reset', 'HipayForm'),
+            array(
+                'class' => 'pull-left',
+                'name' => 'submitReset',
+                'icon' => 'process-icon-eraser',
+            )
+        );
+        $form['form']['buttons'][] = $this->generateSubmitButton(
+            $this->module->l('Sign up', 'HipayForm'),
+            array(
+                'name' => 'submitRegister',
+                'icon' => 'process-icon-next',
+            )
+        );
 
         return $this->helper->generateForm(array($form));
     }
 
     public function getRegisterFormValues($captcha)
     {
+        $values = array();
         $email = Configuration::get('PS_SHOP_EMAIL');
         $values = array(
             'register_user_email' => Tools::getValue('register_user_email', $email),
@@ -198,19 +231,20 @@ class HipayForm extends HipayFormInputs
      */
     public function getRefundForm($order)
     {
-        // init variables
-        $form = [];
-
+        $form = array();
         $this->helper->tpl_vars['fields_value'] = $this->getRefundFormValues();
 
         $form = [
             'form' => [
                 'buttons' => [
-                    $this->generateSubmitButton($this->module->l('Refund', 'HipayForm'), [
-                        'name' => 'submitTotalRefund',
-                        'icon' => 'process-icon-undo',
-                        'value' => 'refresh',
-                    ]),
+                    $this->generateSubmitButton(
+                        $this->module->l('Refund', 'HipayForm'),
+                        [
+                            'name' => 'submitTotalRefund',
+                            'icon' => 'process-icon-undo',
+                            'value' => 'refresh',
+                        ]
+                    ),
                 ],
             ]
         ];

@@ -12,8 +12,8 @@
 
 <section>
     <p>
-    {if $config_hipay.button_images != 'no_image'}
-        <img src="{$module_dir}views/img/payment_buttons/{$config_hipay.button_images}" />
-    {/if}
+        {if $config_hipay.button_images != 'no_image'}
+            <img src="{$module_dir}views/img/payment_buttons/{$config_hipay.button_images}"/>
+        {/if}
     </p>
 </section>

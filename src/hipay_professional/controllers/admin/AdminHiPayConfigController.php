@@ -124,7 +124,6 @@ class AdminHiPayConfigController extends ModuleAdminController
     {
         $return = [];
         try {
-
             // get currency default
             $currency = new Currency(Configuration::get('PS_CURRENCY_DEFAULT'));
             $currency_code = Tools::strtoupper($currency->iso_code);
@@ -163,7 +162,6 @@ class AdminHiPayConfigController extends ModuleAdminController
                         'status' => 1,
                         'message' => $this->module->l('Subaccount created for the currency ', 'HipayConfig') . $currency,
                     ];
-
                 } else {
                     $return = [
                         'status' => 0,

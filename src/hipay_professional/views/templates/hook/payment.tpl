@@ -15,9 +15,9 @@
             {if $cart->getOrderTotal() < $min_amount}
                 <a href="#">
                     {if $payment_button != 'no_image'}
-                    <img src="{$domain|cat:$payment_button|escape:'htmlall':'UTF-8'}"
-                         alt="{if $lang == "fr"}{$configHipay.button_text_fr|escape:'htmlall':'UTF-8'}{else}{$configHipay.button_text_en|escape:'htmlall':'UTF-8'}{/if}"
-                         class="pull-left" width="234px" height="57px"/>
+                        <img src="{$domain|cat:$payment_button|escape:'htmlall':'UTF-8'}"
+                             alt="{if $lang == "fr"}{$configHipay.button_text_fr|escape:'htmlall':'UTF-8'}{else}{$configHipay.button_text_en|escape:'htmlall':'UTF-8'}{/if}"
+                             class="pull-left" width="234px" height="57px"/>
                     {/if}
                     <span>
 						{l s='Minimum amount required in order to pay by credit card:' mod='hipay_professional' } {convertPrice price=$min_amount}
@@ -30,10 +30,10 @@
             {else}
                 <a href="{$link->getModuleLink('hipay_professional', 'redirect', array(), true)|escape:'htmlall':'UTF-8'}"
                    title="{if $lang == "fr"}{$configHipay.button_text_fr|escape:'htmlall':'UTF-8'}{else}{$configHipay.button_text_en|escape:'htmlall':'UTF-8'}{/if}">
-                   {if $payment_button != 'no_image'}
-                    <img src="{$domain|cat:$payment_button|escape:'html':'UTF-8'}"
-                         alt="{if $lang == "fr"}{$configHipay.button_text_fr|escape:'htmlall':'UTF-8'}{else}{$configHipay.button_text_en|escape:'htmlall':'UTF-8'}{/if}"
-                         class="pull-left" width="234px" height="57px"/>
+                    {if $payment_button != 'no_image'}
+                        <img src="{$domain|cat:$payment_button|escape:'html':'UTF-8'}"
+                             alt="{if $lang == "fr"}{$configHipay.button_text_fr|escape:'htmlall':'UTF-8'}{else}{$configHipay.button_text_en|escape:'htmlall':'UTF-8'}{/if}"
+                             class="pull-left" width="234px" height="57px"/>
                     {/if}
                     <span>
 						{if $lang == "fr"}{$configHipay.button_text_fr|escape:'htmlall':'UTF-8'}{else}{$configHipay.button_text_en|escape:'htmlall':'UTF-8'}{/if}

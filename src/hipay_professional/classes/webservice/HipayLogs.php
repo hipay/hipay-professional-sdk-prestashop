@@ -30,7 +30,6 @@ class HipayLogs
     public function errorLogsHipay($msg)
     {
         $this->writeLogs(0, $msg);
-
     }
 
     /**
@@ -41,7 +40,6 @@ class HipayLogs
     public function logsHipay($msg)
     {
         $this->writeLogs(1, $msg);
-
     }
 
     public function callbackLogs($msg)
@@ -87,6 +85,5 @@ class HipayLogs
             fputs($fp, $msg . PHP_EOL);
             fclose($fp);
         }
-
     }
 }

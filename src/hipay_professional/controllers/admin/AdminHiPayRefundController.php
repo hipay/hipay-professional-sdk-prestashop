@@ -77,7 +77,7 @@ class AdminHiPayRefundController extends ModuleAdminController
         if ($result->cardResult->code != 0) {
             $this->logs->errorLogsHipay($result->cardResult->description);
             $this->sendErrorRequest($result->cardResult->description);
-        } else if ($result->cardResult == null) {
+        } elseif ($result->cardResult == null) {
             $this->logs->errorLogsHipay('The webservice is unavailable');
             $this->sendErrorRequest('The webservice is unavailable, please try again.');
         } else {
