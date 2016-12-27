@@ -138,7 +138,6 @@ class HipayUserAccount extends HipayREST
             $email = $objAcc[0]['user_mail'];
 
             $this->module->logs->logsHipay('treatment subaccount with id = ' . $account_id);
-
         } else {
             // account add website
             $this->module->logs->logsHipay('account_id == 0 ');

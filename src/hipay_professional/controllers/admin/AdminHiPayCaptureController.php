@@ -90,7 +90,6 @@ class AdminHiPayCaptureController extends ModuleAdminController
                     'status' => 1,
                     'message' => $this->module->l('Capture ok, your order status is in progress. Please, reload your page after few seconds.'),
                 ];
-
             } else {
                 $return = [
                     'status' => 0,

@@ -11,5 +11,9 @@
 *}
 
 <section>
-    <p>{l s='Add some details about the payment option' mod='hipay_professional'}</p>
+    <p>
+        {if $config_hipay.button_images != 'no_image'}
+            <img src="{$module_dir}views/img/payment_buttons/{$config_hipay.button_images}"/>
+        {/if}
+    </p>
 </section>

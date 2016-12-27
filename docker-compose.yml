@@ -6,7 +6,9 @@ prestashop:
   links:
     - smtp
   env_file:
-    - env
+    - env_file
+  volumes:
+    - .:/var/www/html
 smtp:
   image: schickling/mailcatcher
   container_name: smtp-hipay-professional-ps16

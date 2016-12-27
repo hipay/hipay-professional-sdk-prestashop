@@ -52,9 +52,9 @@ class Hipay_ProfessionalConfirmationModuleFrontController extends ModuleFrontCon
 
     protected function displayConfirmationError()
     {
-        $this->module->_errors[] = $this->module->l('An error occurred. Please contact the merchant for more details.', 'HipayConfig');
+        $this->errors = Tools::displayError($this->module->l('An error occurred. Please contact the merchant for more details.', 'HipayConfig'));
 
-        return $this->setTemplate((_PS_VERSION_ >= '1.7' ? 'module:' . $this->module->name . '/views/templates/front/' : '') . 'error.tpl');
+        return Tools::redirect($this->context->link->getPageLink('order', null, null, array('step' => '3'), true));
     }
 
     protected function waitForConfirmation($cart_id, $secure_key)

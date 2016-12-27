@@ -92,8 +92,8 @@ class Hipay_ProfessionalValidationModuleFrontController extends ModuleFrontContr
     protected function displayError($message)
     {
         $html = '<a href="' . $this->context->link->getPageLink('order', null, null, 'step=3') . '">';
-        $html.= $this->module->l('Order') . '</a>';
-        $html.= '<span class="navigation-pipe">&gt;</span>' . $this->module->l('Error');
+        $html .= $this->module->l('Order') . '</a>';
+        $html .= '<span class="navigation-pipe">&gt;</span>' . $this->module->l('Error');
 
         $this->context->smarty->assign(
             'path',
@@ -101,6 +101,10 @@ class Hipay_ProfessionalValidationModuleFrontController extends ModuleFrontContr
         );
 
         $this->errors[] = $this->module->l($message);
+
+        $this->context->smarty->assign([
+            'errors' => $this->errors,
+        ]);
 
         return $this->setTemplate((_PS_VERSION_ >= '1.7' ? 'module:' . $this->module->name . '/views/templates/front/' : '') . 'error.tpl');
     }
@@ -183,17 +187,13 @@ class Hipay_ProfessionalValidationModuleFrontController extends ModuleFrontContr
         $sandbox_mode = (bool)$this->configHipay->sandbox_mode;
         // get callback_salt for the accountID, websiteID and the currency of the transaction
         if ($sandbox_mode) {
-
             $accountId = $this->configHipay->selected->currencies->sandbox->$currency->accountID;
             $websiteId = $this->configHipay->selected->currencies->sandbox->$currency->websiteID;
             $accountInfo = $this->configHipay->sandbox->$currency->$accountId;
-
         } else {
-
             $accountId = $this->configHipay->selected->currencies->production->$currency->accountID;
             $websiteId = $this->configHipay->selected->currencies->production->$currency->websiteID;
             $accountInfo = $this->configHipay->production->$currency->$accountId;
-
         }
         $this->logs->callbackLogs('accountID:' . $accountId . ' / websiteId:' . $websiteId);
         foreach ($accountInfo as $value) {
@@ -229,7 +229,6 @@ class Hipay_ProfessionalValidationModuleFrontController extends ModuleFrontContr
         $order_id = (int)Order::getOrderByCartId($cart_id);
 
         if ((bool)$order_id != false) {
-
             // LOGS
             $this->logs->callbackLogs('Treatment an existing order');
             // ----
@@ -237,7 +236,6 @@ class Hipay_ProfessionalValidationModuleFrontController extends ModuleFrontContr
             $order = new Order($order_id);
 
             if ((int)$order->getCurrentState() == (int)Configuration::get('HIPAY_OS_WAITING')) {
-
                 // LOGS
                 $this->logs->callbackLogs('If current status order = HIPAY_OS_WAITING Then change status with this id_status = ' . $id_order_state);
                 // ----
@@ -295,7 +293,6 @@ class Hipay_ProfessionalValidationModuleFrontController extends ModuleFrontContr
             return $this->displayError('An error occurred while saving transaction details');
         } else {
             if ($id_order_state != (int)Configuration::get('PS_OS_ERROR')) {
-
                 // LOGS
                 $this->logs->callbackLogs('Treatment status = ' . $id_order_state);
                 // ----
@@ -315,13 +312,19 @@ class Hipay_ProfessionalValidationModuleFrontController extends ModuleFrontContr
                     "Payment method" => Tools::safeOutput($payment_method),
                     "Transaction ID" => Tools::safeOutput($transaction_id),
                 ]);
-
             } else {
                 // LOGS
                 $this->logs->callbackLogs('Treatment status = ERROR');
                 // ----
                 $error_details = Tools::safeOutput(print_r($result, true));
-                $message = Tools::jsonEncode(["Error" => $error_details]);
+                $this->logs->callbackLogs(
+                    print_r(
+                        $error_details,
+                        true
+                    )
+                );
+                $message = Tools::jsonEncode($error_details);
+                return $this->displayError('An error occurred while saving transaction details');
             }
 
             // LOGS
@@ -365,6 +368,7 @@ class Hipay_ProfessionalValidationModuleFrontController extends ModuleFrontContr
                 $this->logs->callbackLogs('Order created');
             } catch (Exception $e) {
                 $this->logs->callbackLogs('Order is not created');
+                $this->logs->callbackLogs($e->getMessage());
                 return false;
             }
             return true;

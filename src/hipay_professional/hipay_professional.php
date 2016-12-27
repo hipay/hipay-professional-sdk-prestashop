@@ -83,10 +83,10 @@ class Hipay_Professional extends PaymentModule
         ];
 
         $this->hipay_rating = [
-            ['key' => 'ALL', 'name' => $this->l('For all ages', 'HipayConfig')],
-            ['key' => '+12', 'name' => $this->l('For ages 12 and over', 'HipayConfig')],
-            ['key' => '+16', 'name' => $this->l('For ages 16 and over', 'HipayConfig')],
-            ['key' => '+18', 'name' => $this->l('For ages 18 and over', 'HipayConfig')],
+            ['key' => 'ALL', 'name' => $this->l('For all ages')],
+            ['key' => '+12', 'name' => $this->l('For ages 12 and over')],
+            ['key' => '+16', 'name' => $this->l('For ages 16 and over')],
+            ['key' => '+18', 'name' => $this->l('For ages 18 and over')],
         ];
 
         $this->limited_currencies = array_keys($this->currencies_titles);
@@ -123,7 +123,6 @@ class Hipay_Professional extends PaymentModule
         return $this->uninstallAdminTab() &&
         parent::uninstall() &&
         $this->clearAccountData();
-
     }
 
     public function installAdminTab()
@@ -302,7 +301,6 @@ class Hipay_Professional extends PaymentModule
         if ((!$this->configHipay->sandbox_mode && $this->configHipay->selected->currencies->production->$isocode_currency->accountID)
             || ($this->configHipay->sandbox_mode && $this->configHipay->selected->currencies->sandbox->$isocode_currency->accountID)
         ) {
-
             if (in_array($isocode_currency, $this->limited_currencies) == false) {
                 return false;
             }
@@ -318,7 +316,6 @@ class Hipay_Professional extends PaymentModule
 
             $this->smarty->assign('hipay_prod', !(bool)$this->configHipay->sandbox_mode);
 
-
             return $this->display(dirname(__FILE__), 'views/templates/hook/payment.tpl');
         }
 
@@ -328,16 +325,12 @@ class Hipay_Professional extends PaymentModule
     public function hookPaymentReturn($params)
     {
         if (_PS_VERSION_ >= '1.7') {
-
             $hipay17 = new HipayProfessionalNew();
             $hipay17->hipayPaymentReturnNew($params);
-
         } elseif (_PS_VERSION_ < '1.7' && _PS_VERSION_ >= '1.6') {
-
             $this->hipayPaymentReturn($params);
-            
-            return $this->display(dirname(__FILE__), 'views/templates/hook/confirmation.tpl');
 
+            return $this->display(dirname(__FILE__), 'views/templates/hook/confirmation.tpl');
         }
     }
 
@@ -354,14 +347,15 @@ class Hipay_Professional extends PaymentModule
             $this->smarty->assign('status', 'ok');
         }
 
-        $this->smarty->assign(array(
-            'id_order' => $order->id,
-            'reference' => $order->reference,
-            'params' => $params,
-            'total_to_pay' => Tools::displayPrice($params['total_to_pay'], $params['currencyObj'], false),
-            'shop_name' => $this->context->shop->name,
-        ));
-
+        $this->smarty->assign(
+            array(
+                'id_order' => $order->id,
+                'reference' => $order->reference,
+                'params' => $params,
+                'total_to_pay' => Tools::displayPrice($params['total_to_pay'], $params['currencyObj'], false),
+                'shop_name' => $this->context->shop->name,
+            )
+        );
     }
 
     public function hookPaymentTop()
@@ -396,12 +390,12 @@ class Hipay_Professional extends PaymentModule
 
         // Generate configuration forms
         if (!empty($this->configHipay->production_ws_login) && !$this->create_account && $this->configHipay->production_status) {
-
             // get currencies
             $selectedCurrencies = $this->getCurrencies();
 
             // get button images
             $images = $this->getImageButtons();
+            array_push($images, 'no_image');
             $url_img = $this->_path . 'views/img/payment_buttons/';
 
             $this->context->smarty->assign(array(
@@ -415,7 +409,6 @@ class Hipay_Professional extends PaymentModule
             ));
             // init warning
             $this->getWarningHiPayStatus();
-
         } else {
             // get captcha by api
             // only if first step create account, not validation account
@@ -469,19 +462,14 @@ class Hipay_Professional extends PaymentModule
         $this->logs->logsHipay('---- >> function postProcess');
 
         if (Tools::isSubmit('submitReset')) {
-
             $this->logs->logsHipay('---- >> submitReset');
-
             // reset in login
             $this->context->smarty->assign('active_tab', 'login_form');
             $this->create_account = true;
             $this->clearAccountData();
             Tools::redirectAdmin($ur_redirection);
-
         } elseif (Tools::isSubmit('submitLogin')) {
-
             $this->logs->logsHipay('---- >> submitLogin');
-
             // execute login
             $this->context->smarty->assign('active_tab', 'login_form');
             if ($this->login($user_account)) {
@@ -489,11 +477,8 @@ class Hipay_Professional extends PaymentModule
             } else {
                 return false;
             }
-
         } elseif (Tools::isSubmit('submitSettings')) {
-
             $this->logs->logsHipay('---- >> submitSettings');
-
             // save the settings form
             $this->context->smarty->assign('active_tab', 'settings_form');
             if ($this->saveSettingsConfiguration()) {
@@ -501,20 +486,14 @@ class Hipay_Professional extends PaymentModule
             } else {
                 return false;
             }
-
         } elseif (Tools::isSubmit('submitCancel')) {
-
             $this->logs->logsHipay('---- >> submitCancel');
-
             // discard in settings form
             $this->context->smarty->assign('active_tab', 'settings_form');
             $this->majConfigurationByApi($user_account);
             Tools::redirectAdmin($ur_redirection);
-
         } elseif (Tools::isSubmit('submitSandboxConnection')) {
-
             $this->logs->logsHipay('---- >> submitSandboxConnection');
-
             // execute login sandbox
             $this->context->smarty->assign('active_tab', 'settings_form');
             if ($this->loginSandbox($user_account)) {
@@ -522,11 +501,8 @@ class Hipay_Professional extends PaymentModule
             } else {
                 return false;
             }
-
         } elseif (Tools::isSubmit('submitPaymentbutton')) {
-
             $this->logs->logsHipay('---- >> submitPaymentbutton');
-
             // save the payment buttons form
             $this->context->smarty->assign('active_tab', 'button_form');
             if ($this->savePaymentButtonConfiguration()) {
@@ -534,34 +510,23 @@ class Hipay_Professional extends PaymentModule
             } else {
                 return false;
             }
-
         } elseif (Tools::isSubmit('reloadCaptcha')) {
-
             $this->logs->logsHipay('---- >> reloadCaptcha');
-
             // reload a new captcha because it's hard to read it
             $this->context->smarty->assign('active_tab', 'register_form');
             return Tools::redirectAdmin($ur_redirection);
-            //return true;
-
         } elseif (Tools::isSubmit('submitRegister')) {
-
             $this->logs->logsHipay('---- >> submitRegister');
-
             // create an account in production
             $this->context->smarty->assign('active_tab', 'register_form');
-
             if ($this->createMerchantAccount()) {
-
                 // captcha and create account are ok
                 // display second screen to validate code validator
                 $this->logs->logsHipay('---- >> Display Validator form and validate account');
                 $this->context->smarty->assign('validator', true);
                 $this->context->smarty->assign('email', Tools::getValue('register_user_email'));
                 $this->create_account = false;
-
             } else {
-
                 // error captcha or create an account
                 $this->logs->logsHipay('---- >> Display captcha form because error');
                 $this->context->smarty->assign('validator', false);
@@ -569,19 +534,12 @@ class Hipay_Professional extends PaymentModule
                 return false;
             }
             return true;
-
         } elseif (Tools::isSubmit('submitValidator')) {
-
             $this->logs->logsHipay('---- >> submitValidator');
-
             if ($this->checkCodeValidation()) {
-
                 Tools::redirectAdmin($ur_redirection);
-
             } else {
-
                 $this->logs->logsHipay('---- >> Display Validator form because error');
-
                 $this->context->smarty->assign('active_tab', 'register_form');
                 if ($this->create_account && !$this->configHipay->production_status) {
                     $this->context->smarty->assign('validator', false);
@@ -593,9 +551,7 @@ class Hipay_Professional extends PaymentModule
                 return false;
             }
         } else {
-
             $this->logs->logsHipay('---- >> default action');
-
             // default action
             if (!empty($this->configHipay->production_ws_login)) {
                 $this->context->smarty->assign('active_tab', 'settings_form');
@@ -605,7 +561,6 @@ class Hipay_Professional extends PaymentModule
             }
             // update by api hipay
             return $this->majConfigurationByApi($user_account);
-
         }
     }
 
@@ -738,7 +693,6 @@ class Hipay_Professional extends PaymentModule
                         } else {
                             return false;
                         }
-
                     } else {
                         $this->_errors[] = $this->l('Authentication failed!');
                     }
@@ -787,7 +741,6 @@ class Hipay_Professional extends PaymentModule
                         } else {
                             return false;
                         }
-
                     } else {
                         $this->_errors[] = $this->l('Authentication failed!');
                         $this->clearAccountData();
@@ -918,7 +871,6 @@ class Hipay_Professional extends PaymentModule
             }
             return false;
         }
-
         return true;
     }
 
@@ -1124,7 +1076,6 @@ class Hipay_Professional extends PaymentModule
             $this->_successes[] = $this->l('Settings configuration saved successfully.');
             $this->logs->logsHipay(print_r($this->configHipay, true));
             return true;
-
         } catch (Exception $e) {
             // LOGS
             $this->logs->errorLogsHipay($e->getMessage());
@@ -1154,7 +1105,6 @@ class Hipay_Professional extends PaymentModule
                 $this->logs->logsHipay(print_r($this->configHipay, true));
                 return true;
             }
-
         } catch (Exception $e) {
             // LOGS
             $this->logs->errorLogsHipay($e->getMessage());
@@ -1318,7 +1268,6 @@ class Hipay_Professional extends PaymentModule
                                         }
                                     }
                                 }
-
                             }
                         }
                         // active account
@@ -1392,7 +1341,6 @@ class Hipay_Professional extends PaymentModule
             $images = preg_grep('/\.(jpg|jpeg|png|gif)(?:[\?\#].*)?$/i', $files);
             return $images;
         }
-
     }
 
     /**
@@ -1448,7 +1396,6 @@ class Hipay_Professional extends PaymentModule
 
             return true;
         }
-
         return false;
     }
 
@@ -1461,7 +1408,6 @@ class Hipay_Professional extends PaymentModule
                 return $value;
             }
         }
-
         return false;
     }
 
@@ -1493,7 +1439,6 @@ class Hipay_Professional extends PaymentModule
                 return $state;
             }
         }
-
         return false;
     }
 
@@ -1549,7 +1494,6 @@ class Hipay_Professional extends PaymentModule
         }
 
         $this->saveOrderState($total_state_config, $total_state_color, $total_state_names, $setup);
-
         return true;
     }
 }
