@@ -2,15 +2,15 @@ prestashop:
   container_name: hipay-professional-shop-ps16
   build: .
   ports:
-    - "8085:80"
+    - "8216:80"
   links:
     - smtp
   env_file:
-    - env_file
+    - env
   volumes:
     - .:/var/www/html
 smtp:
   image: schickling/mailcatcher
   container_name: smtp-hipay-professional-ps16
   ports:
-    - "1085:1080"
+    - "1216:1080"

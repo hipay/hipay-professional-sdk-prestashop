@@ -1,5 +1,5 @@
-FROM prestashop/prestashop:1.6.1.9
-#FROM prestashop/prestashop:1.7.0.1
+#FROM prestashop/prestashop:1.6.1.9
+FROM prestashop/prestashop:latest
 
 MAINTAINER support.wallet <support.wallet@hipay.com>
 

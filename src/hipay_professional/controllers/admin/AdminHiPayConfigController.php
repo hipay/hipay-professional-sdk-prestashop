@@ -22,8 +22,6 @@ class AdminHiPayConfigController extends ModuleAdminController
         if (!$this->module->active) {
             $this->sendErrorRequest('Invalid request.');
         }
-
-        require_once _PS_ROOT_DIR_ . _MODULE_DIR_ . $this->module->name . '/classes/webservice/HipayUserAccount.php';
     }
 
     /**
@@ -157,7 +155,6 @@ class AdminHiPayConfigController extends ModuleAdminController
                 if ($website_sub->code == 0) {
                     // reinit Currency permissions for the module HiPay
                     $this->module->setCurrencies();
-
                     $return = [
                         'status' => 1,
                         'message' => $this->module->l('Subaccount created for the currency ', 'HipayConfig') . $currency,
