@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="05c08f53-312a-41de-86bc-ef3a31035a75" name="Default" comment="" />
+    <list default="true" id="05c08f53-312a-41de-86bc-ef3a31035a75" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="professional.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -51,7 +54,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="prestashop.sh" pinned="false" current-in-tab="true">
+      <file leaf-file-name="prestashop.sh" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/prestashop.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
@@ -71,11 +74,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+            <state relative-caret-position="90">
+              <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -116,8 +119,8 @@
         <option value="$PROJECT_DIR$/docker-compose-16.yml" />
         <option value="$PROJECT_DIR$/docker-compose-17.yml" />
         <option value="$PROJECT_DIR$/conf/docker/Dockerfile16" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/prestashop.sh" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -338,12 +341,12 @@
       <workItem from="1481615142371" duration="1252000" />
       <workItem from="1481624318287" duration="11441000" />
       <workItem from="1482141212705" duration="24000" />
-      <workItem from="1491485597073" duration="24187000" />
+      <workItem from="1491485597073" duration="24361000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36904000" />
+    <option name="totallyTimeSpent" value="37078000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1600" height="873" extended-state="6" />
@@ -773,14 +776,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/conf/docker/Dockerfile16">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -817,6 +812,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
           <folding />
         </state>
       </provider>
