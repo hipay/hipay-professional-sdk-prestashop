@@ -7,4 +7,5 @@ _$*
 *.lock
 .idea
 .vscode
-web
+web*
+data

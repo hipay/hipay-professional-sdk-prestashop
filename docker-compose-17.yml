@@ -12,3 +12,4 @@ prestashop:
     - ./conf/env_file/env17
   volumes:
     - ./web17:/var/www/html
+    - ./src/hipay_professional:/var/www/html/modules/hipay_professional
