@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="05c08f53-312a-41de-86bc-ef3a31035a75" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package-ready-for-prestashop/hipay_professional-1.x.x.zip" afterPath="$PROJECT_DIR$/package-ready-for-prestashop/hipay_professional-1.x.x.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CHANGELOG.md" afterPath="$PROJECT_DIR$/CHANGELOG.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/circle.yml" afterPath="$PROJECT_DIR$/circle.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hipay_professional/config.xml" afterPath="$PROJECT_DIR$/src/hipay_professional/config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hipay_professional/config_fr.xml" afterPath="$PROJECT_DIR$/src/hipay_professional/config_fr.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hipay_professional/hipay_professional.php" afterPath="$PROJECT_DIR$/src/hipay_professional/hipay_professional.php" />
-    </list>
+    <list default="true" id="05c08f53-312a-41de-86bc-ef3a31035a75" name="Default" comment="" />
     <ignored path="professional.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -88,12 +81,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CHANGELOG.md" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CHANGELOG.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CHANGELOG.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="60">
-                <caret line="4" column="53" selection-start-line="4" selection-start-column="53" selection-end-line="4" selection-end-column="53" />
+              <first_editor relative-caret-position="30">
+                <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="4" selection-end-column="53" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -121,7 +114,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hipay_professional.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="hipay_professional.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/hipay_professional/hipay_professional.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-1080">
@@ -169,8 +162,8 @@
                 <element signature="n#isRefundAvailable#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
                 <element signature="n#orderAlreadyRefunded#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
                 <element signature="n#updateHiPayOrderStates#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
-                <marker date="1491837412992" expanded="true" signature="6872:7113" ph="SELECT ${(in... ${_DB_PREFIX_}currency" />
-                <marker date="1491837412992" expanded="true" signature="7886:8002" ph="..." />
+                <marker date="1491837517806" expanded="true" signature="6872:7113" ph="SELECT ${(in... ${_DB_PREFIX_}currency" />
+                <marker date="1491837517806" expanded="true" signature="7886:8002" ph="..." />
               </folding>
             </state>
           </provider>
@@ -363,12 +356,12 @@
       <workItem from="1481615142371" duration="1252000" />
       <workItem from="1481624318287" duration="11441000" />
       <workItem from="1482141212705" duration="24000" />
-      <workItem from="1491485597073" duration="25848000" />
+      <workItem from="1491485597073" duration="25969000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38565000" />
+    <option name="totallyTimeSpent" value="38686000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1600" height="873" extended-state="6" />
@@ -785,17 +778,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CHANGELOG.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="60">
-            <caret line="4" column="53" selection-start-line="4" selection-start-column="53" selection-end-line="4" selection-end-column="53" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/hipay_professional/config.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -859,9 +841,20 @@
             <element signature="n#isRefundAvailable#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
             <element signature="n#orderAlreadyRefunded#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
             <element signature="n#updateHiPayOrderStates#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
-            <marker date="1491837412992" expanded="true" signature="6872:7113" ph="SELECT ${(in... ${_DB_PREFIX_}currency" />
-            <marker date="1491837412992" expanded="true" signature="7886:8002" ph="..." />
+            <marker date="1491837517806" expanded="true" signature="6872:7113" ph="SELECT ${(in... ${_DB_PREFIX_}currency" />
+            <marker date="1491837517806" expanded="true" signature="7886:8002" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CHANGELOG.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="30">
+            <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="4" selection-end-column="53" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
