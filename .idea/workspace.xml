@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="05c08f53-312a-41de-86bc-ef3a31035a75" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Dockerfile" afterPath="$PROJECT_DIR$/Dockerfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docker-compose.yml" afterPath="$PROJECT_DIR$/docker-compose.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/env" afterPath="$PROJECT_DIR$/env" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hipay_professional/controllers/admin/AdminHiPayConfigController.php" afterPath="$PROJECT_DIR$/src/hipay_professional/controllers/admin/AdminHiPayConfigController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package-ready-for-prestashop/hipay_professional-1.x.x.zip" afterPath="$PROJECT_DIR$/package-ready-for-prestashop/hipay_professional-1.x.x.zip" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hipay_professional/hipay_professional.php" afterPath="$PROJECT_DIR$/src/hipay_professional/hipay_professional.php" />
     </list>
     <ignored path="professional.iws" />
@@ -30,8 +27,8 @@
       <file leaf-file-name="validation.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/hipay_professional/controllers/front/validation.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4350">
-              <caret line="290" column="50" selection-start-line="290" selection-start-column="38" selection-end-line="290" selection-end-column="50" />
+            <state relative-caret-position="88">
+              <caret line="167" column="23" selection-start-line="167" selection-start-column="23" selection-end-line="167" selection-end-column="23" />
               <folding>
                 <element signature="e#6#216#0#PHP" expanded="true" />
               </folding>
@@ -39,7 +36,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Dockerfile" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Dockerfile" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Dockerfile">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="15">
@@ -49,21 +46,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="docker-compose.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docker-compose.yml">
+      <file leaf-file-name="docker-compose-17.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docker-compose-17.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="env" pinned="false" current-in-tab="false">
+      <file leaf-file-name="docker-compose.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docker-compose.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="env" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/env">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="10" selection-start-line="13" selection-start-column="10" selection-end-line="13" selection-end-column="10" />
+            <state relative-caret-position="150">
+              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="13" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -72,12 +79,64 @@
       <file leaf-file-name="hipay_professional.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/hipay_professional/hipay_professional.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="257">
-              <caret line="827" column="60" selection-start-line="827" selection-start-column="60" selection-end-line="827" selection-end-column="60" />
+            <state relative-caret-position="212">
+              <caret line="824" column="30" selection-start-line="824" selection-start-column="17" selection-end-line="824" selection-end-column="30" />
               <folding>
-                <marker date="1491485803773" expanded="true" signature="6792:7033" ph="SELECT ${(in... ${_DB_PREFIX_}currency" />
-                <marker date="1491485803773" expanded="true" signature="7806:7922" ph="..." />
+                <element signature="n#install#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <element signature="n#uninstall#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <element signature="n#installAdminTab#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <element signature="n#createTabAdmin#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <element signature="n#uninstallAdminTab#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <element signature="n#installHipay#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <element signature="n#setCurrencies#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <element signature="n#getCurrencies#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <element signature="n#hookBackOfficeHeader#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <element signature="n#hookDisplayAdminOrderLeft#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <element signature="n#hookHeader#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <element signature="n#hookPayment#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <element signature="n#hookPaymentReturn#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <element signature="n#hipayPaymentReturn#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <element signature="n#hookPaymentTop#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <element signature="n#hookPaymentOptions#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <element signature="n#getPaymentButton#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <element signature="n#getLogFiles#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <element signature="n#isSupportedCurrency#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <element signature="n#getWarningHiPayStatus#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <element signature="n#loginSandbox#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <element signature="n#login#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <element signature="n#majConfigurationByApi#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <element signature="n#saveConfigurationDetails#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <element signature="n#getConfigHiPay#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <element signature="n#setConfigHiPay#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <element signature="n#setAllConfigHiPay#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <element signature="n#insertConfigHiPay#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <element signature="n#saveSettingsConfiguration#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <element signature="n#savePaymentButtonConfiguration#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <element signature="n#createMerchantAccount#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <element signature="n#checkCodeValidation#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <element signature="n#clearAccountData#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <element signature="n#objectToArray#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <element signature="n#getImageButtons#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <element signature="n#getAdminOrderRefundBlockDetails#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <element signature="n#saveOrderState#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <element signature="n#getTransactionId#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <element signature="n#isProductionOrder#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <element signature="n#isRefundAvailable#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <element signature="n#orderAlreadyRefunded#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <element signature="n#updateHiPayOrderStates#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+                <marker date="1491578312469" expanded="true" signature="6872:7113" ph="SELECT ${(in... ${_DB_PREFIX_}currency" />
+                <marker date="1491578312469" expanded="true" signature="7886:8002" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.tpl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/hipay_professional/views/templates/admin/settings.tpl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="450">
+              <caret line="30" column="55" selection-start-line="30" selection-start-column="55" selection-end-line="30" selection-end-column="55" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -85,9 +144,12 @@
       <file leaf-file-name="AdminHiPayConfigController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/hipay_professional/controllers/admin/AdminHiPayConfigController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="23" column="9" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
-              <folding />
+            <state relative-caret-position="330">
+              <caret line="156" column="51" selection-start-line="156" selection-start-column="51" selection-end-line="156" selection-end-column="51" />
+              <folding>
+                <element signature="n#__construct#0;n#AdminHiPayConfigController#0;n#!!top" expanded="false" />
+                <element signature="n#ajaxProcessImageButtons#0;n#AdminHiPayConfigController#0;n#!!top" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -123,11 +185,12 @@
         <option value="$PROJECT_DIR$/src/hipay_professional/controllers/admin/AdminHiPayRefundController.php" />
         <option value="$PROJECT_DIR$/src/hipay_professional/classes/forms/HipayForm.php" />
         <option value="$PROJECT_DIR$/src/hipay_professional/controllers/front/validation.php" />
-        <option value="$PROJECT_DIR$/src/hipay_professional/controllers/admin/AdminHiPayConfigController.php" />
-        <option value="$PROJECT_DIR$/src/hipay_professional/hipay_professional.php" />
         <option value="$PROJECT_DIR$/docker-compose.yml" />
         <option value="$PROJECT_DIR$/env" />
         <option value="$PROJECT_DIR$/Dockerfile" />
+        <option value="$PROJECT_DIR$/src/hipay_professional/controllers/admin/AdminHiPayConfigController.php" />
+        <option value="$PROJECT_DIR$/src/hipay_professional/views/templates/admin/settings.tpl" />
+        <option value="$PROJECT_DIR$/src/hipay_professional/hipay_professional.php" />
       </list>
     </option>
   </component>
@@ -203,6 +266,84 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="hipay_professional" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="professional" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="professional" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hipay_professional" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="professional" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="professional" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hipay_professional" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="professional" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="professional" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hipay_professional" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -350,12 +491,12 @@
       <workItem from="1481615142371" duration="1252000" />
       <workItem from="1481624318287" duration="11441000" />
       <workItem from="1482141212705" duration="24000" />
-      <workItem from="1491485597073" duration="1023000" />
+      <workItem from="1491485597073" duration="11838000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13740000" />
+    <option name="totallyTimeSpent" value="24555000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1600" height="873" extended-state="6" />
@@ -577,13 +718,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/hipay_professional/controllers/admin/AdminHiPayCaptureController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="91" column="18" selection-start-line="91" selection-start-column="18" selection-end-line="91" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/hipay_professional/controllers/admin/AdminHiPayRefundController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -606,47 +740,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/hipay_professional/controllers/front/validation.php">
+    <entry file="file://$PROJECT_DIR$/docker-compose-17.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4350">
-          <caret line="290" column="50" selection-start-line="290" selection-start-column="38" selection-end-line="290" selection-end-column="50" />
-          <folding>
-            <element signature="e#6#216#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/hipay_professional/controllers/admin/AdminHiPayConfigController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="23" column="9" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/hipay_professional/hipay_professional.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="827" column="60" selection-start-line="827" selection-start-column="60" selection-end-line="827" selection-end-column="60" />
-          <folding>
-            <marker date="1491485803773" expanded="true" signature="6792:7033" ph="SELECT ${(in... ${_DB_PREFIX_}currency" />
-            <marker date="1491485803773" expanded="true" signature="7806:7922" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docker-compose.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="10" selection-start-line="13" selection-start-column="10" selection-end-line="13" selection-end-column="10" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -655,6 +752,112 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="33" selection-start-line="1" selection-start-column="33" selection-end-line="1" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hipay_professional/controllers/admin/AdminHiPayCaptureController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="91" column="18" selection-start-line="91" selection-start-column="18" selection-end-line="91" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hipay_professional/controllers/admin/AdminHiPayConfigController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="156" column="51" selection-start-line="156" selection-start-column="51" selection-end-line="156" selection-end-column="51" />
+          <folding>
+            <element signature="n#__construct#0;n#AdminHiPayConfigController#0;n#!!top" expanded="false" />
+            <element signature="n#ajaxProcessImageButtons#0;n#AdminHiPayConfigController#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hipay_professional/views/templates/admin/settings.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="30" column="55" selection-start-line="30" selection-start-column="55" selection-end-line="30" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hipay_professional/controllers/front/validation.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="167" column="23" selection-start-line="167" selection-start-column="23" selection-end-line="167" selection-end-column="23" />
+          <folding>
+            <element signature="e#6#216#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hipay_professional/hipay_professional.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="824" column="30" selection-start-line="824" selection-start-column="17" selection-end-line="824" selection-end-column="30" />
+          <folding>
+            <element signature="n#install#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <element signature="n#uninstall#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <element signature="n#installAdminTab#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <element signature="n#createTabAdmin#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <element signature="n#uninstallAdminTab#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <element signature="n#installHipay#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <element signature="n#setCurrencies#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <element signature="n#getCurrencies#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <element signature="n#hookBackOfficeHeader#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <element signature="n#hookDisplayAdminOrderLeft#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <element signature="n#hookHeader#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <element signature="n#hookPayment#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <element signature="n#hookPaymentReturn#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <element signature="n#hipayPaymentReturn#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <element signature="n#hookPaymentTop#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <element signature="n#hookPaymentOptions#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <element signature="n#getPaymentButton#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <element signature="n#getLogFiles#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <element signature="n#isSupportedCurrency#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <element signature="n#getWarningHiPayStatus#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <element signature="n#loginSandbox#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <element signature="n#login#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <element signature="n#majConfigurationByApi#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <element signature="n#saveConfigurationDetails#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <element signature="n#getConfigHiPay#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <element signature="n#setConfigHiPay#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <element signature="n#setAllConfigHiPay#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <element signature="n#insertConfigHiPay#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <element signature="n#saveSettingsConfiguration#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <element signature="n#savePaymentButtonConfiguration#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <element signature="n#createMerchantAccount#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <element signature="n#checkCodeValidation#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <element signature="n#clearAccountData#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <element signature="n#objectToArray#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <element signature="n#getImageButtons#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <element signature="n#getAdminOrderRefundBlockDetails#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <element signature="n#saveOrderState#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <element signature="n#getTransactionId#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <element signature="n#isProductionOrder#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <element signature="n#isRefundAvailable#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <element signature="n#orderAlreadyRefunded#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <element signature="n#updateHiPayOrderStates#0;n#Hipay_Professional#0;n#!!top" expanded="false" />
+            <marker date="1491578312469" expanded="true" signature="6872:7113" ph="SELECT ${(in... ${_DB_PREFIX_}currency" />
+            <marker date="1491578312469" expanded="true" signature="7886:8002" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docker-compose.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="13" selection-end-column="15" />
           <folding />
         </state>
       </provider>

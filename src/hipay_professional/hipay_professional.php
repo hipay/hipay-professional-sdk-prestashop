@@ -16,21 +16,21 @@ if (!defined('_PS_VERSION_')) {
 class Hipay_Professional extends PaymentModule
 {
     protected $config_form = false;
-    public $_errors = [];
-    protected $_successes = [];
-    protected $_warnings = [];
-    public $currencies_titles = [];
-    public $limited_countries = [];
-    public $limited_currencies = [];
+    public $_errors = array();
+    protected $_successes = array();
+    protected $_warnings = array();
+    public $currencies_titles = array();
+    public $limited_countries = array();
+    public $limited_currencies = array();
     public $configHipay;
-    public $hipay_rating = [];
+    public $hipay_rating = array();
     public $create_account = false;
     public $min_amount = 1;
-    public static $available_rates_links = [
+    public static $available_rates_links = array(
         'EN', 'FR', 'ES', 'DE',
         'IT', 'NL', 'PL', 'PT'
-    ];
-    public static $refund_available = ['CB', 'VISA', 'MASTERCARD'];
+    );
+    public static $refund_available = array('CB', 'VISA', 'MASTERCARD');
     public $logs;
 
     const URL_TEST_HIPAY_DIRECT = 'https://test-www.hipaydirect.com/';
@@ -63,15 +63,15 @@ class Hipay_Professional extends PaymentModule
         $this->description = $this->l('Accept payments by credit card and other local methods with HiPay Professional. Very competitive rates, no configuration required!');
 
         // Compliancy
-        $this->limited_countries = [
+        $this->limited_countries = array(
             'AT', 'BE', 'CH', 'CY', 'CZ', 'DE', 'DK',
             'EE', 'ES', 'FI', 'FR', 'GB', 'GR', 'HK',
             'HR', 'HU', 'IE', 'IT', 'LI', 'LT', 'LU',
             'LV', 'MC', 'MT', 'NL', 'NO', 'PL', 'PT',
             'RO', 'RU', 'SE', 'SI', 'SK', 'TR'
-        ];
+        );
 
-        $this->currencies_titles = [
+        $this->currencies_titles = array(
             'AUD' => $this->l('Australian dollar'),
             'CAD' => $this->l('Canadian dollar'),
             'CHF' => $this->l('Swiss franc'),
@@ -80,14 +80,14 @@ class Hipay_Professional extends PaymentModule
             'PLN' => $this->l('Polish złoty'),
             'SEK' => $this->l('Swedish krona'),
             'USD' => $this->l('United States dollar'),
-        ];
+        );
 
-        $this->hipay_rating = [
-            ['key' => 'ALL', 'name' => $this->l('For all ages')],
-            ['key' => '+12', 'name' => $this->l('For ages 12 and over')],
-            ['key' => '+16', 'name' => $this->l('For ages 16 and over')],
-            ['key' => '+18', 'name' => $this->l('For ages 18 and over')],
-        ];
+        $this->hipay_rating = array(
+            array('key' => 'ALL', 'name' => $this->l('For all ages')),
+            array('key' => '+12', 'name' => $this->l('For ages 12 and over')),
+            array('key' => '+16', 'name' => $this->l('For ages 16 and over')),
+            array('key' => '+18', 'name' => $this->l('For ages 18 and over')),
+        );
 
         $this->limited_currencies = array_keys($this->currencies_titles);
 
