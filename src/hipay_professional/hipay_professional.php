@@ -16,21 +16,21 @@ if (!defined('_PS_VERSION_')) {
 class Hipay_Professional extends PaymentModule
 {
     protected $config_form = false;
-    public $_errors = [];
-    protected $_successes = [];
-    protected $_warnings = [];
-    public $currencies_titles = [];
-    public $limited_countries = [];
-    public $limited_currencies = [];
+    public $_errors = array();
+    protected $_successes = array();
+    protected $_warnings = array();
+    public $currencies_titles = array();
+    public $limited_countries = array();
+    public $limited_currencies = array();
     public $configHipay;
-    public $hipay_rating = [];
+    public $hipay_rating = array();
     public $create_account = false;
     public $min_amount = 1;
-    public static $available_rates_links = [
+    public static $available_rates_links = array(
         'EN', 'FR', 'ES', 'DE',
         'IT', 'NL', 'PL', 'PT'
-    ];
-    public static $refund_available = ['CB', 'VISA', 'MASTERCARD'];
+    );
+    public static $refund_available = array('CB', 'VISA', 'MASTERCARD');
     public $logs;
 
     const URL_TEST_HIPAY_DIRECT = 'https://test-www.hipaydirect.com/';
@@ -42,7 +42,7 @@ class Hipay_Professional extends PaymentModule
     {
         $this->name = 'hipay_professional';
         $this->tab = 'payments_gateways';
-        $this->version = '1.0.0';
+        $this->version = '1.0.1';
         $this->module_key = 'ab188f639335535838c7ee492a2e89f8';
         $this->ps_versions_compliancy = array('min' => '1.6', 'max' => _PS_VERSION_);
         $this->currencies = true;
@@ -63,15 +63,15 @@ class Hipay_Professional extends PaymentModule
         $this->description = $this->l('Accept payments by credit card and other local methods with HiPay Professional. Very competitive rates, no configuration required!');
 
         // Compliancy
-        $this->limited_countries = [
+        $this->limited_countries = array(
             'AT', 'BE', 'CH', 'CY', 'CZ', 'DE', 'DK',
             'EE', 'ES', 'FI', 'FR', 'GB', 'GR', 'HK',
             'HR', 'HU', 'IE', 'IT', 'LI', 'LT', 'LU',
             'LV', 'MC', 'MT', 'NL', 'NO', 'PL', 'PT',
             'RO', 'RU', 'SE', 'SI', 'SK', 'TR'
-        ];
+        );
 
-        $this->currencies_titles = [
+        $this->currencies_titles = array(
             'AUD' => $this->l('Australian dollar'),
             'CAD' => $this->l('Canadian dollar'),
             'CHF' => $this->l('Swiss franc'),
@@ -80,14 +80,14 @@ class Hipay_Professional extends PaymentModule
             'PLN' => $this->l('Polish złoty'),
             'SEK' => $this->l('Swedish krona'),
             'USD' => $this->l('United States dollar'),
-        ];
+        );
 
-        $this->hipay_rating = [
-            ['key' => 'ALL', 'name' => $this->l('For all ages')],
-            ['key' => '+12', 'name' => $this->l('For ages 12 and over')],
-            ['key' => '+16', 'name' => $this->l('For ages 16 and over')],
-            ['key' => '+18', 'name' => $this->l('For ages 18 and over')],
-        ];
+        $this->hipay_rating = array(
+            array('key' => 'ALL', 'name' => $this->l('For all ages')),
+            array('key' => '+12', 'name' => $this->l('For ages 12 and over')),
+            array('key' => '+16', 'name' => $this->l('For ages 16 and over')),
+            array('key' => '+18', 'name' => $this->l('For ages 18 and over')),
+        );
 
         $this->limited_currencies = array_keys($this->currencies_titles);
 
@@ -821,8 +821,8 @@ class Hipay_Professional extends PaymentModule
                 'user_account_id' => $account->user_account_id,
                 'website_id' => $websiteDefault->website_id,
                 'user_mail' => $websiteDefault->website_email,
-                'callback_url' => !empty($account->callback_url) ? $account->callback_url : '',
-                'callback_salt' => !empty($account->callback_salt) ? $account->callback_salt : '',
+                'callback_url' => (isset($account->callback_url) && !empty($account->callback_url)) ? $account->callback_url : '',
+                'callback_salt' => (isset($account->callback_salt) && !empty($account->callback_salt)) ? $account->callback_salt : '',
             ];
         }
         if (isset($account->sub_accounts) && count($account->sub_accounts) > 0) {
@@ -834,8 +834,8 @@ class Hipay_Professional extends PaymentModule
                             'user_account_id' => $sub_account->user_account_id,
                             'website_id' => $website->website_id,
                             'user_mail' => $website->website_email,
-                            'callback_url' => !empty($sub_account->callback_url) ? $sub_account->callback_url : '',
-                            'callback_salt' => !empty($sub_account->callback_salt) ? $sub_account->callback_salt : '',
+                            'callback_url' => (isset($sub_account->callback_url) && !empty($sub_account->callback_url)) ? $sub_account->callback_url : '',
+                            'callback_salt' => (isset($sub_account->callback_salt) && !empty($sub_account->callback_salt)) ? $sub_account->callback_salt : '',
                         ];
                     }
                 }
@@ -1500,14 +1500,14 @@ class Hipay_Professional extends PaymentModule
 
 if (_PS_VERSION_ >= '1.7') {
     // version 1.7
-    require_once(_PS_ROOT_DIR_ . '/modules/hipay_professional/hipay_professional-17.php');
+    require_once(_PS_ROOT_DIR_ . _MODULE_DIR_ . 'hipay_professional/hipay_professional-17.php');
 } elseif (_PS_VERSION_ < '1.6') {
     // Version < 1.6
     Tools::displayError('The module HiPay Professional is not compatible with your PrestaShop');
 }
 
 
-require_once(dirname(__FILE__) . '/classes/forms/HipayForm.php');
-require_once(dirname(__FILE__) . '/classes/webservice/HipayUserAccount.php');
-require_once(dirname(__FILE__) . '/classes/webservice/HipayLogs.php');
-require_once(dirname(__FILE__) . '/classes/webservice/HipayREST.php');
+require_once(_PS_ROOT_DIR_ . _MODULE_DIR_ . 'hipay_professional/classes/forms/HipayForm.php');
+require_once(_PS_ROOT_DIR_ . _MODULE_DIR_ . 'hipay_professional/classes/webservice/HipayUserAccount.php');
+require_once(_PS_ROOT_DIR_ . _MODULE_DIR_ . 'hipay_professional/classes/webservice/HipayLogs.php');
+require_once(_PS_ROOT_DIR_ . _MODULE_DIR_ . 'hipay_professional/classes/webservice/HipayREST.php');

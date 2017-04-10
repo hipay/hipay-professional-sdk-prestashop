@@ -112,7 +112,7 @@
                                                     <option value="">{l s='--- Account ID ---' mod='hipay_professional'}</option>
                                                     {foreach from=$config_hipay.production.$currency key=aid item=select}
                                                         <option value="{$aid|escape:'htmlall':'UTF-8'}"
-                                                                {if isset($config_hipay.selected.currencies) && $config_hipay.selected.currencies.production.$currency.accountID == $aid}selected{/if}>{$aid|escape:'htmlall':'UTF-8'}</option>
+                                                                {if isset($config_hipay.selected.currencies.production.$currency) && $config_hipay.selected.currencies.production.$currency.accountID == $aid}selected{/if}>{$aid|escape:'htmlall':'UTF-8'}</option>
                                                         {foreachelse}
                                                         <option value="">{l s='No Account ID' mod='hipay_professional'}</option>
                                                     {/foreach}
@@ -122,16 +122,18 @@
                                                 <select id="settings_production_{$currency|escape:'htmlall':'UTF-8'}_website_id"
                                                         name="settings_production_{$currency|escape:'htmlall':'UTF-8'}_website_id">
                                                     <option value="">{l s='--- Website ID ---' mod='hipay_professional'}</option>
-                                                    {if isset($config_hipay.selected.currencies)}
+                                                    {if isset($config_hipay.selected.currencies.production.$currency)}
                                                         {assign var="prod_account_id" value=$config_hipay.selected.currencies.production.$currency.accountID}
                                                     {/if}
-                                                    {if isset($prod_account_id)}
+                                                    {if isset($prod_account_id) && isset($config_hipay.production.$currency.$prod_account_id)}
                                                         {foreach from=$config_hipay.production.$currency.$prod_account_id item=select}
                                                             <option value="{$select.website_id|escape:'htmlall':'UTF-8'}"
-                                                                    {if isset($config_hipay.selected.currencies) && $config_hipay.selected.currencies.production.$currency.websiteID == $select.website_id}selected{/if}>{$select.website_id|escape:'htmlall':'UTF-8'}</option>
+                                                                    {if isset($config_hipay.selected.currencies.production.$currency) && $config_hipay.selected.currencies.production.$currency.websiteID == $select.website_id}selected{/if}>{$select.website_id|escape:'htmlall':'UTF-8'}</option>
                                                             {foreachelse}
                                                             <option value="">{l s='No Website ID' mod='hipay_professional'}</option>
                                                         {/foreach}
+                                                    {else}
+                                                        <option value="">{l s='No Website ID' mod='hipay_professional'}</option>
                                                     {/if}
                                                 </select>
                                             </td>
@@ -234,7 +236,7 @@
                                                         <option value="">{l s='--- Account ID ---' mod='hipay_professional'}</option>
                                                         {foreach from=$config_hipay.sandbox.$currency key=aid item=select}
                                                             <option value="{$aid|escape:'htmlall':'UTF-8'}"
-                                                                    {if isset($config_hipay.selected.currencies) && $config_hipay.selected.currencies.sandbox.$currency.accountID == $aid}selected{/if}>{$aid|escape:'htmlall':'UTF-8'}</option>
+                                                                    {if isset($config_hipay.selected.currencies.sandbox.$currency) && $config_hipay.selected.currencies.sandbox.$currency.accountID == $aid}selected{/if}>{$aid|escape:'htmlall':'UTF-8'}</option>
                                                             {foreachelse}
                                                             <option value="">{l s='No Account ID' mod='hipay_professional'}</option>
                                                         {/foreach}
@@ -244,16 +246,18 @@
                                                     <select id="settings_sandbox_{$currency|escape:'htmlall':'UTF-8'}_website_id"
                                                             name="settings_sandbox_{$currency}_website_id">
                                                         <option value="">{l s='--- Website ID ---' mod='hipay_professional'}</option>
-                                                        {if isset($config_hipay.selected.currencies)}
+                                                        {if isset($config_hipay.selected.currencies.sandbox.$currency)}
                                                             {assign var="test_account_id" value=$config_hipay.selected.currencies.sandbox.$currency.accountID}
                                                         {/if}
-                                                        {if isset($test_account_id)}
+                                                        {if isset($test_account_id) && isset($config_hipay.sandbox.$currency.$test_account_id)}
                                                             {foreach from=$config_hipay.sandbox.$currency.$test_account_id item=select}
                                                                 <option value="{$select.website_id|escape:'htmlall':'UTF-8'}"
-                                                                        {if isset($config_hipay.selected) && $config_hipay.selected.currencies.sandbox.$currency.websiteID == $select.website_id}selected{/if}>{$select.website_id|escape:'htmlall':'UTF-8'}</option>
+                                                                        {if isset($config_hipay.selected.currencies.sandbox.$currency) && $config_hipay.selected.currencies.sandbox.$currency.websiteID == $select.website_id}selected{/if}>{$select.website_id|escape:'htmlall':'UTF-8'}</option>
                                                                 {foreachelse}
                                                                 <option value="">{l s='No Website ID' mod='hipay_professional'}</option>
                                                             {/foreach}
+                                                        {else}
+                                                            <option value="">{l s='No Website ID' mod='hipay_professional'}</option>
                                                         {/if}
                                                     </select>
                                                 </td>
