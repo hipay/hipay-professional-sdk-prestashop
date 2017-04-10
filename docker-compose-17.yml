@@ -1,14 +1,14 @@
 prestashop:
   container_name: hipay-professional-shop-ps17
+  dockerfile: ./conf/docker/Dockerfile17
   build: .
   ports:
-    - "8086:80"
+    - "8087:80"
   links:
     - smtp
+    - mysql
   env_file:
-    - env
-smtp:
-  image: schickling/mailcatcher
-  container_name: smtp-hipay-professional-ps17
-  ports:
-    - "1086:1080"
+    - ./conf/env_file/env
+    - ./conf/env_file/env17
+  volumes:
+    - ./web17:/var/www/html
