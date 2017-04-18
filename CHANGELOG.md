@@ -1,3 +1,7 @@
+# Version 1.0.2
+
+- Fix Package ZIP
+
 # Version 1.0.1
 
 - Fix notice in HiPay configuration
