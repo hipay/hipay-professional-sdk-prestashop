@@ -1,0 +1,251 @@
+## 2017-04-19 12:05:28 ##
+---- >> function insertConfigHiPay
+## 2017-04-19 12:05:28 ##
+---- >> function setAllConfigHiPay
+## 2017-04-19 12:05:59 ##
+---- >> function insertConfigHiPay
+## 2017-04-19 12:05:59 ##
+---- >> function setAllConfigHiPay
+## 2017-04-19 12:06:09 ##
+##########################
+## 2017-04-19 12:06:09 ##
+---- START function getContent
+## 2017-04-19 12:06:09 ##
+---- >> function postProcess
+## 2017-04-19 12:06:09 ##
+---- >> default action
+## 2017-04-19 12:06:09 ##
+---- >> function majConfigurationByApi
+## 2017-04-19 12:06:09 ##
+url : https://merchant.hipaywallet.com/api/tools/captcha
+## 2017-04-19 12:06:13 ##
+---- END function getContent
+## 2017-04-19 12:06:13 ##
+##########################
+## 2017-04-19 12:06:58 ##
+##########################
+## 2017-04-19 12:06:58 ##
+---- START function getContent
+## 2017-04-19 12:06:58 ##
+---- >> function postProcess
+## 2017-04-19 12:06:58 ##
+---- >> submitRegister
+## 2017-04-19 12:06:58 ##
+---- >> function createMerchantAccount
+## 2017-04-19 12:06:58 ##
+Array
+(
+    [email] => jprotin+demo70@hipay.com
+    [controle_type] => CAPTCHA
+    [captcha] => Array
+        (
+            [id] => 6861
+            [phrase] => s7r34wv7
+        )
+
+    [firstname] => Johan
+    [lastname] => PROTIN
+    [currency] => EUR
+    [locale] => fr_FR
+    [activation_type] => 1
+)
+
+## 2017-04-19 12:06:58 ##
+url : https://merchant.hipaywallet.com/api/user-account
+## 2017-04-19 12:07:00 ##
+stdClass Object
+(
+    [code] => 0
+    [message] => The merchant account [mail=jprotin+demo70@hipay.com] has been added at entity [code = direct]  This account is waiting validation.
+    [email] => jprotin+demo70@hipay.com
+    [wslogin] => 01a74735de88505dd6b7d256f5101e76
+    [wspassword] => 2b2a7e9783f95e7051abe964887bd585
+    [status] => 0
+    [account_id] => 9449270
+    [user_space_id] => 9155628
+    [callback_salt] => rsloj5tw
+)
+
+## 2017-04-19 12:07:00 ##
+stdClass Object
+(
+    [user_mail] => 
+    [sandbox_mode] => 0
+    [sandbox_ws_login] => 
+    [sandbox_ws_password] => 
+    [production_ws_login] => 01a74735de88505dd6b7d256f5101e76
+    [production_ws_password] => 2b2a7e9783f95e7051abe964887bd585
+    [welcome_message_shown] => 0
+    [proxyUrl] => 
+    [proxyLogin] => 
+    [proxyPassword] => 
+    [sandbox] => 
+    [production] => Array
+        (
+            [EUR] => Array
+                (
+                    [9449270] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [user_account_id] => 9449270
+                                    [website_id] => 
+                                    [user_mail] => jprotin+demo70@hipay.com
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [selected] => 
+    [payment_form_type] => 1
+    [manual_capture] => 0
+    [button_text_fr] => Payer par carte bancaire
+    [button_text_en] => Pay by credit or debit card
+    [button_images] => default.png
+    [mode_debug] => 1
+    [production_entity] => direct
+    [bank_info_validated] => 0
+    [identified] => 0
+    [production_status] => 0
+)
+
+## 2017-04-19 12:07:00 ##
+---- >> function setAllConfigHiPay
+## 2017-04-19 12:07:00 ##
+---- >> Display Validator form and validate account
+## 2017-04-19 12:07:00 ##
+---- END function getContent
+## 2017-04-19 12:07:00 ##
+##########################
+## 2017-04-19 12:07:18 ##
+##########################
+## 2017-04-19 12:07:18 ##
+---- START function getContent
+## 2017-04-19 12:07:18 ##
+---- >> function postProcess
+## 2017-04-19 12:07:18 ##
+---- >> submitValidator
+## 2017-04-19 12:07:18 ##
+---- >> function checkCodeValidation
+## 2017-04-19 12:07:18 ##
+url : https://merchant.hipaywallet.com/api/user-account/check/code
+## 2017-04-19 12:07:19 ##
+---- >> account validated
+## 2017-04-19 12:07:19 ##
+currency en input = EUR
+## 2017-04-19 12:07:19 ##
+account_id en input = 0
+## 2017-04-19 12:07:19 ##
+parent currency en input = 
+## 2017-04-19 12:07:19 ##
+parent account_id en input = 0
+## 2017-04-19 12:07:19 ##
+account_id == 0 
+## 2017-04-19 12:07:19 ##
+treatment account with id = 9449270
+## 2017-04-19 12:07:19 ##
+Array
+(
+    [name] => PrestaShop
+    [url] => http://localhost:8087
+    [contact_email] => jprotin+demo70@hipay.com
+    [business_line] => 18
+    [topic] => 175
+    [php-auth-subaccount-id] => 9449270
+    [ws_login] => 01a74735de88505dd6b7d256f5101e76
+    [ws_password] => 2b2a7e9783f95e7051abe964887bd585
+)
+
+## 2017-04-19 12:07:19 ##
+url : https://merchant.hipaywallet.com/api/user-account/website
+## 2017-04-19 12:07:20 ##
+---- >> website created for account_id 9449270 with ID = 396125
+## 2017-04-19 12:07:20 ##
+---- >> function setAllConfigHiPay
+## 2017-04-19 12:07:20 ##
+---- >> save main account et website 
+## 2017-04-19 12:07:20 ##
+---- >> create sub-account et website 
+## 2017-04-19 12:07:20 ##
+---- >> function setConfigHiPay
+## 2017-04-19 12:07:20 ##
+-----> Start preloadConfig
+## 2017-04-19 12:07:20 ##
+---- >> function setConfigHiPay
+## 2017-04-19 12:07:20 ##
+-----> End preloadConfig
+## 2017-04-19 12:07:20 ##
+##########################
+## 2017-04-19 12:07:20 ##
+---- START function getContent
+## 2017-04-19 12:07:20 ##
+---- >> function postProcess
+## 2017-04-19 12:07:20 ##
+---- >> default action
+## 2017-04-19 12:07:20 ##
+---- >> function majConfigurationByApi
+## 2017-04-19 12:07:20 ##
+url : https://merchant.hipaywallet.com/api/user-account
+## 2017-04-19 12:07:21 ##
+---- >> function registerExistingAccount
+## 2017-04-19 12:07:21 ##
+---- >> function setAllConfigHiPay
+## 2017-04-19 12:07:21 ##
+---- >> function majConfigurationByApi
+## 2017-04-19 12:07:21 ##
+---- END function getContent
+## 2017-04-19 12:07:21 ##
+##########################
+## 2017-04-19 12:07:33 ##
+##########################
+## 2017-04-19 12:07:33 ##
+---- START function getContent
+## 2017-04-19 12:07:33 ##
+---- >> function postProcess
+## 2017-04-19 12:07:33 ##
+---- >> submitSandboxConnection
+## 2017-04-19 12:07:33 ##
+---- >> function loginSandbox
+## 2017-04-19 12:07:33 ##
+url : https://test-merchant.hipaywallet.com/api/user-account
+## 2017-04-19 12:07:41 ##
+---- >> function registerExistingAccount
+## 2017-04-19 12:07:41 ##
+---- >> function setAllConfigHiPay
+## 2017-04-19 12:07:42 ##
+-----> Start preloadConfig
+## 2017-04-19 12:07:42 ##
+---- >> function setConfigHiPay
+## 2017-04-19 12:07:43 ##
+-----> End preloadConfig
+## 2017-04-19 12:07:43 ##
+##########################
+## 2017-04-19 12:07:43 ##
+---- START function getContent
+## 2017-04-19 12:07:43 ##
+---- >> function postProcess
+## 2017-04-19 12:07:43 ##
+---- >> default action
+## 2017-04-19 12:07:43 ##
+---- >> function majConfigurationByApi
+## 2017-04-19 12:07:43 ##
+url : https://merchant.hipaywallet.com/api/user-account
+## 2017-04-19 12:07:44 ##
+---- >> function registerExistingAccount
+## 2017-04-19 12:07:44 ##
+---- >> function setAllConfigHiPay
+## 2017-04-19 12:07:44 ##
+---- >> function majConfigurationByApi
+## 2017-04-19 12:07:44 ##
+url : https://test-merchant.hipaywallet.com/api/user-account
+## 2017-04-19 12:07:48 ##
+---- >> function registerExistingAccount
+## 2017-04-19 12:07:48 ##
+---- >> function setAllConfigHiPay
+## 2017-04-19 12:07:48 ##
+---- END function getContent
+## 2017-04-19 12:07:48 ##
+##########################

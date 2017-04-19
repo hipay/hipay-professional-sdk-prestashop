@@ -22,40 +22,40 @@ if [ "$1" = '' ] || [ "$1" = '--help' ];then
 fi
 
 if [ "$1" = 'init' ] && [ "$2" = '' ];then
-    sudo docker-compose stop
-    sudo docker-compose rm -fv
-    sudo rm -Rf data/
-    sudo rm -Rf web16/
-    sudo rm -Rf web17/
-    sudo docker-compose -f docker-compose.yml -f docker-compose.ps16.yml -f docker-compose.ps17.yml build --no-cache
-    sudo docker-compose -f docker-compose.yml -f docker-compose.ps16.yml -f docker-compose.ps17.yml up -d
+    docker-compose stop
+    docker-compose rm -fv
+    rm -Rf data/
+    rm -Rf web16/
+    rm -Rf web17/
+    docker-compose -f docker-compose.yml -f docker-compose-16.yml -f docker-compose-17.yml build --no-cache
+    docker-compose -f docker-compose.yml -f docker-compose-16.yml -f docker-compose-17.yml up -d
 fi
 
 if [ "$1" = 'init' ] && [ "$2" != '' ];then
-    sudo docker-compose stop
-    sudo docker-compose rm -fv
-    sudo rm -Rf data/
-    sudo rm -Rf web16/
-    sudo rm -Rf web17/
-    sudo docker-compose -f docker-compose.yml -f  docker-compose.ps"$2".yml build --no-cache
-    sudo docker-compose -f docker-compose.yml -f docker-compose.ps"$2".yml up  -d
+    docker-compose stop
+    docker-compose rm -fv
+    rm -Rf data/
+    rm -Rf web16/
+    rm -Rf web17/
+    docker-compose -f docker-compose.yml -f  docker-compose-"$2".yml build --no-cache
+    docker-compose -f docker-compose.yml -f docker-compose-"$2".yml up  -d
 fi
 
 if [ "$1" = 'restart' ];then
-    sudo docker-compose stop
-    sudo docker-compose -f docker-compose.yml -f docker-compose.ps16.yml -f docker-compose.ps17.yml up -d
+    docker-compose stop
+    docker-compose -f docker-compose.yml -f docker-compose-16.yml -f docker-compose-17.yml up -d
 fi
 
 if [ "$1" = 'up' ] && [ "$2" != '' ];then
-    sudo docker-compose -f docker-compose.yml -f docker-compose.ps"$2".yml up  -d
+    docker-compose -f docker-compose.yml -f docker-compose-"$2".yml up  -d
 fi
 
 if [ "$1" = 'exec' ] && [ "$2" != '' ];then
-    sudo docker exec -it jira-hotfix-ps"$2"-pro.hipay-pos-platform.com bash
+    docker exec -it jira-feature-ps"$2"-pro.hipay-pos-platform.com bash
 fi
 
 if [ "$1" = 'log' ] && [ "$2" != '' ];then
-    docker logs -f jira-hotfix-ps"$2"-pro.hipay-pos-platform.com
+    docker logs -f jira-feature-ps"$2"-pro.hipay-pos-platform.com
 fi
 
 
