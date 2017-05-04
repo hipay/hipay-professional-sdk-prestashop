@@ -1,3 +1,7 @@
+# Version 1.0.4
+
+- Fix require_once
+
 # Version 1.0.3
 
 - Fix Package ZIP
