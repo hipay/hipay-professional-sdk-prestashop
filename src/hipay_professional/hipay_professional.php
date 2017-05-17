@@ -42,7 +42,7 @@ class Hipay_Professional extends PaymentModule
     {
         $this->name = 'hipay_professional';
         $this->tab = 'payments_gateways';
-        $this->version = '1.0.4';
+        $this->version = '1.0.5';
         $this->module_key = 'ab188f639335535838c7ee492a2e89f8';
         $this->ps_versions_compliancy = array('min' => '1.6', 'max' => _PS_VERSION_);
         $this->currencies = true;
@@ -1500,14 +1500,14 @@ class Hipay_Professional extends PaymentModule
 
 if (_PS_VERSION_ >= '1.7') {
     // version 1.7
-    require_once(dirname(__FILE__) . 'hipay_professional-17.php');
+    require_once(dirname(__FILE__) . '/hipay_professional-17.php');
 } elseif (_PS_VERSION_ < '1.6') {
     // Version < 1.6
     Tools::displayError('The module HiPay Professional is not compatible with your PrestaShop');
 }
 
 
-require_once(dirname(__FILE__) . 'classes/forms/HipayForm.php');
-require_once(dirname(__FILE__) . 'classes/webservice/HipayUserAccount.php');
-require_once(dirname(__FILE__) . 'classes/webservice/HipayLogs.php');
-require_once(dirname(__FILE__) . 'classes/webservice/HipayREST.php');
+require_once(dirname(__FILE__) . '/classes/forms/HipayForm.php');
+require_once(dirname(__FILE__) . '/classes/webservice/HipayUserAccount.php');
+require_once(dirname(__FILE__) . '/classes/webservice/HipayLogs.php');
+require_once(dirname(__FILE__) . '/classes/webservice/HipayREST.php');
