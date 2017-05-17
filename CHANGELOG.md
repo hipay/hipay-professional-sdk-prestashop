@@ -1,5 +1,9 @@
 # Version 1.0.4
 
+- Fix (for PHP7) dirname in hipay_professional.php
+
+# Version 1.0.4
+
 - Fix require_once
 
 # Version 1.0.3
