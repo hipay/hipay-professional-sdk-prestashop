@@ -1,4 +1,9 @@
-# Version 1.0.4
+# Version 1.0.6
+
+- Fix refactoring variables array() in hipay_professional.php
+- Fix template register.tpl
+
+# Version 1.0.5
 
 - Fix (for PHP7) dirname in hipay_professional.php
 

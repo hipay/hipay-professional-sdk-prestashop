@@ -21,7 +21,7 @@
                         <div class="col-lg-12">
                             {l s='Thank you ! Your HiPay account has been created. In Order to validate it, please enter the validation code which has been sent to your e-mail address :' mod='hipay_professional'}
                             <br/>
-                            <b>{if isset($email)}{$email|escape:'htmlall':'UTF-8'}}{/if}</b>
+                            <b>{if isset($email)}{$email|escape:'htmlall':'UTF-8'}{/if}</b>
                         </div>
                     </div>
                     <div class="row">
