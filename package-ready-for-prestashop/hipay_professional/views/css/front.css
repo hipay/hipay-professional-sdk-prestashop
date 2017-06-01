@@ -1,0 +1,51 @@
+/**
+* 2016 HiPay
+*
+* NOTICE OF LICENSE
+*
+*
+* @author    HiPay <support.wallet@hipay.com>
+* @copyright 2016 HiPay
+* @license   https://github.com/hipay/hipay-wallet-sdk-prestashop/blob/master/LICENSE.md
+*
+*/
+
+#hipay_payment_button a {
+    padding: 10px;
+    height: 78px;
+    background-color: #FBFBFB;
+}
+
+#hipay_payment_button a:hover {
+    background-color: #f6f6f6;
+}
+
+#hipay_payment_button a:after {
+    display: block;
+    content: "\f054";
+    position: absolute;
+    right: 15px;
+    margin-top: -11px;
+    top: 50%;
+    font-family: "FontAwesome";
+    font-size: 25px;
+    height: 22px;
+    width: 14px;
+    color: #777777;
+}
+
+#hipay_payment_button span {
+    color: black;
+    margin-top: 15px;
+    margin-left: 10px;
+    display: inline-block;
+}
+
+#hipay_payment_button em {
+    color: #666;
+    font-style: italic;
+}
+
+#hipay_payment_button .small {
+    font-size: .85em;
+}

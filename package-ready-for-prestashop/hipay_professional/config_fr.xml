@@ -2,7 +2,7 @@
 <module>
 	<name>hipay_professional</name>
 	<displayName><![CDATA[HiPay Professional]]></displayName>
-	<version><![CDATA[1.0.6]]></version>
+	<version><![CDATA[1.0.5]]></version>
 	<description><![CDATA[Accept payments by credit card and other local methods with HiPay Professional. Very competitive rates, no configuration required!]]></description>
 	<author><![CDATA[HiPay]]></author>
 	<tab><![CDATA[payments_gateways]]></tab>
