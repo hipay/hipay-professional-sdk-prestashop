@@ -42,7 +42,7 @@ class Hipay_Professional extends PaymentModule
     {
         $this->name = 'hipay_professional';
         $this->tab = 'payments_gateways';
-        $this->version = '1.0.5';
+        $this->version = '1.0.6';
         $this->module_key = 'ab188f639335535838c7ee492a2e89f8';
         $this->ps_versions_compliancy = array('min' => '1.6', 'max' => _PS_VERSION_);
         $this->currencies = true;
@@ -222,7 +222,7 @@ class Hipay_Professional extends PaymentModule
     {
         // get currencies
         $currencies = Currency::getCurrenciesByIdShop((int)$this->context->shop->id);
-        $selectedCurrencies = [];
+        $selectedCurrencies = array();
         foreach ($currencies as $currency) {
             $selectedCurrencies[$currency['iso_code']] = '';
         }
@@ -588,11 +588,11 @@ class Hipay_Professional extends PaymentModule
         $dir = _PS_MODULE_DIR_ . '/hipay_professional/logs/';
         $files = scandir($dir, 1);
         // init array files
-        $error_files = [];
-        $info_files = [];
-        $callback_files = [];
-        $request_files = [];
-        $refund_files = [];
+        $error_files = array();
+        $info_files = array();
+        $callback_files = array();
+        $request_files = array();
+        $refund_files = array();
         // dispatch files
         foreach ($files as $file) {
             if (preg_match("/error/i", $file) && count($error_files) < 10) {
@@ -769,7 +769,7 @@ class Hipay_Professional extends PaymentModule
             // get values sandbox login and password
             $ws_login = (!$sandbox ? $this->configHipay->production_ws_login : $this->configHipay->sandbox_ws_login);
             $ws_password = (!$sandbox ? $this->configHipay->production_ws_password : $this->configHipay->sandbox_ws_password);
-            $params = [];
+            $params = array();
             // true by default but to get user account info sandbox init to false
             $needLogin = true;
 
@@ -806,13 +806,13 @@ class Hipay_Professional extends PaymentModule
         }
     }
 
-    protected function registerExistingAccount($account, $params = [], $sandbox = false)
+    protected function registerExistingAccount($account, $params = array(), $sandbox = false)
     {
         $this->logs->logsHipay('---- >> function registerExistingAccount');
         // init variables
         $prefix = $sandbox ? 'sandbox' : 'production';
-        $user_mail = '';
-        $data = [];
+        $user_mail = array();
+        $data = array();
 
         // init array config values by currency
         foreach ($account->websites as $websiteDefault) {
@@ -1202,8 +1202,8 @@ class Hipay_Professional extends PaymentModule
     protected function checkCodeValidation()
     {
         // init variables
-        $user_mail = [];
-        $data = [];
+        $user_mail = array();
+        $data = array();
 
         try {
             $this->logs->logsHipay('---- >> function checkCodeValidation');
@@ -1329,7 +1329,7 @@ class Hipay_Professional extends PaymentModule
     public function getImageButtons()
     {
         // init variables
-        $files = [];
+        $files = array();
 
         // Get the button's list
         $dir = dirname(__FILE__) . '/views/img/payment_buttons';
@@ -1446,7 +1446,7 @@ class Hipay_Professional extends PaymentModule
     {
         $waiting_state_config = 'HIPAY_OS_WAITING';
         $waiting_state_color = '#4169E1';
-        $waiting_state_names = [];
+        $waiting_state_names = array();
 
         $setup = [
             'delivery' => false,
@@ -1469,7 +1469,7 @@ class Hipay_Professional extends PaymentModule
 
         $partial_state_config = 'HIPAY_OS_PARTIALLY_REFUNDED';
         $partial_state_color = '#EC2E15';
-        $partial_state_names = [];
+        $partial_state_names = array();
 
         foreach (Language::getLanguages(false) as $language) {
             if (Tools::strtolower($language['iso_code']) == 'fr') {
@@ -1483,7 +1483,7 @@ class Hipay_Professional extends PaymentModule
 
         $total_state_config = 'HIPAY_OS_TOTALLY_REFUNDED';
         $total_state_color = '#EC2E15';
-        $total_state_names = [];
+        $total_state_names = array();
 
         foreach (Language::getLanguages(false) as $language) {
             if (Tools::strtolower($language['iso_code']) == 'fr') {
