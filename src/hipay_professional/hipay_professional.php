@@ -27,8 +27,18 @@ class Hipay_Professional extends PaymentModule
     public $create_account = false;
     public $min_amount = 1;
     public static $available_rates_links = array(
-        'EN', 'FR', 'ES', 'DE',
-        'IT', 'NL', 'PL', 'PT'
+        'ZA','AL','DZ','DE','AD','AO','AG','AN','SA','AR','AM','AU','AT','BS','BH',
+        'BB','BY','BE','BZ','BO','BA','BR','BN','BG','KY','KH','CM','CA','CV','CL',
+        'CN','CY','CC','CO','CK','KR','HR','CU','DK','DO','EG','SV','AE','EC','ES',
+        'EE','US','FK','FO','FJ','FI','FR','GE','GS','GI','GR','GD','GL','GP','GT',
+        'GG','GY','GF','HT','HM','HN','HK','HU','IM','VG','VI','IN','ID','IE','IS',
+        'IL','IT','JM','JP','JE','JO','LV','LB','LI','LT','LU','MO','MK','MG','MY',
+        'MW','MV','MT','MP','MA','MH','MQ','MU','MR','YT','MX','FM','MD','MC','MN',
+        'ME','MS','MZ','NI','NF','NO','NC','NZ','IO','OM','PA','PY','NL','PE','PH',
+        'PL','PF','PR','PT','QA','RE','RO','GB','RU','BL','SH','LC','KN','SM','MF',
+        'PM','VA','VC','SB','WS','AS','ST','SN','RS','SC','SL','SG','SK','SI','LK',
+        'SE','CH','SR','SJ','SY','TW','CZ','TF','TH','TL','TN','TR','UA','UY','VU',
+        'VE','VN','WF','YE',
     );
     public static $refund_available = array('CB', 'VISA', 'MASTERCARD');
     public $logs;
@@ -192,7 +202,8 @@ class Hipay_Professional extends PaymentModule
             $return = $return && $return17;
         } elseif (_PS_VERSION_ < '1.7' && _PS_VERSION_ >= '1.6') {
             $return16 = $this->registerHook('payment') &&
-                $this->registerHook('displayPaymentEU');
+                $this->registerHook('displayPaymentEU') &&
+                    $this->registerHook('displayPayment');
             $return = $return && $return16;
         }
         return $return;
@@ -320,6 +331,22 @@ class Hipay_Professional extends PaymentModule
         }
 
         return false;
+    }
+
+    public function hookDisplayPayment($params)
+    {
+        return $this->hookPayment($params);
+    }
+
+    public function hookDisplayPaymentEU($params)
+    {
+        $payment_options = array(
+            'cta_text' => '<br>'.(Tools::strtolower($this->context->language->iso_code)=='fr' ? $this->configHipay->button_text_fr : $this->configHipay->button_text_en),
+            'logo' => Media::getMediaPath($this->getPaymentButton()),
+            'action' => $this->context->link->getModuleLink($this->name, 'redirect', array(), true)
+        );
+
+        return $payment_options;
     }
 
     public function hookPaymentReturn($params)
