@@ -27,18 +27,8 @@ class Hipay_Professional extends PaymentModule
     public $create_account = false;
     public $min_amount = 1;
     public static $available_rates_links = array(
-        'ZA','AL','DZ','DE','AD','AO','AG','AN','SA','AR','AM','AU','AT','BS','BH',
-        'BB','BY','BE','BZ','BO','BA','BR','BN','BG','KY','KH','CM','CA','CV','CL',
-        'CN','CY','CC','CO','CK','KR','HR','CU','DK','DO','EG','SV','AE','EC','ES',
-        'EE','US','FK','FO','FJ','FI','FR','GE','GS','GI','GR','GD','GL','GP','GT',
-        'GG','GY','GF','HT','HM','HN','HK','HU','IM','VG','VI','IN','ID','IE','IS',
-        'IL','IT','JM','JP','JE','JO','LV','LB','LI','LT','LU','MO','MK','MG','MY',
-        'MW','MV','MT','MP','MA','MH','MQ','MU','MR','YT','MX','FM','MD','MC','MN',
-        'ME','MS','MZ','NI','NF','NO','NC','NZ','IO','OM','PA','PY','NL','PE','PH',
-        'PL','PF','PR','PT','QA','RE','RO','GB','RU','BL','SH','LC','KN','SM','MF',
-        'PM','VA','VC','SB','WS','AS','ST','SN','RS','SC','SL','SG','SK','SI','LK',
-        'SE','CH','SR','SJ','SY','TW','CZ','TF','TH','TL','TN','TR','UA','UY','VU',
-        'VE','VN','WF','YE',
+        'EN', 'FR', 'ES', 'DE',
+        'IT', 'NL', 'PL', 'PT'
     );
     public static $refund_available = array('CB', 'VISA', 'MASTERCARD');
     public $logs;
@@ -74,11 +64,18 @@ class Hipay_Professional extends PaymentModule
 
         // Compliancy
         $this->limited_countries = array(
-            'AT', 'BE', 'CH', 'CY', 'CZ', 'DE', 'DK',
-            'EE', 'ES', 'FI', 'FR', 'GB', 'GR', 'HK',
-            'HR', 'HU', 'IE', 'IT', 'LI', 'LT', 'LU',
-            'LV', 'MC', 'MT', 'NL', 'NO', 'PL', 'PT',
-            'RO', 'RU', 'SE', 'SI', 'SK', 'TR'
+            'ZA','AL','DZ','DE','AD','AO','AG','AN','SA','AR','AM','AU','AT','BS','BH',
+            'BB','BY','BE','BZ','BO','BA','BR','BN','BG','KY','KH','CM','CA','CV','CL',
+            'CN','CY','CC','CO','CK','KR','HR','CU','DK','DO','EG','SV','AE','EC','ES',
+            'EE','US','FK','FO','FJ','FI','FR','GE','GS','GI','GR','GD','GL','GP','GT',
+            'GG','GY','GF','HT','HM','HN','HK','HU','IM','VG','VI','IN','ID','IE','IS',
+            'IL','IT','JM','JP','JE','JO','LV','LB','LI','LT','LU','MO','MK','MG','MY',
+            'MW','MV','MT','MP','MA','MH','MQ','MU','MR','YT','MX','FM','MD','MC','MN',
+            'ME','MS','MZ','NI','NF','NO','NC','NZ','IO','OM','PA','PY','NL','PE','PH',
+            'PL','PF','PR','PT','QA','RE','RO','GB','RU','BL','SH','LC','KN','SM','MF',
+            'PM','VA','VC','SB','WS','AS','ST','SN','RS','SC','SL','SG','SK','SI','LK',
+            'SE','CH','SR','SJ','SY','TW','CZ','TF','TH','TL','TN','TR','UA','UY','VU',
+            'VE','VN','WF','YE'
         );
 
         $this->currencies_titles = array(
