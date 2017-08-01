@@ -1,5 +1,5 @@
 mysql:
-  container_name: mysql-hipay-professional
+  container_name: mysql-hipay-professional-dev
   image: mysql:5.6.23
   env_file:
     - ./conf/env_file/env
@@ -9,7 +9,7 @@ mysql:
     - ./data/:/var/lib/mysql
 smtp:
   image: schickling/mailcatcher
-  container_name: smtp-hipay-professional
+  container_name: smtp-hipay-professional-dev
   ports:
     - "1081:1080"
 

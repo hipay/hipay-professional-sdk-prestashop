@@ -22,40 +22,40 @@ if [ "$1" = '' ] || [ "$1" = '--help' ];then
 fi
 
 if [ "$1" = 'init' ] && [ "$2" = '' ];then
-    sudo docker-compose stop
-    sudo docker-compose rm -fv
-    sudo rm -Rf data/
-    sudo rm -Rf web16/
-    sudo rm -Rf web17/
-    sudo docker-compose -f docker-compose.yml -f docker-compose-16.yml -f docker-compose-17.yml build --no-cache
-    sudo docker-compose -f docker-compose.yml -f docker-compose-16.yml -f docker-compose-17.yml up -d
+    docker-compose stop
+    docker-compose rm -fv
+    rm -Rf data/
+    rm -Rf web16/
+    rm -Rf web17/
+    docker-compose -f docker-compose.yml -f docker-compose-16.yml -f docker-compose-17.yml build --no-cache
+    docker-compose -f docker-compose.yml -f docker-compose-16.yml -f docker-compose-17.yml up -d
 fi
 
 if [ "$1" = 'init' ] && [ "$2" != '' ];then
-    sudo docker-compose stop
-    sudo docker-compose rm -fv
-    sudo rm -Rf data/
-    sudo rm -Rf web16/
-    sudo rm -Rf web17/
-    sudo docker-compose -f docker-compose.yml -f  docker-compose-"$2".yml build --no-cache
-    sudo docker-compose -f docker-compose.yml -f docker-compose-"$2".yml up  -d
+    docker-compose stop
+    docker-compose rm -fv
+    rm -Rf data/
+    rm -Rf web16/
+    rm -Rf web17/
+    docker-compose -f docker-compose.yml -f  docker-compose-"$2".yml build --no-cache
+    docker-compose -f docker-compose.yml -f docker-compose-"$2".yml up  -d
 fi
 
 if [ "$1" = 'restart' ];then
-    sudo docker-compose stop
-    sudo docker-compose -f docker-compose.yml -f docker-compose-16.yml -f docker-compose-17.yml up -d
+    docker-compose stop
+    docker-compose -f docker-compose.yml -f docker-compose-16.yml -f docker-compose-17.yml up -d
 fi
 
 if [ "$1" = 'up' ] && [ "$2" != '' ];then
-    sudo docker-compose -f docker-compose.yml -f docker-compose-"$2".yml up  -d
+    docker-compose -f docker-compose.yml -f docker-compose-"$2".yml up  -d
 fi
 
 if [ "$1" = 'exec' ] && [ "$2" != '' ];then
-    sudo docker exec -it hipay-professional-shop-ps"$2" bash
+    docker exec -it hipay-professional-shop-ps"$2" bash
 fi
 
 if [ "$1" = 'log' ] && [ "$2" != '' ];then
-    docker logs -f hipay-professional-shop-ps"$2"
+    logs -f hipay-professional-shop-ps"$2"
 fi
 
 
