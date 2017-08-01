@@ -1,0 +1,75 @@
+## 2017-08-01 12:10:56 ##
+##########################
+## 2017-08-01 12:10:56 ##
+# Début Request New Order
+## 2017-08-01 12:10:56 ##
+##########################
+## 2017-08-01 12:10:56 ##
+---- init auth ws production or sandbox
+## 2017-08-01 12:10:56 ##
+---- sandbox mode
+## 2017-08-01 12:10:56 ##
+Array
+(
+    [websiteId] => 441247
+    [amount] => 31.2
+    [categoryId] => 0
+    [currency] => EUR
+    [customerEmail] => jprotin@hipay.com
+    [customerIpAddress] => 172.17.0.1
+    [description] => 6
+    [merchantReference] => 6
+    [emailCallback] => info@tianocollection.com
+    [executionDate] => 2017-08-01T12:10:56
+    [locale] => fr_FR
+    [manualCapture] => 0
+    [rating] => ALL
+    [wsSubAccountId] => 605799
+    [method] => iframe
+    [urlAccept] => http://localhost:8086/index.php?cart_id=6&secure_key=e3446f6d2297cb305abaff6503c149df&fc=module&module=hipay_professional&controller=confirmation
+    [urlCallback] => http://localhost:8086/index.php?cart_id=6&secure_key=e3446f6d2297cb305abaff6503c149df&fc=module&module=hipay_professional&controller=validation
+    [urlCancel] => http://localhost:8086/index.php?controller=order&step=3
+    [urlDecline] => http://localhost:8086/index.php?cart_id=6&failure=1&secure_key=e3446f6d2297cb305abaff6503c149df&fc=module&module=hipay_professional&controller=confirmation
+    [urlLogo] => http://localhost:8086/img/logo.jpg
+    [freeData] => Array
+        (
+            [item] => Array
+                (
+                    [0] => Array
+                        (
+                            [key] => cart_id
+                            [value] => 6
+                        )
+
+                    [1] => Array
+                        (
+                            [key] => customer_id
+                            [value] => 2
+                        )
+
+                    [2] => Array
+                        (
+                            [key] => secure_key
+                            [value] => e3446f6d2297cb305abaff6503c149df
+                        )
+
+                    [3] => Array
+                        (
+                            [key] => token
+                            [value] => bfd6531b44f4988b8db9ae774e6e5292
+                        )
+
+                )
+
+        )
+
+)
+
+## 2017-08-01 12:10:57 ##
+##########################
+## 2017-08-01 12:10:57 ##
+# Fin Request New Order
+## 2017-08-01 12:10:57 ##
+##########################
+## 2017-08-01 12:10:57 ##
+Redirection mode iFrame

@@ -1,5 +1,5 @@
 prestashop:
-  container_name: hipay-professional-shop-ps16
+  container_name: hipay-professional-shop-ps16-dev
   dockerfile: ./conf/docker/Dockerfile16
   build: .
   ports:

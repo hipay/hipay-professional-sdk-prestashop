@@ -1,0 +1,398 @@
+## 2017-08-01 11:57:27 ##
+---- >> function insertConfigHiPay
+## 2017-08-01 11:57:27 ##
+---- >> function setAllConfigHiPay
+## 2017-08-01 11:58:22 ##
+---- >> function insertConfigHiPay
+## 2017-08-01 11:58:22 ##
+---- >> function setAllConfigHiPay
+## 2017-08-01 11:58:22 ##
+##########################
+## 2017-08-01 11:58:22 ##
+---- START function getContent
+## 2017-08-01 11:58:22 ##
+---- >> function postProcess
+## 2017-08-01 11:58:22 ##
+---- >> default action
+## 2017-08-01 11:58:22 ##
+---- >> function majConfigurationByApi
+## 2017-08-01 11:58:22 ##
+url : https://merchant.hipaywallet.com/api/tools/captcha
+## 2017-08-01 11:58:23 ##
+---- END function getContent
+## 2017-08-01 11:58:23 ##
+##########################
+## 2017-08-01 11:58:38 ##
+##########################
+## 2017-08-01 11:58:38 ##
+---- START function getContent
+## 2017-08-01 11:58:38 ##
+---- >> function postProcess
+## 2017-08-01 11:58:38 ##
+---- >> submitLogin
+## 2017-08-01 11:58:38 ##
+---- >> function login
+## 2017-08-01 11:58:38 ##
+url : https://merchant.hipaywallet.com/api/user-account
+## 2017-08-01 11:58:39 ##
+---- >> function setConfigHiPay
+## 2017-08-01 11:58:39 ##
+---- >> function setConfigHiPay
+## 2017-08-01 11:58:39 ##
+---- >> function registerExistingAccount
+## 2017-08-01 11:58:39 ##
+---- >> function setAllConfigHiPay
+## 2017-08-01 11:58:39 ##
+-----> Start preloadConfig
+## 2017-08-01 11:58:39 ##
+---- >> function setConfigHiPay
+## 2017-08-01 11:58:39 ##
+-----> End preloadConfig
+## 2017-08-01 11:58:39 ##
+##########################
+## 2017-08-01 11:58:39 ##
+---- START function getContent
+## 2017-08-01 11:58:39 ##
+---- >> function postProcess
+## 2017-08-01 11:58:39 ##
+---- >> default action
+## 2017-08-01 11:58:39 ##
+---- >> function majConfigurationByApi
+## 2017-08-01 11:58:39 ##
+url : https://merchant.hipaywallet.com/api/user-account
+## 2017-08-01 11:58:40 ##
+---- >> function registerExistingAccount
+## 2017-08-01 11:58:40 ##
+---- >> function setAllConfigHiPay
+## 2017-08-01 11:58:40 ##
+---- >> function majConfigurationByApi
+## 2017-08-01 11:58:40 ##
+---- END function getContent
+## 2017-08-01 11:58:40 ##
+##########################
+## 2017-08-01 11:58:59 ##
+##########################
+## 2017-08-01 11:58:59 ##
+---- START function getContent
+## 2017-08-01 11:58:59 ##
+---- >> function postProcess
+## 2017-08-01 11:58:59 ##
+---- >> submitSandboxConnection
+## 2017-08-01 11:58:59 ##
+---- >> function loginSandbox
+## 2017-08-01 11:58:59 ##
+url : https://test-merchant.hipaywallet.com/api/user-account
+## 2017-08-01 11:59:01 ##
+---- >> function registerExistingAccount
+## 2017-08-01 11:59:01 ##
+---- >> function setAllConfigHiPay
+## 2017-08-01 11:59:01 ##
+-----> Start preloadConfig
+## 2017-08-01 11:59:01 ##
+---- >> function setConfigHiPay
+## 2017-08-01 11:59:01 ##
+-----> End preloadConfig
+## 2017-08-01 11:59:01 ##
+##########################
+## 2017-08-01 11:59:01 ##
+---- START function getContent
+## 2017-08-01 11:59:01 ##
+---- >> function postProcess
+## 2017-08-01 11:59:01 ##
+---- >> default action
+## 2017-08-01 11:59:01 ##
+---- >> function majConfigurationByApi
+## 2017-08-01 11:59:01 ##
+url : https://merchant.hipaywallet.com/api/user-account
+## 2017-08-01 11:59:02 ##
+---- >> function registerExistingAccount
+## 2017-08-01 11:59:02 ##
+---- >> function setAllConfigHiPay
+## 2017-08-01 11:59:02 ##
+---- >> function majConfigurationByApi
+## 2017-08-01 11:59:02 ##
+url : https://test-merchant.hipaywallet.com/api/user-account
+## 2017-08-01 11:59:04 ##
+---- >> function registerExistingAccount
+## 2017-08-01 11:59:04 ##
+---- >> function setAllConfigHiPay
+## 2017-08-01 11:59:04 ##
+---- END function getContent
+## 2017-08-01 11:59:04 ##
+##########################
+## 2017-08-01 11:59:11 ##
+##########################
+## 2017-08-01 11:59:11 ##
+---- START function getContent
+## 2017-08-01 11:59:11 ##
+---- >> function postProcess
+## 2017-08-01 11:59:11 ##
+---- >> submitSettings
+## 2017-08-01 11:59:11 ##
+---- >> function saveSettingsConfiguration
+## 2017-08-01 11:59:11 ##
+---- >> function setConfigHiPay
+## 2017-08-01 11:59:11 ##
+---- >> function setConfigHiPay
+## 2017-08-01 11:59:11 ##
+stdClass Object
+(
+    [user_mail] => stdClass Object
+        (
+            [EUR] => stdClass Object
+                (
+                    [389951] => info@tianocollection.com
+                )
+
+        )
+
+    [sandbox_mode] => 1
+    [sandbox_ws_login] => 791be67f1954740efb93ec221babd311
+    [sandbox_ws_password] => 4c966454952e480a8225a29f258e1b38
+    [production_ws_login] => bd8a3b5ed26a9479259a5cd388bb943b
+    [production_ws_password] => 867fa5abff77a60336b20e7f033c06cb
+    [welcome_message_shown] => 1
+    [proxyUrl] => 
+    [proxyLogin] => 
+    [proxyPassword] => 
+    [sandbox] => stdClass Object
+        (
+            [EUR] => stdClass Object
+                (
+                    [605799] => Array
+                        (
+                            [0] => stdClass Object
+                                (
+                                    [user_account_id] => 605799
+                                    [website_id] => 441247
+                                    [user_mail] => info@tianocollection.com
+                                    [callback_url] => 
+                                    [callback_salt] => 
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [production] => stdClass Object
+        (
+            [EUR] => stdClass Object
+                (
+                    [8133100] => Array
+                        (
+                            [0] => stdClass Object
+                                (
+                                    [user_account_id] => 8133100
+                                    [website_id] => 389951
+                                    [user_mail] => info@tianocollection.com
+                                    [callback_url] => 
+                                    [callback_salt] => 
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [selected] => Array
+        (
+            [rating_prod] => ALL
+            [rating_sandbox] => ALL
+            [currencies] => Array
+                (
+                    [production] => Array
+                        (
+                            [EUR] => Array
+                                (
+                                    [accountID] => 8133100
+                                    [websiteID] => 389951
+                                )
+
+                        )
+
+                    [sandbox] => Array
+                        (
+                            [EUR] => Array
+                                (
+                                    [accountID] => 605799
+                                    [websiteID] => 441247
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [payment_form_type] => 1
+    [manual_capture] => 0
+    [button_text_fr] => Payer par carte bancaire
+    [button_text_en] => Pay by credit or debit card
+    [button_images] => default.png
+    [mode_debug] => 1
+    [production_entity] => direct
+    [bank_info_validated] => 1
+    [identified] => 1
+    [production_status] => 1
+)
+
+## 2017-08-01 11:59:11 ##
+---- >> function majConfigurationByApi
+## 2017-08-01 11:59:11 ##
+url : https://merchant.hipaywallet.com/api/user-account
+## 2017-08-01 11:59:12 ##
+---- >> function registerExistingAccount
+## 2017-08-01 11:59:12 ##
+---- >> function setAllConfigHiPay
+## 2017-08-01 11:59:12 ##
+---- >> function majConfigurationByApi
+## 2017-08-01 11:59:12 ##
+url : https://test-merchant.hipaywallet.com/api/user-account
+## 2017-08-01 11:59:14 ##
+---- >> function registerExistingAccount
+## 2017-08-01 11:59:14 ##
+---- >> function setAllConfigHiPay
+## 2017-08-01 11:59:14 ##
+---- END function getContent
+## 2017-08-01 11:59:14 ##
+##########################
+## 2017-08-01 11:59:30 ##
+##########################
+## 2017-08-01 11:59:30 ##
+---- START function getContent
+## 2017-08-01 11:59:30 ##
+---- >> function postProcess
+## 2017-08-01 11:59:30 ##
+---- >> submitPaymentbutton
+## 2017-08-01 11:59:30 ##
+---- >> function savePaymentButtonConfiguration
+## 2017-08-01 11:59:30 ##
+---- >> function setAllConfigHiPay
+## 2017-08-01 11:59:30 ##
+stdClass Object
+(
+    [user_mail] => stdClass Object
+        (
+            [EUR] => stdClass Object
+                (
+                    [389951] => info@tianocollection.com
+                )
+
+        )
+
+    [sandbox_mode] => 1
+    [sandbox_ws_login] => 791be67f1954740efb93ec221babd311
+    [sandbox_ws_password] => 4c966454952e480a8225a29f258e1b38
+    [production_ws_login] => bd8a3b5ed26a9479259a5cd388bb943b
+    [production_ws_password] => 867fa5abff77a60336b20e7f033c06cb
+    [welcome_message_shown] => 1
+    [proxyUrl] => 
+    [proxyLogin] => 
+    [proxyPassword] => 
+    [sandbox] => stdClass Object
+        (
+            [EUR] => stdClass Object
+                (
+                    [605799] => Array
+                        (
+                            [0] => stdClass Object
+                                (
+                                    [user_account_id] => 605799
+                                    [website_id] => 441247
+                                    [user_mail] => info@tianocollection.com
+                                    [callback_url] => 
+                                    [callback_salt] => 
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [production] => stdClass Object
+        (
+            [EUR] => stdClass Object
+                (
+                    [8133100] => Array
+                        (
+                            [0] => stdClass Object
+                                (
+                                    [user_account_id] => 8133100
+                                    [website_id] => 389951
+                                    [user_mail] => info@tianocollection.com
+                                    [callback_url] => 
+                                    [callback_salt] => 
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [selected] => stdClass Object
+        (
+            [rating_prod] => ALL
+            [rating_sandbox] => ALL
+            [currencies] => stdClass Object
+                (
+                    [production] => stdClass Object
+                        (
+                            [EUR] => stdClass Object
+                                (
+                                    [accountID] => 8133100
+                                    [websiteID] => 389951
+                                )
+
+                        )
+
+                    [sandbox] => stdClass Object
+                        (
+                            [EUR] => stdClass Object
+                                (
+                                    [accountID] => 605799
+                                    [websiteID] => 441247
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [payment_form_type] => 
+    [manual_capture] => 
+    [button_text_fr] => Payer par carte bancaire
+    [button_text_en] => Pay by credit or debit card
+    [button_images] => default.png
+    [mode_debug] => 1
+    [production_entity] => direct
+    [bank_info_validated] => 1
+    [identified] => 1
+    [production_status] => 1
+)
+
+## 2017-08-01 11:59:30 ##
+---- >> function majConfigurationByApi
+## 2017-08-01 11:59:30 ##
+url : https://merchant.hipaywallet.com/api/user-account
+## 2017-08-01 11:59:31 ##
+---- >> function registerExistingAccount
+## 2017-08-01 11:59:31 ##
+---- >> function setAllConfigHiPay
+## 2017-08-01 11:59:31 ##
+---- >> function majConfigurationByApi
+## 2017-08-01 11:59:31 ##
+url : https://test-merchant.hipaywallet.com/api/user-account
+## 2017-08-01 11:59:33 ##
+---- >> function registerExistingAccount
+## 2017-08-01 11:59:33 ##
+---- >> function setAllConfigHiPay
+## 2017-08-01 11:59:33 ##
+---- END function getContent
+## 2017-08-01 11:59:33 ##
+##########################
