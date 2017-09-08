@@ -22,13 +22,20 @@ if [ "$1" = '' ] || [ "$1" = '--help' ];then
 fi
 
 if [ "$1" = 'init' ] && [ "$2" = '' ];then
-    sudo docker-compose stop
-    sudo docker-compose rm -fv
-    sudo rm -Rf data/
-    sudo rm -Rf web16/
-    sudo rm -Rf web17/
-    sudo docker-compose -f docker-compose.yml -f docker-compose-16.yml -f docker-compose-17.yml build --no-cache
-    sudo docker-compose -f docker-compose.yml -f docker-compose-16.yml -f docker-compose-17.yml up -d
+     docker-compose -f docker-compose.yml -f docker-compose.dev.yml -f docker-compose-16.yml -f docker-compose-17.yml stop
+     docker-compose -f docker-compose.yml -f docker-compose.dev.yml -f docker-compose-16.yml -f docker-compose-17.yml rm -fv
+     rm -Rf data/
+     rm -Rf web16/
+     rm -Rf web17/
+     docker-compose -f docker-compose.yml -f docker-compose.dev.yml -f docker-compose-16.yml -f docker-compose-17.yml build --no-cache
+     docker-compose -f docker-compose.yml -f docker-compose.dev.yml -f docker-compose-16.yml -f docker-compose-17.yml up -d
+fi
+
+if [ "$1" = 'init-stage' ] && [ "$2" = '' ];then
+     docker-compose -f docker-compose.yml -f docker-compose.stage.yml stop
+     docker-compose -f docker-compose.yml -f docker-compose.stage.yml rm -fv
+     docker-compose -f docker-compose.yml -f docker-compose.stage.yml build --no-cache
+     docker-compose -f docker-compose.yml -f docker-compose.stage.yml up -d
 fi
 
 if [ "$1" = 'init' ] && [ "$2" != '' ];then
