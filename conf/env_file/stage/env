@@ -1,4 +1,5 @@
 PS_DOMAIN=localhost:8086
+PS_ERASE_DB=1
 ADMIN_MAIL=demo@hipay.com
 ADMIN_PASSWD=hipay123
 PS_LANGUAGE=fr
@@ -9,7 +10,6 @@ PS_FOLDER_ADMIN=admin-hipay
 PS_FOLDER_INSTALL=installOLD
 PS_HANDLE_DYNAMIC_DOMAIN=0
 DB_SERVER=mysql
-DB_NAME=prestashop
 DB_USER=root
 DB_PASSWD=admin
 MYSQL_HOST=mysql
