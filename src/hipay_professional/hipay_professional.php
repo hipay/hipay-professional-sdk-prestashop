@@ -33,10 +33,10 @@ class Hipay_Professional extends PaymentModule
     public static $refund_available = array('CB', 'VISA', 'MASTERCARD');
     public $logs;
 
-    const URL_TEST_HIPAY_DIRECT = 'https://test-www.hipaydirect.com/';
-    const URL_PROD_HIPAY_DIRECT = 'https://www.hipaydirect.com/';
-    const URL_TEST_HIPAY_WALLET = 'https://test-www.hipaywallet.com/';
-    const URL_PROD_HIPAY_WALLET = 'https://www.hipaywallet.com/';
+    const URL_TEST_HIPAY_DIRECT = 'https://test-professional.hipay.com/';
+    const URL_PROD_HIPAY_DIRECT = 'https://professional.hipay.com/';
+    const URL_TEST_HIPAY_WALLET = 'https://test-professional.hipay.com/';
+    const URL_PROD_HIPAY_WALLET = 'https://professional.hipay.com/';
 
     public function __construct()
     {
