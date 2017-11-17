@@ -33,16 +33,16 @@ class Hipay_Professional extends PaymentModule
     public static $refund_available = array('CB', 'VISA', 'MASTERCARD');
     public $logs;
 
-    const URL_TEST_HIPAY_DIRECT = 'https://test-www.hipaydirect.com/';
-    const URL_PROD_HIPAY_DIRECT = 'https://www.hipaydirect.com/';
-    const URL_TEST_HIPAY_WALLET = 'https://test-www.hipaywallet.com/';
-    const URL_PROD_HIPAY_WALLET = 'https://www.hipaywallet.com/';
+    const URL_TEST_HIPAY_DIRECT = 'https://test-professional.hipay.com/';
+    const URL_PROD_HIPAY_DIRECT = 'https://professional.hipay.com/';
+    const URL_TEST_HIPAY_WALLET = 'https://test-professional.hipay.com/';
+    const URL_PROD_HIPAY_WALLET = 'https://professional.hipay.com/';
 
     public function __construct()
     {
         $this->name = 'hipay_professional';
         $this->tab = 'payments_gateways';
-        $this->version = '1.0.6';
+        $this->version = '1.0.7';
         $this->module_key = 'ab188f639335535838c7ee492a2e89f8';
         $this->ps_versions_compliancy = array('min' => '1.6', 'max' => _PS_VERSION_);
         $this->currencies = true;
