@@ -2,8 +2,7 @@
 
 global $_MODULE;
 $_MODULE = array();
-$_MODULE['<{hipay_professional}prestashop>hipay_professional_30b49cd9d43d15c4691d234e7c10d636'] = 'HiPay Professionnal';
-$_MODULE['<{hipay_professional}prestashop>hipay_professional_2d6d852d33defcc002fe74d821daa4ec'] = 'Acceptez les paiements par carte de crédit et autres méthodes locales avec HiPay Professionnel. Des tarifs très compétitifs, pas de configuration requise !';
+$_MODULE['<{hipay_professional}prestashop>hipay_professional_c0d3bb5c3d603e9aaa7ff3ef734eb48a'] = 'Acceptez les paiements par carte de crédit et autres méthodes locales avec HiPay Professionnel. Des tarifs très compétitifs, pas de configuration requise !';
 $_MODULE['<{hipay_professional}prestashop>hipay_professional_f306cf9973b9e7522caef12f9e4291e1'] = 'Dollar australien';
 $_MODULE['<{hipay_professional}prestashop>hipay_professional_34553e70d0f619c5c359d67350a80216'] = 'Dollar canadien';
 $_MODULE['<{hipay_professional}prestashop>hipay_professional_c0461926e49792dabc964a331f075e5b'] = 'Franc suisse';
@@ -42,7 +41,6 @@ $_MODULE['<{hipay_professional}prestashop>hipay_professional_a4cba09ae7638d212e3
 $_MODULE['<{hipay_professional}prestashop>hipay_professional_db0cdbe0b515cb4397a5e969af623978'] = 'Le code de validation est incorrect. Réessayez.';
 $_MODULE['<{hipay_professional}prestashop>hipay_professional_e6c866b212c9093c24720baca1849c43'] = 'Erreur API - problème sur le code de validation de contrôle';
 $_MODULE['<{hipay_professional}prestashop>hipayform_f86626c4f58b6470a965a6a18b194756'] = 'WS Login';
-$_MODULE['<{hipay_professional}prestashop>hipayform_1ad64360789b2c55108fd903754c5163'] = 'Vous pouvez le trouver sur votre compte HiPay, section \"Intégration> API\", sous \"Accès Webservice\"';
 $_MODULE['<{hipay_professional}prestashop>hipayform_ac664f692e52c3e565b0ea62e413761c'] = 'WS Password';
 $_MODULE['<{hipay_professional}prestashop>hipayform_526d688f37a86d3c3f27d0c5016eb71d'] = 'Réinitialiser';
 $_MODULE['<{hipay_professional}prestashop>hipayform_bffe9a3c9a7e00ba00a11749e022d911'] = 'Connectez-vous';
@@ -52,9 +50,9 @@ $_MODULE['<{hipay_professional}prestashop>hipayform_04176f095283bc729f1e3926967e
 $_MODULE['<{hipay_professional}prestashop>hipayform_4f8ee17da21c2be54149b0158c8e77f8'] = 'Veuillez entrer votre prénom dans le champ ci-dessus';
 $_MODULE['<{hipay_professional}prestashop>hipayform_dff4bf10409100d989495c6d5486035e'] = 'Nom';
 $_MODULE['<{hipay_professional}prestashop>hipayform_a1d9ab14294b9d7f6524f5b27feedc00'] = 'Veuillez entrer votre nom dans le champ ci-dessus';
+$_MODULE['<{hipay_professional}prestashop>hipayform_15f63e76d60fb8f49bfb82553a25983c'] = 'Nouveau captcha';
 $_MODULE['<{hipay_professional}prestashop>hipayform_3ffd039572724e5819aa5ef9b1b46bd1'] = 'Insérez le code de sécurité';
 $_MODULE['<{hipay_professional}prestashop>hipayform_5d712ea89fdbe1ac796f3089155779bf'] = 'Vous devez remplir ce captcha pour valider le formulaire';
-$_MODULE['<{hipay_professional}prestashop>hipayform_15f63e76d60fb8f49bfb82553a25983c'] = 'Nouveau captcha';
 $_MODULE['<{hipay_professional}prestashop>hipayform_252c8d1e2ede02fb4b2160a3200d0bc8'] = 'Je suis d\'accord avec les termes et conditions';
 $_MODULE['<{hipay_professional}prestashop>hipayform_d9776f0775997b2e698c6975420b5c5d'] = 'Inscrivez-vous';
 $_MODULE['<{hipay_professional}prestashop>hipayform_76f0ed934de85cc7131910b32ede7714'] = 'Rembourser';
@@ -75,6 +73,7 @@ $_MODULE['<{hipay_professional}prestashop>adminhipayconfigcontroller_1ffecda4e21
 $_MODULE['<{hipay_professional}prestashop>adminhipayconfigcontroller_0c9e3a31447895dffc5de412c837a610'] = 'Erreur sur l\'extension de l\'image.';
 $_MODULE['<{hipay_professional}prestashop>adminhipayconfigcontroller_2a8beaaa154abfba720b38d30f9a0467'] = 'Désolé, pas de bouton de paiement sélectionné !';
 $_MODULE['<{hipay_professional}prestashop>adminhipayconfigcontroller_e83cf2e8fca5459925958b713740db5c'] = 'Erreur sur la duplication du compte pour la devise';
+$_MODULE['<{hipay_professional}prestashop>adminhipayconfigcontroller_8affc8e8ed84064ecec6596cda977195'] = 'Sous-compte crée pour la devise';
 $_MODULE['<{hipay_professional}prestashop>confirmation_0fb697b26007a04a49df2f87397bdef7'] = 'Une erreur est survenue. Veuillez contacter le marchand pour plus d\'informations.';
 $_MODULE['<{hipay_professional}prestashop>redirect_a240fa27925a635b08dc28c9e4f9216d'] = 'Commande';
 $_MODULE['<{hipay_professional}prestashop>redirect_902b0d55fddef6f8d651fe1035b7d4bd'] = 'Erreur';
@@ -144,7 +143,7 @@ $_MODULE['<{hipay_professional}prestashop>modal-login_1ad64360789b2c55108fd90375
 $_MODULE['<{hipay_professional}prestashop>modal-login_f86626c4f58b6470a965a6a18b194756'] = 'WS Login';
 $_MODULE['<{hipay_professional}prestashop>modal-login_ac664f692e52c3e565b0ea62e413761c'] = 'WS Password';
 $_MODULE['<{hipay_professional}prestashop>modal-login_d3d2e617335f08df83599665eef8a418'] = 'Fermer';
-$_MODULE['<{hipay_professional}prestashop>modal-login_295b75a9ab789a9dde1bfbf7111b96a5'] = 'Site web de test HiPay Direct';
+$_MODULE['<{hipay_professional}prestashop>modal-login_ad3d06d03d94223fa652babc913de686'] = 'Valider';
 $_MODULE['<{hipay_professional}prestashop>payment-button_6f744347d54de2e46edf108f065b377c'] = 'Configuration de production';
 $_MODULE['<{hipay_professional}prestashop>payment-button_add08fcde0db4a2a4f3bd8c73db8ba88'] = 'Choisissez l\'intégration du formulaire de paiement ci-dessous:';
 $_MODULE['<{hipay_professional}prestashop>payment-button_b186e06250d5a8751d4b5aaf1257452a'] = 'Redirection (page de paiement hébergée par HiPay)';
@@ -204,12 +203,6 @@ $_MODULE['<{hipay_professional}prestashop>16_iframe_c15aa73e3fc896d9e1365e5065bc
 $_MODULE['<{hipay_professional}prestashop>16_iframe_f1d3b424cd68795ecaa552883759aceb'] = 'Récapitulatif de la commande';
 $_MODULE['<{hipay_professional}prestashop>16_iframe_879f6b8877752685a966564d072f498f'] = 'Votre panier est vide.';
 $_MODULE['<{hipay_professional}prestashop>16_waiting_validation_a128b351bf40bd51840654c2758ba1ea'] = 'Veuillez patienter pendant la confirmation de la commande ...';
-$_MODULE['<{hipay_professional}prestashop>17_payment_form_a44217022190f5734b2f72ba1e4f8a79'] = 'Numéro de carte';
-$_MODULE['<{hipay_professional}prestashop>17_payment_form_04176f095283bc729f1e3926967e7034'] = 'Prénom';
-$_MODULE['<{hipay_professional}prestashop>17_payment_form_dff4bf10409100d989495c6d5486035e'] = 'Nom';
-$_MODULE['<{hipay_professional}prestashop>17_payment_form_5ea7f231296949070013bc43715aae01'] = 'CVV';
-$_MODULE['<{hipay_professional}prestashop>17_payment_form_bd05ca810b3b47741bb9fde84a54c1a9'] = 'Expiration (MM/AAAA)';
-$_MODULE['<{hipay_professional}prestashop>17_payment_infos_bdb5d8595634134f1334447bfcf55a4c'] = 'Ajouter des détails sur l\'option de paiement';
 $_MODULE['<{hipay_professional}prestashop>17_payment_return_b7ea76c854932e574295f49a6f36b89f'] = 'Vous avez envoyé avec succès votre formulaire de paiement.';
 $_MODULE['<{hipay_professional}prestashop>17_payment_return_84a191f3b437d49329e4bafe670fbc65'] = 'Voici les paramètres :';
 $_MODULE['<{hipay_professional}prestashop>17_payment_return_209637e88f49702f3537b8e48c4a802d'] = 'Maintenant, il vous suffit de procéder au paiement.';
