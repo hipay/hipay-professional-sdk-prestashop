@@ -1061,8 +1061,8 @@ class Hipay_Professional extends PaymentModule
             $getCurrencies = $this->getCurrencies();
 
             // init dynamic values by currency
-            $selectedCurrenciesProd = '';
-            $selectedCurrenciesSandbox = '';
+            $selectedCurrenciesProd = array();
+            $selectedCurrenciesSandbox = array();
             foreach ($getCurrencies as $key => $value) {
                 // production
                 $getProductionAccountId = Tools::getValue('settings_production_' . $key . '_user_account_id');
