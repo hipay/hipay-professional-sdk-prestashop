@@ -59,7 +59,7 @@
                     <button type="button" class="btn btn-secondary"
                             data-dismiss="modal">{l s='Close' mod='hipay_professional'}</button>
                     <button type="submit" class="btn btn-primary"
-                            name="submitSandboxConnection">{l s='HiPay Direct test website' mod='hipay_professional'}</button>
+                            name="submitSandboxConnection">{l s='Validate' mod='hipay_professional'}</button>
                 </div>
             </form>
         </div>
