@@ -1,2 +1,2 @@
-PS_DOMAIN=localhost:8086
+PS_DOMAIN=localhost:8076
 DB_NAME=prestashop16
