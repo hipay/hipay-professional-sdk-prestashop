@@ -6,10 +6,10 @@
 echo "\n Execution PRESTASHOP Entrypoint \n";
 /tmp/docker_run.sh
 
-if [ $ACTIVE_XDEBUG ];then
-    echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini
-    echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini
-fi
+#if [ $ACTIVE_XDEBUG ];then
+#    echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini
+#    echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini
+#fi
 
 #===================================#
 #       START WEBSERVER

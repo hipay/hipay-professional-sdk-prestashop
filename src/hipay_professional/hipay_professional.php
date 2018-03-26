@@ -42,7 +42,7 @@ class Hipay_Professional extends PaymentModule
     {
         $this->name = 'hipay_professional';
         $this->tab = 'payments_gateways';
-        $this->version = '1.0.7';
+        $this->version = '1.0.8';
         $this->module_key = 'ab188f639335535838c7ee492a2e89f8';
         $this->ps_versions_compliancy = array('min' => '1.6', 'max' => _PS_VERSION_);
         $this->currencies = true;
@@ -1061,8 +1061,8 @@ class Hipay_Professional extends PaymentModule
             $getCurrencies = $this->getCurrencies();
 
             // init dynamic values by currency
-            $selectedCurrenciesProd = '';
-            $selectedCurrenciesSandbox = '';
+            $selectedCurrenciesProd = array();
+            $selectedCurrenciesSandbox = array();
             foreach ($getCurrencies as $key => $value) {
                 // production
                 $getProductionAccountId = Tools::getValue('settings_production_' . $key . '_user_account_id');
