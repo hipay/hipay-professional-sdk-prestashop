@@ -1,3 +1,13 @@
+# Version 1.0.8
+
+- Fix PHP 7.1 silent conversion error
+- Fix Translations
+
+# Version 1.0.7
+
+- Fix Add countries eligible in HiPay Professional
+- Fix URL wallet et direct in Professional
+
 # Version 1.0.7
 
 - Fix Add countries eligible in HiPay Professional
