@@ -226,9 +226,9 @@ class Hipay_ProfessionalValidationModuleFrontController extends ModuleFrontContr
         $this->logs->callbackLogs('----> START placeOrder()');
         // ----
 
-        $order_id = (int)Order::getOrderByCartId($cart_id);
+        $order_id = (int)Order::getIdByCartId($cart_id);
 
-        if ((bool)$order_id != false) {
+        if ($order_id) {
             // LOGS
             $this->logs->callbackLogs('Treatment an existing order');
             // ----
@@ -255,7 +255,7 @@ class Hipay_ProfessionalValidationModuleFrontController extends ModuleFrontContr
                 ];
 
                 $message = new Message();
-                $message->message = Tools::jsonEncode($details);
+                $message->message = json_encode($details);
                 $message->id_order = (int)$order_id;
                 $message->private = 1;
                 $message->add();
@@ -307,7 +307,7 @@ class Hipay_ProfessionalValidationModuleFrontController extends ModuleFrontContr
 
                 $sandbox_mode = (bool)$this->configHipay->sandbox_mode;
 
-                $message = Tools::jsonEncode([
+                $message = json_encode([
                     "Environment" => $sandbox_mode ? 'SANDBOX' : 'PRODUCTION',
                     "Payment method" => Tools::safeOutput($payment_method),
                     "Transaction ID" => Tools::safeOutput($transaction_id),
@@ -323,7 +323,7 @@ class Hipay_ProfessionalValidationModuleFrontController extends ModuleFrontContr
                         true
                     )
                 );
-                $message = Tools::jsonEncode($error_details);
+                $message = json_encode($error_details);
                 return $this->displayError('An error occurred while saving transaction details');
             }
 
