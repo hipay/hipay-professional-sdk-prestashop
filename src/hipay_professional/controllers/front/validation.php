@@ -17,7 +17,8 @@ class Hipay_ProfessionalValidationModuleFrontController extends ModuleFrontContr
     public function postProcess()
     {
         if ($this->module->active == false) {
-            die;
+            header("HTTP/1.0 500 Internal server error");
+            die();
         }
 
         $this->logs = new HipayLogs($this->module);
@@ -44,6 +45,7 @@ class Hipay_ProfessionalValidationModuleFrontController extends ModuleFrontContr
 
             if (!Db::getInstance()->execute($sql)) {
                 $this->logs->errorLogsHipay('----> Bad LockSQL initiated, Lock could not be initiated for id_cart = ' . $cart_id);
+                header("HTTP/1.0 500 Internal server error");
                 die('Lock not initiated');
             } else {
                 $this->logs->callbackLogs('----> Treatment is locked for the id_cart = ' . $cart_id);
@@ -78,14 +80,20 @@ class Hipay_ProfessionalValidationModuleFrontController extends ModuleFrontContr
             $sql = 'commit;';
             if (!Db::getInstance()->execute($sql)) {
                 $this->logs->errorLogsHipay('----> Bad LockSQL initiated, Lock could not be initiated for id_cart = ' . $cart_id);
+                header("HTTP/1.0 500 Internal server error");
                 die('Lock not initiated');
             } else {
                 $this->logs->callbackLogs('----> Treatment is unlocked for the id_cart = ' . $cart_id);
             }
 
-            return $return;
+            if (!$return) {
+                header("HTTP/1.0 500 Internal server error");
+            }
+
+            die();
         }
 
+        header("HTTP/1.0 500 Internal server error");
         return $this->displayError('An error occurred while processing payment');
     }
 
@@ -160,8 +168,8 @@ class Hipay_ProfessionalValidationModuleFrontController extends ModuleFrontContr
         } else {
             // LOGS
             $this->logs->errorLogsHipay('Token or signature are not valid');
-            // ----
-            return false;
+            header('HTTP/1.1 403 Forbidden');
+            die('Bad Callback initiated - signature');
         }
     }
 
@@ -226,7 +234,13 @@ class Hipay_ProfessionalValidationModuleFrontController extends ModuleFrontContr
         $this->logs->callbackLogs('----> START placeOrder()');
         // ----
 
-        $order_id = (int)Order::getIdByCartId($cart_id);
+        $order_id = null;
+
+        //Fix Bug where Order is created while transaction is processed
+        if ($this->orderExists($cart_id)) {
+            // can't use Order::getOrderByCartId 'cause add shop restrictions
+            $order_id = $this->getOrderByCartId($cart_id);
+        }
 
         if ($order_id) {
             // LOGS
@@ -373,5 +387,35 @@ class Hipay_ProfessionalValidationModuleFrontController extends ModuleFrontContr
             }
             return true;
         }
+    }
+
+    /**
+     * Check if order has already been placed ( Without prestashop cache)
+     *
+     * @return bool result
+     */
+    private function orderExists($cart_id)
+    {
+        if ($cart_id) {
+            $result = (bool)Db::getInstance()->getValue(
+                'SELECT count(*) FROM `' . _DB_PREFIX_ . 'orders` WHERE `id_cart` = ' . (int)$cart_id
+            );
+
+            return $result;
+        }
+        return false;
+    }
+
+    /**
+     * @param $cartId
+     * @return bool
+     */
+    private function getOrderByCartId($cartId)
+    {
+        $sql = 'SELECT `id_order`
+                    FROM `' . _DB_PREFIX_ . 'orders`
+                    WHERE `id_cart` = ' . (int)$cartId;
+        $result = Db::getInstance()->getRow($sql);
+        return isset($result['id_order']) ? $result['id_order'] : false;
     }
 }
