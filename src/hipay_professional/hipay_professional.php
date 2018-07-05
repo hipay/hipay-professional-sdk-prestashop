@@ -27,8 +27,14 @@ class Hipay_Professional extends PaymentModule
     public $create_account = false;
     public $min_amount = 1;
     public static $available_rates_links = array(
-        'EN', 'FR', 'ES', 'DE',
-        'IT', 'NL', 'PL', 'PT'
+        'EN',
+        'FR',
+        'ES',
+        'DE',
+        'IT',
+        'NL',
+        'PL',
+        'PT'
     );
     public static $refund_available = array('CB', 'VISA', 'MASTERCARD');
     public $logs;
@@ -64,18 +70,175 @@ class Hipay_Professional extends PaymentModule
 
         // Compliancy
         $this->limited_countries = array(
-            'ZA','AL','DZ','DE','AD','AO','AG','AN','SA','AR','AM','AU','AT','BS','BH',
-            'BB','BY','BE','BZ','BO','BA','BR','BN','BG','KY','KH','CM','CA','CV','CL',
-            'CN','CY','CC','CO','CK','KR','HR','CU','DK','DO','EG','SV','AE','EC','ES',
-            'EE','US','FK','FO','FJ','FI','FR','GE','GS','GI','GR','GD','GL','GP','GT',
-            'GG','GY','GF','HT','HM','HN','HK','HU','IM','VG','VI','IN','ID','IE','IS',
-            'IL','IT','JM','JP','JE','JO','LV','LB','LI','LT','LU','MO','MK','MG','MY',
-            'MW','MV','MT','MP','MA','MH','MQ','MU','MR','YT','MX','FM','MD','MC','MN',
-            'ME','MS','MZ','NI','NF','NO','NC','NZ','IO','OM','PA','PY','NL','PE','PH',
-            'PL','PF','PR','PT','QA','RE','RO','GB','RU','BL','SH','LC','KN','SM','MF',
-            'PM','VA','VC','SB','WS','AS','ST','SN','RS','SC','SL','SG','SK','SI','LK',
-            'SE','CH','SR','SJ','SY','TW','CZ','TF','TH','TL','TN','TR','UA','UY','VU',
-            'VE','VN','WF','YE'
+            'ZA',
+            'AL',
+            'DZ',
+            'DE',
+            'AD',
+            'AO',
+            'AG',
+            'AN',
+            'SA',
+            'AR',
+            'AM',
+            'AU',
+            'AT',
+            'BS',
+            'BH',
+            'BB',
+            'BY',
+            'BE',
+            'BZ',
+            'BO',
+            'BA',
+            'BR',
+            'BN',
+            'BG',
+            'KY',
+            'KH',
+            'CM',
+            'CA',
+            'CV',
+            'CL',
+            'CN',
+            'CY',
+            'CC',
+            'CO',
+            'CK',
+            'KR',
+            'HR',
+            'CU',
+            'DK',
+            'DO',
+            'EG',
+            'SV',
+            'AE',
+            'EC',
+            'ES',
+            'EE',
+            'US',
+            'FK',
+            'FO',
+            'FJ',
+            'FI',
+            'FR',
+            'GE',
+            'GS',
+            'GI',
+            'GR',
+            'GD',
+            'GL',
+            'GP',
+            'GT',
+            'GG',
+            'GY',
+            'GF',
+            'HT',
+            'HM',
+            'HN',
+            'HK',
+            'HU',
+            'IM',
+            'VG',
+            'VI',
+            'IN',
+            'ID',
+            'IE',
+            'IS',
+            'IL',
+            'IT',
+            'JM',
+            'JP',
+            'JE',
+            'JO',
+            'LV',
+            'LB',
+            'LI',
+            'LT',
+            'LU',
+            'MO',
+            'MK',
+            'MG',
+            'MY',
+            'MW',
+            'MV',
+            'MT',
+            'MP',
+            'MA',
+            'MH',
+            'MQ',
+            'MU',
+            'MR',
+            'YT',
+            'MX',
+            'FM',
+            'MD',
+            'MC',
+            'MN',
+            'ME',
+            'MS',
+            'MZ',
+            'NI',
+            'NF',
+            'NO',
+            'NC',
+            'NZ',
+            'IO',
+            'OM',
+            'PA',
+            'PY',
+            'NL',
+            'PE',
+            'PH',
+            'PL',
+            'PF',
+            'PR',
+            'PT',
+            'QA',
+            'RE',
+            'RO',
+            'GB',
+            'RU',
+            'BL',
+            'SH',
+            'LC',
+            'KN',
+            'SM',
+            'MF',
+            'PM',
+            'VA',
+            'VC',
+            'SB',
+            'WS',
+            'AS',
+            'ST',
+            'SN',
+            'RS',
+            'SC',
+            'SL',
+            'SG',
+            'SK',
+            'SI',
+            'LK',
+            'SE',
+            'CH',
+            'SR',
+            'SJ',
+            'SY',
+            'TW',
+            'CZ',
+            'TF',
+            'TH',
+            'TL',
+            'TN',
+            'TR',
+            'UA',
+            'UY',
+            'VU',
+            'VE',
+            'VN',
+            'WF',
+            'YE'
         );
 
         $this->currencies_titles = array(
@@ -122,14 +285,14 @@ class Hipay_Professional extends PaymentModule
         }
 
         return parent::install() &&
-        $this->installHipay();
+            $this->installHipay();
     }
 
     public function uninstall()
     {
         return $this->uninstallAdminTab() &&
-        parent::uninstall() &&
-        $this->clearAccountData();
+            parent::uninstall() &&
+            $this->clearAccountData();
     }
 
     public function installAdminTab()
@@ -200,7 +363,7 @@ class Hipay_Professional extends PaymentModule
         } elseif (_PS_VERSION_ < '1.7' && _PS_VERSION_ >= '1.6') {
             $return16 = $this->registerHook('payment') &&
                 $this->registerHook('displayPaymentEU') &&
-                    $this->registerHook('displayPayment');
+                $this->registerHook('displayPayment');
             $return = $return && $return16;
         }
         return $return;
@@ -218,7 +381,8 @@ class Hipay_Professional extends PaymentModule
             $sql = 'INSERT IGNORE INTO `' . _DB_PREFIX_ . 'module_currency` (`id_module`, `id_shop`, `id_currency`)
                     SELECT ' . (int)$this->id . ', "' . (int)$shop . '", `id_currency`
                     FROM `' . _DB_PREFIX_ . 'currency`
-                    WHERE `deleted` = \'0\' AND `iso_code` IN (\'' . implode($this->limited_currencies, '\',\'') . '\')';
+                    WHERE `deleted` = \'0\' AND `iso_code` IN (\'' . implode($this->limited_currencies,
+                    '\',\'') . '\')';
 
             return (bool)Db::getInstance()->execute($sql);
         }
@@ -338,7 +502,7 @@ class Hipay_Professional extends PaymentModule
     public function hookDisplayPaymentEU($params)
     {
         $payment_options = array(
-            'cta_text' => '<br>'.(Tools::strtolower($this->context->language->iso_code)=='fr' ? $this->configHipay->button_text_fr : $this->configHipay->button_text_en),
+            'cta_text' => '<br>' . (Tools::strtolower($this->context->language->iso_code) == 'fr' ? $this->configHipay->button_text_fr : $this->configHipay->button_text_en),
             'logo' => Media::getMediaPath($this->getPaymentButton()),
             'action' => $this->context->link->getModuleLink($this->name, 'redirect', array(), true)
         );
@@ -935,7 +1099,8 @@ class Hipay_Professional extends PaymentModule
         $id_shop_group = (int)Shop::getContextShopGroupID();
         // the config is stacked in JSON
         $this->configHipay->$key = $value;
-        if (Configuration::updateValue('HIPAY_CONFIG', Tools::jsonEncode($this->configHipay), false, $id_shop_group, $id_shop)) {
+        if (Configuration::updateValue('HIPAY_CONFIG', Tools::jsonEncode($this->configHipay), false, $id_shop_group,
+            $id_shop)) {
             return true;
         } else {
             throw new Exception($this->l('Update failed, try again.'));
@@ -955,7 +1120,8 @@ class Hipay_Professional extends PaymentModule
         $id_shop = (int)$this->context->shop->id;
         $id_shop_group = (int)Shop::getContextShopGroupID();
         // the config is stacked in JSON
-        if (Configuration::updateValue('HIPAY_CONFIG', Tools::jsonEncode($for_json_hipay), false, $id_shop_group, $id_shop)) {
+        if (Configuration::updateValue('HIPAY_CONFIG', Tools::jsonEncode($for_json_hipay), false, $id_shop_group,
+            $id_shop)) {
             return true;
         } else {
             throw new Exception($this->l('Update failed, try again.'));
@@ -1278,7 +1444,8 @@ class Hipay_Professional extends PaymentModule
                                     $this->_errors[] = $this->l('error on the duplication of the account for the currency ') . $key;
                                 } else {
                                     // add website for subaccount
-                                    $website_sub = $user_account->createWebsite($key, $sub_account->subaccount_id, $sub_account->parent_account_id, $currency_code);
+                                    $website_sub = $user_account->createWebsite($key, $sub_account->subaccount_id,
+                                        $sub_account->parent_account_id, $currency_code);
                                     if ($website_sub) {
                                         $user_mail[$key][$website_sub->website_id] = $email;
                                         $data[$key][$website_sub->account_id][] = [
@@ -1309,7 +1476,8 @@ class Hipay_Professional extends PaymentModule
             } else {
                 // error validation code is incorrect
                 foreach ($this->configHipay->production->$currency_code as $key => $val) {
-                    $this->context->smarty->assign('email', $this->configHipay->production->$currency_code->$key[0]['user_email']);
+                    $this->context->smarty->assign('email',
+                        $this->configHipay->production->$currency_code->$key[0]['user_email']);
                     break;
                 }
                 $this->_errors[] = $this->l('Validation code is incorrect, try again.');
@@ -1373,7 +1541,11 @@ class Hipay_Professional extends PaymentModule
     public function getAdminOrderRefundBlockDetails($order)
     {
         $currency = new Currency($order->id_currency);
-        $messages = Message::getMessagesByOrderId($order->id, true);
+        if (_PS_VERSION_ < '1.7.1') {
+            $messages = Message::getMessagesByOrderId($order->id, true);
+        } else {
+            $messages = CustomerThread::getCustomerMessagesOrder($order->getCustomer(), $order->id);
+        }
         $message = array_pop($messages);
         $details = Tools::jsonDecode($message['message']);
         $id_transaction = $this->getTransactionId($details);
