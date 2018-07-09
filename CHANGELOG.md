@@ -1,3 +1,7 @@
+# Version 1.0.9
+
+- Fix Error on order confirmation
+
 # Version 1.0.8
 
 - Fix PHP 7.1 silent conversion error
