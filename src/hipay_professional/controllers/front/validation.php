@@ -17,7 +17,8 @@ class Hipay_ProfessionalValidationModuleFrontController extends ModuleFrontContr
     public function postProcess()
     {
         if ($this->module->active == false) {
-            die;
+            header("HTTP/1.0 500 Internal server error");
+            die();
         }
 
         $this->logs = new HipayLogs($this->module);
@@ -44,6 +45,7 @@ class Hipay_ProfessionalValidationModuleFrontController extends ModuleFrontContr
 
             if (!Db::getInstance()->execute($sql)) {
                 $this->logs->errorLogsHipay('----> Bad LockSQL initiated, Lock could not be initiated for id_cart = ' . $cart_id);
+                header("HTTP/1.0 500 Internal server error");
                 die('Lock not initiated');
             } else {
                 $this->logs->callbackLogs('----> Treatment is locked for the id_cart = ' . $cart_id);
@@ -78,14 +80,20 @@ class Hipay_ProfessionalValidationModuleFrontController extends ModuleFrontContr
             $sql = 'commit;';
             if (!Db::getInstance()->execute($sql)) {
                 $this->logs->errorLogsHipay('----> Bad LockSQL initiated, Lock could not be initiated for id_cart = ' . $cart_id);
+                header("HTTP/1.0 500 Internal server error");
                 die('Lock not initiated');
             } else {
                 $this->logs->callbackLogs('----> Treatment is unlocked for the id_cart = ' . $cart_id);
             }
 
-            return $return;
+            if (!$return) {
+                header("HTTP/1.0 500 Internal server error");
+            }
+
+            die();
         }
 
+        header("HTTP/1.0 500 Internal server error");
         return $this->displayError('An error occurred while processing payment');
     }
 
@@ -160,8 +168,8 @@ class Hipay_ProfessionalValidationModuleFrontController extends ModuleFrontContr
         } else {
             // LOGS
             $this->logs->errorLogsHipay('Token or signature are not valid');
-            // ----
-            return false;
+            header('HTTP/1.1 403 Forbidden');
+            die('Bad Callback initiated - signature');
         }
     }
 
@@ -226,16 +234,34 @@ class Hipay_ProfessionalValidationModuleFrontController extends ModuleFrontContr
         $this->logs->callbackLogs('----> START placeOrder()');
         // ----
 
-        $order_id = (int)Order::getOrderByCartId($cart_id);
+        $order_id = null;
 
-        if ((bool)$order_id != false) {
+        //Fix Bug where Order is created while transaction is processed
+        if ($this->orderExists($cart_id)) {
+            // can't use Order::getOrderByCartId 'cause add shop restrictions
+            $order_id = $this->getOrderByCartId($cart_id);
+        }
+
+        if ($order_id) {
             // LOGS
             $this->logs->callbackLogs('Treatment an existing order');
             // ----
 
             $order = new Order($order_id);
 
-            if ((int)$order->getCurrentState() == (int)Configuration::get('HIPAY_OS_WAITING')) {
+            if (
+                (int)$order->getCurrentState() == (int)Configuration::get('HIPAY_OS_WAITING')
+                || (int)$order->getCurrentState() == _PS_OS_OUTOFSTOCK_UNPAID_
+                || (int)$order->getCurrentState() == _PS_OS_OUTOFSTOCK_PAID_
+            ) {
+
+                if (
+                    (int)$order->getCurrentState() == _PS_OS_OUTOFSTOCK_UNPAID_
+                    || (int)$order->getCurrentState() == _PS_OS_OUTOFSTOCK_PAID_
+                ) {
+                    $id_order_state = _PS_OS_OUTOFSTOCK_PAID_;
+                }
+
                 // LOGS
                 $this->logs->callbackLogs('If current status order = HIPAY_OS_WAITING Then change status with this id_status = ' . $id_order_state);
                 // ----
@@ -254,11 +280,7 @@ class Hipay_ProfessionalValidationModuleFrontController extends ModuleFrontContr
                     'amount' => $result['origAmount'] . ' ' . $result['origCurrency'],
                 ];
 
-                $message = new Message();
-                $message->message = Tools::jsonEncode($details);
-                $message->id_order = (int)$order_id;
-                $message->private = 1;
-                $message->add();
+                $this->addMessage($order_id, $this->context->customer->id, $details);
 
                 $order_history = new OrderHistory();
 
@@ -307,7 +329,7 @@ class Hipay_ProfessionalValidationModuleFrontController extends ModuleFrontContr
 
                 $sandbox_mode = (bool)$this->configHipay->sandbox_mode;
 
-                $message = Tools::jsonEncode([
+                $message = json_encode([
                     "Environment" => $sandbox_mode ? 'SANDBOX' : 'PRODUCTION',
                     "Payment method" => Tools::safeOutput($payment_method),
                     "Transaction ID" => Tools::safeOutput($transaction_id),
@@ -323,7 +345,7 @@ class Hipay_ProfessionalValidationModuleFrontController extends ModuleFrontContr
                         true
                     )
                 );
-                $message = Tools::jsonEncode($error_details);
+                $message = json_encode($error_details);
                 return $this->displayError('An error occurred while saving transaction details');
             }
 
@@ -372,6 +394,89 @@ class Hipay_ProfessionalValidationModuleFrontController extends ModuleFrontContr
                 return false;
             }
             return true;
+        }
+    }
+
+    /**
+     * Check if order has already been placed ( Without prestashop cache)
+     *
+     * @return bool result
+     */
+    private function orderExists($cart_id)
+    {
+        if ($cart_id) {
+            $result = (bool)Db::getInstance()->getValue(
+                'SELECT count(*) FROM `' . _DB_PREFIX_ . 'orders` WHERE `id_cart` = ' . (int)$cart_id
+            );
+
+            return $result;
+        }
+        return false;
+    }
+
+    /**
+     * @param $cartId
+     * @return bool
+     */
+    private function getOrderByCartId($cartId)
+    {
+        $sql = 'SELECT `id_order`
+                    FROM `' . _DB_PREFIX_ . 'orders`
+                    WHERE `id_cart` = ' . (int)$cartId;
+        $result = Db::getInstance()->getRow($sql);
+        return isset($result['id_order']) ? $result['id_order'] : false;
+    }
+
+    /**
+     * generic function to add prestashop order message
+     *
+     * @param $orderId
+     * @param $customerId
+     * @param $data
+     * @throws PrestaShopDatabaseException
+     * @throws PrestaShopException
+     */
+    private function addMessage($orderId, $customerId, $data)
+    {
+        if (_PS_VERSION_ < '1.7.1') {
+            $message = new Message();
+            $message->message = json_encode($data);
+            $message->id_order = (int)$orderId;
+            $message->private = 1;
+
+            $message->add();
+        } else {
+            $customer = new Customer($customerId);
+            $order = new Order($orderId);
+            $shop = new Shop($order->id_shop);
+            $context = Context::getContext();
+            Shop::setContext(Shop::CONTEXT_SHOP, $order->id_shop);
+            //Force context shop otherwise we get duplicate customer thread
+            $context->shop = $shop;
+            //check if a thread already exist
+            $id_customer_thread = CustomerThread::getIdCustomerThreadByEmailAndIdOrder($customer->email, $orderId);
+            if (!$id_customer_thread) {
+                $customer_thread = new CustomerThread();
+                $customer_thread->id_contact = 0;
+                $customer_thread->id_lang = 1;
+                $customer_thread->id_customer = (int)$customerId;
+                $customer_thread->id_order = (int)$orderId;
+                $customer_thread->status = 'open';
+                $customer_thread->token = Tools::passwdGen(12);
+                $customer_thread->id_shop = (int)$context->shop->id;
+                $customer_thread->id_lang = (int)$context->language->id;
+                $customer_thread->email = $customer->email;
+
+                $customer_thread->add();
+            } else {
+                $customer_thread = new CustomerThread((int)$id_customer_thread);
+            }
+
+            $customer_message = new CustomerMessage();
+            $customer_message->id_customer_thread = $customer_thread->id;
+            $customer_message->message = json_encode($data);
+            $customer_message->private = 1;
+            $customer_message->add();
         }
     }
 }
