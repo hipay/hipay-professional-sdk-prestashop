@@ -62,7 +62,7 @@ if [ "$1" = 'exec' ] && [ "$2" != '' ];then
 fi
 
 if [ "$1" = 'log' ] && [ "$2" != '' ];then
-    logs -f hipay-professional-shop-ps"$2"
+    docker logs -f hipay-professional-shop-ps"$2"-dev
 fi
 
 

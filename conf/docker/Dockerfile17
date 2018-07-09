@@ -1,4 +1,4 @@
-FROM prestashop/prestashop:1.7.2.4
+FROM prestashop/prestashop:1.7.3.2
 
 MAINTAINER support.wallet <support.wallet@hipay.com>
 
