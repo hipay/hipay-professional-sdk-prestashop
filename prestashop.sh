@@ -22,47 +22,44 @@ if [ "$1" = '' ] || [ "$1" = '--help' ];then
 fi
 
 if [ "$1" = 'init' ] && [ "$2" = '' ];then
-     docker-compose -f docker-compose.yml -f docker-compose.dev.yml -f docker-compose-16.yml -f docker-compose-17.yml stop
-     docker-compose -f docker-compose.yml -f docker-compose.dev.yml -f docker-compose-16.yml -f docker-compose-17.yml rm -fv
+     docker-compose -f docker-compose.dev.yml stop prestashop16 prestashop17 database smtp
+     docker-compose -f docker-compose.dev.yml rm -fv prestashop16 prestashop17 database smtp
      rm -Rf data/
      rm -Rf web16/
      rm -Rf web17/
-     docker-compose -f docker-compose.yml -f docker-compose.dev.yml -f docker-compose-16.yml -f docker-compose-17.yml build --no-cache
-     docker-compose -f docker-compose.yml -f docker-compose.dev.yml -f docker-compose-16.yml -f docker-compose-17.yml up -d
-fi
-
-if [ "$1" = 'init-stage' ] && [ "$2" = '' ];then
-     docker-compose -f docker-compose.yml -f docker-compose.stage.yml stop
-     docker-compose -f docker-compose.yml -f docker-compose.stage.yml rm -fv
-     docker-compose -f docker-compose.yml -f docker-compose.stage.yml build --no-cache
-     docker-compose -f docker-compose.yml -f docker-compose.stage.yml up -d
+     docker-compose -f docker-compose.dev.yml build --no-cache database smtp prestashop16 prestashop17
+     docker-compose -f docker-compose.dev.yml up -d  database smtp prestashop16 prestashop17
 fi
 
 if [ "$1" = 'init' ] && [ "$2" != '' ];then
-    docker-compose stop
-    docker-compose rm -fv
-    rm -Rf data/
-    rm -Rf web16/
-    rm -Rf web17/
-    docker-compose -f docker-compose.yml -f  docker-compose-"$2".yml build --no-cache
-    docker-compose -f docker-compose.yml -f docker-compose-"$2".yml up  -d
+     docker-compose -f docker-compose.dev.yml stop database smtp prestashop"$2"
+     docker-compose -f docker-compose.dev.yml rm database smtp -fv prestashop"$2"
+     rm -Rf data/
+     rm -Rf web16/
+     rm -Rf web17/
+     docker-compose -f docker-compose.dev.yml build --no-cache database smtp prestashop"$2"
+     docker-compose -f docker-compose.dev.yml up  -d database smtp prestashop"$2"
 fi
 
 if [ "$1" = 'restart' ];then
-    docker-compose stop
-    docker-compose -f docker-compose.yml -f docker-compose-16.yml -f docker-compose-17.yml up -d
+     docker-compose -f docker-compose.dev.yml  stop database smtp prestashop16 prestashop17
+     docker-compose -f docker-compose.dev.yml  up -d database smtp prestashop16 prestashop17
 fi
 
-if [ "$1" = 'up' ] && [ "$2" != '' ];then
-    docker-compose -f docker-compose.yml -f docker-compose-"$2".yml up  -d
+if [ "$1" = 'kill' ];then
+     docker-compose -f docker-compose.dev.yml stop database smtp prestashop16 prestashop17
+     docker-compose -f docker-compose.dev.yml rm -fv database smtp prestashop16 prestashop17
+     rm -Rf data/
+     rm -Rf web16/
+     rm -Rf web17/
 fi
 
 if [ "$1" = 'exec' ] && [ "$2" != '' ];then
-    docker exec -it hipay-professional-shop-ps"$2" bash
+     docker exec -it hipay-professional-shop-ps"$2" bash
 fi
 
 if [ "$1" = 'log' ] && [ "$2" != '' ];then
-    docker logs -f hipay-professional-shop-ps"$2"-dev
+    docker logs -f hipay-professional-shop-ps"$2"
 fi
 
 

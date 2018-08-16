@@ -1,4 +1,4 @@
-FROM prestashop/prestashop:1.6.1.17
+FROM prestashop/prestashop:1.7-7.1-apache
 
 MAINTAINER support.wallet <support.wallet@hipay.com>
 
@@ -10,7 +10,7 @@ RUN apt-get update \
                 && echo "mailhub=smtp:1025\nUseTLS=NO\nFromLineOverride=YES" > /etc/ssmtp/ssmtp.conf \
                 &&  rm -rf /var/lib/apt/lists/*
 
-COPY conf /tmp
+COPY bin/docker /tmp
 
 COPY src /var/www/html/modules
 
@@ -18,4 +18,4 @@ RUN sed -i "/exec apache2-foreground/d" /tmp/docker_run.sh \
     && sed -i "/Almost ! Starting Apache now/d" /tmp/docker_run.sh \
         && chmod 777 -R /tmp
 
-ENTRYPOINT ["/tmp/entrypoint.sh"]
+ENTRYPOINT ["/tmp/images/prestashop/entrypoint.sh"]
