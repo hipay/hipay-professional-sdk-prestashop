@@ -427,7 +427,12 @@ class Hipay_Professional extends PaymentModule
 
         if ((int)$order->getCurrentState() == (int)Configuration::get('HIPAY_OS_WAITING')) {
             // template Capture Order
-            $messages = Message::getMessagesByOrderId($order->id, true);
+            if (_PS_VERSION_ < '1.7.1') {
+                $messages = Message::getMessagesByOrderId($order->id, true);
+            } else {
+                $messages = CustomerThread::getCustomerMessagesOrder($order->getCustomer()->id, $order->id);
+            }
+
             $message = array_pop($messages);
             $details = Tools::jsonDecode($message['message']);
             $params = http_build_query(array(
@@ -1563,7 +1568,7 @@ class Hipay_Professional extends PaymentModule
         if (_PS_VERSION_ < '1.7.1') {
             $messages = Message::getMessagesByOrderId($order->id, true);
         } else {
-            $messages = CustomerThread::getCustomerMessagesOrder($order->getCustomer(), $order->id);
+            $messages = CustomerThread::getCustomerMessagesOrder($order->getCustomer()->id, $order->id);
         }
         $message = array_pop($messages);
         $details = Tools::jsonDecode($message['message']);

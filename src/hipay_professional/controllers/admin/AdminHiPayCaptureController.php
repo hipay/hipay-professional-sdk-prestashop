@@ -47,8 +47,12 @@ class AdminHiPayCaptureController extends ModuleAdminController
             // init order object
             $order = new Order($id_order);
 
-            // init transaction and id_cart
-            $messages = Message::getMessagesByOrderId($order->id, true);
+            if (_PS_VERSION_ < '1.7.1') {
+                $messages = Message::getMessagesByOrderId($order->id, true);
+            } else {
+                $messages = CustomerThread::getCustomerMessagesOrder($order->getCustomer()->id, $order->id);
+            }
+
             $message = array_pop($messages);
             $details = Tools::jsonDecode($message['message']);
             $this->logs->logsHipay('---- details : ');

@@ -52,8 +52,16 @@ class AdminHiPayRefundController extends ModuleAdminController
         // init currency
         $iso_code = $this->currency->iso_code;
 
-        // init Account ID
-        $messages = Message::getMessagesByOrderId($this->id_order, true);
+
+        // init order object
+        $order = new Order($this->id_order);
+
+        if (_PS_VERSION_ < '1.7.1') {
+            $messages = Message::getMessagesByOrderId($order->id, true);
+        } else {
+            $messages = CustomerThread::getCustomerMessagesOrder($order->getCustomer()->id, $order->id);
+        }
+
         $message = array_pop($messages);
         $details = Tools::jsonDecode($message['message']);
         $mode_env = Tools::strtolower($details->Environment);
@@ -124,7 +132,7 @@ class AdminHiPayRefundController extends ModuleAdminController
 
     private function saveRefundDetails($result)
     {
-        $details = Tools::jsonEncode($result->cardResult);
+        $details = $result->cardResult;
         $state = Tools::getIsset('amount') ? 'PARTIALLY' : 'TOTALLY';
         $id_order_state = (int)Configuration::get('HIPAY_OS_' . $state . '_REFUNDED');
 
@@ -139,15 +147,11 @@ class AdminHiPayRefundController extends ModuleAdminController
 
     protected function addRefundMessage($details)
     {
-        $message = new Message();
+        $order = new Order($this->id_order);
 
-        $message->message = $details;
-        $message->id_order = (int)$this->id_order;
-        $message->private = 1;
+        $this->addMessage($order->id, $order->getCustomer()->id, $details);
 
-        $message->add();
-
-        $this->logs->refundLogs('Message added = ' . $details);
+        $this->logs->refundLogs('Message added = ' . Tools::jsonEncode($details));
     }
 
     protected function sendSuccessRequest($result)
@@ -166,5 +170,58 @@ class AdminHiPayRefundController extends ModuleAdminController
         $output = Tools::jsonEncode($response);
 
         die($output);
+    }
+
+    /**
+     * generic function to add prestashop order message
+     *
+     * @param $orderId
+     * @param $customerId
+     * @param $data
+     * @throws PrestaShopDatabaseException
+     * @throws PrestaShopException
+     */
+    private function addMessage($orderId, $customerId, $data)
+    {
+        if (_PS_VERSION_ < '1.7.1') {
+            $message = new Message();
+            $message->message = json_encode($data);
+            $message->id_order = (int)$orderId;
+            $message->private = 1;
+
+            $message->add();
+        } else {
+            $customer = new Customer($customerId);
+            $order = new Order($orderId);
+            $shop = new Shop($order->id_shop);
+            $context = Context::getContext();
+            Shop::setContext(Shop::CONTEXT_SHOP, $order->id_shop);
+            //Force context shop otherwise we get duplicate customer thread
+            $context->shop = $shop;
+            //check if a thread already exist
+            $id_customer_thread = CustomerThread::getIdCustomerThreadByEmailAndIdOrder($customer->email, $orderId);
+            if (!$id_customer_thread) {
+                $customer_thread = new CustomerThread();
+                $customer_thread->id_contact = 0;
+                $customer_thread->id_lang = 1;
+                $customer_thread->id_customer = (int)$customerId;
+                $customer_thread->id_order = (int)$orderId;
+                $customer_thread->status = 'open';
+                $customer_thread->token = Tools::passwdGen(12);
+                $customer_thread->id_shop = (int)$context->shop->id;
+                $customer_thread->id_lang = (int)$context->language->id;
+                $customer_thread->email = $customer->email;
+
+                $customer_thread->add();
+            } else {
+                $customer_thread = new CustomerThread((int)$id_customer_thread);
+            }
+
+            $customer_message = new CustomerMessage();
+            $customer_message->id_customer_thread = $customer_thread->id;
+            $customer_message->message = json_encode($data);
+            $customer_message->private = 1;
+            $customer_message->add();
+        }
     }
 }
