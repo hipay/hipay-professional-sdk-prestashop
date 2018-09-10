@@ -32,7 +32,7 @@ class AdminHiPayCaptureController extends ModuleAdminController
 
     public function init()
     {
-        $return = [];
+        $return = array();
         try {
             $this->logs->logsHipay('##################');
             $this->logs->logsHipay('# START Capture');
@@ -67,13 +67,13 @@ class AdminHiPayCaptureController extends ModuleAdminController
             // init params for capture
             $transaction_id = $this->module->getTransactionId($details);
             $merchant_ref = $order->id_cart;
-            $params = [
+            $params = array(
                 'transaction_public_id' => $transaction_id,
                 'merchant_reference' => $merchant_ref,
                 'php-auth-subaccount-id' => $accountID,
                 'ws_login' => $ws_login,
                 'ws_password' => $ws_password,
-            ];
+            );
             $this->logs->logsHipay('---- params send to capture : ');
             $this->logs->logsHipay(print_r($params, true));
 
@@ -86,21 +86,21 @@ class AdminHiPayCaptureController extends ModuleAdminController
 
             // return the response
             if ($response->code == 0) {
-                $return = [
+                $return = array(
                     'status' => 1,
                     'message' => $this->module->l('Capture ok, your order status is in progress. Please, reload your page after few seconds.'),
-                ];
+                );
             } else {
-                $return = [
+                $return = array(
                     'status' => 0,
                     'message' => $response->message,
-                ];
+                );
             }
         } catch (Exception $e) {
-            $return = [
+            $return = array(
                 'status' => 0,
                 'message' => $e->getMessage(),
-            ];
+            );
         }
         die(Tools::jsonEncode($return));
     }

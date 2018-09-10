@@ -80,7 +80,7 @@ abstract class HipayWS
         }
     }
 
-    public function executeQuery($function, $params = [], $sandbox = false)
+    public function executeQuery($function, $params = array(), $sandbox = false)
     {
         try {
             if ($this->client === false) {

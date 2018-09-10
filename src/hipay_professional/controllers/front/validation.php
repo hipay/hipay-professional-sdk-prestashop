@@ -110,9 +110,9 @@ class Hipay_ProfessionalValidationModuleFrontController extends ModuleFrontContr
 
         $this->errors[] = $this->module->l($message);
 
-        $this->context->smarty->assign([
+        $this->context->smarty->assign(array(
             'errors' => $this->errors,
-        ]);
+        ));
 
         return $this->setTemplate((_PS_VERSION_ >= '1.7' ? 'module:' . $this->module->name . '/views/templates/front/' : '') . 'error.tpl');
     }
@@ -249,14 +249,11 @@ class Hipay_ProfessionalValidationModuleFrontController extends ModuleFrontContr
 
             $order = new Order($order_id);
 
-            if (
-                (int)$order->getCurrentState() == (int)Configuration::get('HIPAY_OS_WAITING')
+            if ((int)$order->getCurrentState() == (int)Configuration::get('HIPAY_OS_WAITING')
                 || (int)$order->getCurrentState() == _PS_OS_OUTOFSTOCK_UNPAID_
                 || (int)$order->getCurrentState() == _PS_OS_OUTOFSTOCK_PAID_
             ) {
-
-                if (
-                    (int)$order->getCurrentState() == _PS_OS_OUTOFSTOCK_UNPAID_
+                if ((int)$order->getCurrentState() == _PS_OS_OUTOFSTOCK_UNPAID_
                     || (int)$order->getCurrentState() == _PS_OS_OUTOFSTOCK_PAID_
                 ) {
                     $id_order_state = _PS_OS_OUTOFSTOCK_PAID_;
@@ -272,13 +269,13 @@ class Hipay_ProfessionalValidationModuleFrontController extends ModuleFrontContr
                     )
                 );
 
-                $details = [
+                $details = array(
                     'operation' => $result['operation'],
                     'status' => $result['status'],
                     'transaction_id' => $result['transid'],
                     'date' => $result['date'] . ' ' . $result['time'],
                     'amount' => $result['origAmount'] . ' ' . $result['origCurrency'],
-                ];
+                );
 
                 $this->addMessage($order_id, $this->context->customer->id, $details);
 
@@ -322,18 +319,18 @@ class Hipay_ProfessionalValidationModuleFrontController extends ModuleFrontContr
                 $payment_method = $result['paymentMethod'];
                 $transaction_id = $result['transid'];
 
-                $extra_vars = ['transaction_id' => Tools::safeOutput($transaction_id)];
+                $extra_vars = array('transaction_id' => Tools::safeOutput($transaction_id));
 
                 // init config HiPay
                 $this->configHipay = $this->module->configHipay;
 
                 $sandbox_mode = (bool)$this->configHipay->sandbox_mode;
 
-                $message = json_encode([
+                $message = json_encode(array(
                     "Environment" => $sandbox_mode ? 'SANDBOX' : 'PRODUCTION',
                     "Payment method" => Tools::safeOutput($payment_method),
                     "Transaction ID" => Tools::safeOutput($transaction_id),
-                ]);
+                ));
             } else {
                 // LOGS
                 $this->logs->callbackLogs('Treatment status = ERROR');

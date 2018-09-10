@@ -21,7 +21,7 @@ class HipayCapture extends HipayREST
     }
 
     /* REST method: capture */
-    public function captureOrder($params = [], $needLogin = true, $needSandboxLogin = false)
+    public function captureOrder($params = array(), $needLogin = true, $needSandboxLogin = false)
     {
         $result = $this->sendApiRequest($this->client_url, 'post', $needLogin, $params, $needSandboxLogin);
 

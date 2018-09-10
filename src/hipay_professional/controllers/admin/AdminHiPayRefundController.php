@@ -59,11 +59,11 @@ class AdminHiPayRefundController extends ModuleAdminController
         $mode_env = Tools::strtolower($details->Environment);
         $accountID = $this->module->configHipay->selected->currencies->$mode_env->$iso_code->accountID;
 
-        $params = [
+        $params = array(
             'amount' => $this->amount,
             'transactionPublicId' => $this->id_transaction,
             'wsSubAccountId' => $accountID,
-        ];
+        );
 
         $this->logs->refundLogs('---- Params');
         $this->logs->refundLogs(print_r($params, true));

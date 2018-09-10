@@ -25,9 +25,9 @@ class HipayProfessionalNew extends Hipay_Professional
         if (!$this->checkCurrency($params['cart'])) {
             return;
         }
-        $payment_options = [
+        $payment_options = array(
             $this->hipayExternalPaymentOption(),
-        ];
+        );
         return $payment_options;
     }
 
