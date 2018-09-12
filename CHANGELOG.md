@@ -1,3 +1,8 @@
+# Version 1.0.10
+
+- Switch to old array syntax
+- Fix capture & refund (Prestasshop 1.7.1)
+
 # Version 1.0.9
 
 - Fix Error on order confirmation
