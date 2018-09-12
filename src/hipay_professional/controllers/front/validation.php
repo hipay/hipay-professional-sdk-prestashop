@@ -110,9 +110,9 @@ class Hipay_ProfessionalValidationModuleFrontController extends ModuleFrontContr
 
         $this->errors[] = $this->module->l($message);
 
-        $this->context->smarty->assign([
+        $this->context->smarty->assign(array(
             'errors' => $this->errors,
-        ]);
+        ));
 
         return $this->setTemplate((_PS_VERSION_ >= '1.7' ? 'module:' . $this->module->name . '/views/templates/front/' : '') . 'error.tpl');
     }
@@ -249,14 +249,11 @@ class Hipay_ProfessionalValidationModuleFrontController extends ModuleFrontContr
 
             $order = new Order($order_id);
 
-            if (
-                (int)$order->getCurrentState() == (int)Configuration::get('HIPAY_OS_WAITING')
+            if ((int)$order->getCurrentState() == (int)Configuration::get('HIPAY_OS_WAITING')
                 || (int)$order->getCurrentState() == _PS_OS_OUTOFSTOCK_UNPAID_
                 || (int)$order->getCurrentState() == _PS_OS_OUTOFSTOCK_PAID_
             ) {
-
-                if (
-                    (int)$order->getCurrentState() == _PS_OS_OUTOFSTOCK_UNPAID_
+                if ((int)$order->getCurrentState() == _PS_OS_OUTOFSTOCK_UNPAID_
                     || (int)$order->getCurrentState() == _PS_OS_OUTOFSTOCK_PAID_
                 ) {
                     $id_order_state = _PS_OS_OUTOFSTOCK_PAID_;
@@ -272,13 +269,18 @@ class Hipay_ProfessionalValidationModuleFrontController extends ModuleFrontContr
                     )
                 );
 
-                $details = [
+                $sandbox_mode = (bool)$this->module->configHipay->sandbox_mode;
+
+                $details = array(
                     'operation' => $result['operation'],
                     'status' => $result['status'],
                     'transaction_id' => $result['transid'],
                     'date' => $result['date'] . ' ' . $result['time'],
                     'amount' => $result['origAmount'] . ' ' . $result['origCurrency'],
-                ];
+                    "Environment" => $sandbox_mode ? 'SANDBOX' : 'PRODUCTION',
+                    "Payment method" => Tools::safeOutput($result['paymentMethod']),
+                    "Transaction ID" => Tools::safeOutput($result['transid']),
+                );
 
                 $this->addMessage($order_id, $this->context->customer->id, $details);
 
@@ -319,21 +321,18 @@ class Hipay_ProfessionalValidationModuleFrontController extends ModuleFrontContr
                 $this->logs->callbackLogs('Treatment status = ' . $id_order_state);
                 // ----
 
-                $payment_method = $result['paymentMethod'];
-                $transaction_id = $result['transid'];
-
-                $extra_vars = ['transaction_id' => Tools::safeOutput($transaction_id)];
+                $extra_vars = array('transaction_id' => Tools::safeOutput($result['transid']));
 
                 // init config HiPay
                 $this->configHipay = $this->module->configHipay;
 
                 $sandbox_mode = (bool)$this->configHipay->sandbox_mode;
 
-                $message = json_encode([
+                $message = json_encode(array(
                     "Environment" => $sandbox_mode ? 'SANDBOX' : 'PRODUCTION',
-                    "Payment method" => Tools::safeOutput($payment_method),
-                    "Transaction ID" => Tools::safeOutput($transaction_id),
-                ]);
+                    "Payment method" => Tools::safeOutput($result['paymentMethod']),
+                    "Transaction ID" => Tools::safeOutput($result['transid']),
+                ));
             } else {
                 // LOGS
                 $this->logs->callbackLogs('Treatment status = ERROR');
@@ -388,6 +387,16 @@ class Hipay_ProfessionalValidationModuleFrontController extends ModuleFrontContr
                     $shop
                 );
                 $this->logs->callbackLogs('Order created');
+                if (_PS_VERSION_ > '1.7.1') {
+                    $message = array(
+                        "Environment" => $sandbox_mode ? 'SANDBOX' : 'PRODUCTION',
+                        "Payment method" => Tools::safeOutput($result['paymentMethod']),
+                        "Transaction ID" => Tools::safeOutput($result['transid']),
+                    );
+
+                    $order = new Order($this->module->currentOrder);
+                    $this->addMessage($order->id, $order->getCustomer()->id, $message);
+                }
             } catch (Exception $e) {
                 $this->logs->callbackLogs('Order is not created');
                 $this->logs->callbackLogs($e->getMessage());

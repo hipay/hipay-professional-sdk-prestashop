@@ -61,9 +61,9 @@ class Hipay_ProfessionalRedirectModuleFrontController extends ModuleFrontControl
             $this->errors[] = $description;
         }
 
-        $this->context->smarty->assign([
+        $this->context->smarty->assign(array(
             'errors' => $this->errors,
-        ]);
+        ));
 
         return $this->setTemplate((_PS_VERSION_ >= '1.7' ? 'module:' . $this->module->name . '/views/templates/front/' : '') . 'error.tpl');
     }

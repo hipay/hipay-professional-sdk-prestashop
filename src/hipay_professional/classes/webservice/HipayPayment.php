@@ -80,7 +80,7 @@ class HipayPayment extends HipayWS
         $decline_url = $this->context->link->getModuleLink($this->module->name, 'confirmation', array('cart_id' => $cart_id, 'failure' => true, 'secure_key' => $secure_key), true);
         $logo_url = $this->context->link->getMediaLink(_PS_IMG_ . Configuration::get('PS_LOGO'));
 
-        $params = [
+        $params = array(
             'websiteId' => (int)$website_id,
             'amount' => $this->context->cart->getOrderTotal(),
             'categoryId' => $this->getCategory(),
@@ -105,7 +105,7 @@ class HipayPayment extends HipayWS
             'urlLogo' => $logo_url,
 
             'freeData' => $free_data,
-        ];
+        );
 
         $this->logs->requestLogs(print_r($params, true));
 
