@@ -38,7 +38,7 @@ abstract class HipayREST
     }
 
     // function Request by cURL
-    public function sendApiRequest($function, $type = 'post', $needLogin = true, $params = [], $needSandboxLogin = false, $no_login = false)
+    public function sendApiRequest($function, $type = 'post', $needLogin = true, $params = array(), $needSandboxLogin = false, $no_login = false)
     {
         try {
             $url = $this->getRestClientURL($needSandboxLogin);
@@ -63,7 +63,7 @@ abstract class HipayREST
                 if ($no_login) {
                     $this->RestLogin = false;
                     $this->RestPassword = '';
-                    $params = [];
+                    $params = array();
                 }
             }
 

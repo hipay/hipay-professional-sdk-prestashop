@@ -18,11 +18,6 @@ class HipayRefund extends HipayWS
     /* SOAP method: card */
     public function process($params, $sandbox = false)
     {
-        // $params = [
-        //     'amount'                => 4,
-        //     'transactionPublicId'   => $id_transaction,
-        // ];
-
         return $this->executeQuery('card', $params, $sandbox);
     }
 }

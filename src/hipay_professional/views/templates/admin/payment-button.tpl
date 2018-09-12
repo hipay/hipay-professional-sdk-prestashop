@@ -116,7 +116,7 @@
                                     <label style="width: auto"
                                            for="payment_button_{$index|escape:'htmlall':'UTF-8'}">
                                         {if $image == 'no_image'}
-                                            {l s='No image'}
+                                            {l s='No image' mod='hipay_professional'}
                                         {else}
                                             <img src="{$url_images|escape:'htmlall':'UTF-8'}{$image|escape:'htmlall':'UTF-8'}"/>
                                         {/if}

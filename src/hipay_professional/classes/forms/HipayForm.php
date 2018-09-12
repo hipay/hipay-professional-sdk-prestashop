@@ -160,8 +160,8 @@ class HipayForm extends HipayFormInputs
         );
         // init the field contains the captcha answer
         $html_suffix = '<div id="img-captcha">' . (!empty($captcha) ? $captcha->captcha_img : '');
-        $html_suffix.= '</div><button type="button" class="btn captcha" name="reloadCaptcha" id="reload-captcha">';
-        $html_suffix.= $this->module->l('New captcha', 'HipayForm') . '</button>';
+        $html_suffix .= '</div><button type="button" class="btn captcha" name="reloadCaptcha" id="reload-captcha">';
+        $html_suffix .= $this->module->l('New captcha', 'HipayForm') . '</button>';
 
         $form['form']['input'][] = $this->generateInputText(
             'register_captcha_img',
@@ -170,12 +170,12 @@ class HipayForm extends HipayFormInputs
                 'class' => 'fixed-width-xxl captcha-form',
                 'hint' => $this->module->l('You must fill this captcha to validate the form', 'HipayForm'),
                 'required' => true,
-                'suffix' =>  $html_suffix,
+                'suffix' => $html_suffix,
             )
         );
         // init terms & conditions
         $label_cgv = '<a href="' . $this->url_cgv . '" target="_blank">' .
-                        $this->module->l('I agree with the terms and conditions', 'HipayForm') . '</a>';
+            $this->module->l('I agree with the terms and conditions', 'HipayForm') . '</a>';
         $form['form']['input'][] = array(
             'type' => 'checkbox',
             'name' => 'register_cgv',
@@ -234,26 +234,26 @@ class HipayForm extends HipayFormInputs
         $form = array();
         $this->helper->tpl_vars['fields_value'] = $this->getRefundFormValues();
 
-        $form = [
-            'form' => [
-                'buttons' => [
+        $form = array(
+            'form' => array(
+                'buttons' => array(
                     $this->generateSubmitButton(
                         $this->module->l('Refund', 'HipayForm'),
-                        [
+                        array(
                             'name' => 'submitTotalRefund',
                             'icon' => 'process-icon-undo',
                             'value' => 'refresh',
-                        ]
+                        )
                     ),
-                ],
-            ]
-        ];
+                ),
+            )
+        );
 
-        return $this->helper->generateForm([$form]);
+        return $this->helper->generateForm(array($form));
     }
 
     public function getRefundFormValues()
     {
-        return [];
+        return array();
     }
 }

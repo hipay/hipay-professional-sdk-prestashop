@@ -35,7 +35,7 @@ class AdminHiPayConfigController extends ModuleAdminController
         $extension = '';
         $message = '';
         $nomImage = '';
-        $return = [];
+        $return = array();
 
         if ($_FILES != null) {
             $image = $_FILES['file'];
@@ -59,58 +59,58 @@ class AdminHiPayConfigController extends ModuleAdminController
                                 $nomImage = md5(uniqid()) . '.' . $extension;
                                 // if ok execute upload
                                 if (move_uploaded_file($image['tmp_name'], _PS_MODULE_DIR_ . 'hipay_professional/views/img/payment_buttons/' . $nomImage)) {
-                                    $return = [
+                                    $return = array(
                                         'status' => true,
                                         'image' => $nomImage,
-                                    ];
+                                    );
                                 } else {
                                     $message = $this->module->l('Upload has failed, try again.', 'HipayConfig');
-                                    $return = [
+                                    $return = array(
                                         'status' => false,
                                         'message' => $message,
-                                    ];
+                                    );
                                 }
                             } else {
                                 $message = $this->module->l('Internal error - Upload has failed, try again.', 'HipayConfig');
-                                $return = [
+                                $return = array(
                                     'status' => false,
                                     'message' => $message,
-                                ];
+                                );
                             }
                         } else {
                             $message = $this->module->l('The dimensions or the size of the picture are not correct.', 'HipayConfig');
-                            $return = [
+                            $return = array(
                                 'status' => false,
                                 'message' => $message,
-                            ];
+                            );
                         }
                     } else {
                         $message = $this->module->l('Error on the type of the picture.', 'HipayConfig');
-                        $return = [
+                        $return = array(
                             'status' => false,
                             'message' => $message,
-                        ];
+                        );
                     }
                 } else {
                     $message = $this->module->l('Error on the extension of the picture.', 'HipayConfig');
-                    $return = [
+                    $return = array(
                         'status' => false,
                         'message' => $message,
-                    ];
+                    );
                 }
             } else {
                 $message = $this->module->l('Sorry, no payment button selected !', 'HipayConfig');
-                $return = [
+                $return = array(
                     'status' => false,
                     'message' => $message,
-                ];
+                );
             }
         } else {
             $message = $this->module->l('Sorry, no payment button selected !', 'HipayConfig');
-            $return = [
+            $return = array(
                 'status' => false,
                 'message' => $message,
-            ];
+            );
         }
         die(Tools::jsonEncode($return));
     }
@@ -120,7 +120,7 @@ class AdminHiPayConfigController extends ModuleAdminController
      */
     public function ajaxProcessDuplicate()
     {
-        $return = [];
+        $return = array();
         try {
             // get currency default
             $currency = new Currency(Configuration::get('PS_CURRENCY_DEFAULT'));
@@ -134,16 +134,16 @@ class AdminHiPayConfigController extends ModuleAdminController
             // duplicate the account / website
             $user_account = new HipayUserAccount($this->module);
             if ($sandbox) {
-                $params = [
+                $params = array(
                     'currency' => $currency,
                     'ws_login' => $this->module->configHipay->sandbox_ws_login,
                     'ws_password' => $this->module->configHipay->sandbox_ws_password,
-                ];
+                );
                 $sub_account = $user_account->duplicateByCurrency($params, $sandbox);
             } else {
-                $params = [
+                $params = array(
                     'currency' => $currency,
-                ];
+                );
                 $sub_account = $user_account->duplicateByCurrency($params);
             }
 
@@ -155,22 +155,22 @@ class AdminHiPayConfigController extends ModuleAdminController
                 if ($website_sub->code == 0) {
                     // reinit Currency permissions for the module HiPay
                     $this->module->setCurrencies();
-                    $return = [
+                    $return = array(
                         'status' => 1,
                         'message' => $this->module->l('Subaccount created for the currency ', 'HipayConfig') . $currency,
-                    ];
+                    );
                 } else {
-                    $return = [
+                    $return = array(
                         'status' => 0,
                         'message' => $website_sub->message,
-                    ];
+                    );
                 }
             }
         } catch (Exception $e) {
-            $return = [
+            $return = array(
                 'status' => 0,
                 'message' => $e->getMessage(),
-            ];
+            );
         }
         die(Tools::jsonEncode($return));
     }

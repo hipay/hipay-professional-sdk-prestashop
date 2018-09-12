@@ -48,7 +48,7 @@ class Hipay_Professional extends PaymentModule
     {
         $this->name = 'hipay_professional';
         $this->tab = 'payments_gateways';
-        $this->version = '1.0.9';
+        $this->version = '1.0.10';
         $this->module_key = 'ab188f639335535838c7ee492a2e89f8';
         $this->ps_versions_compliancy = array('min' => '1.6', 'max' => _PS_VERSION_);
         $this->currencies = true;
@@ -297,11 +297,11 @@ class Hipay_Professional extends PaymentModule
 
     public function installAdminTab()
     {
-        $class_names = [
+        $class_names = array(
             'AdminHiPayCapture',
             'AdminHiPayRefund',
             'AdminHiPayConfig',
-        ];
+        );
         return $this->createTabAdmin($class_names);
     }
 
@@ -327,11 +327,11 @@ class Hipay_Professional extends PaymentModule
 
     public function uninstallAdminTab()
     {
-        $class_names = [
+        $class_names = array(
             'AdminHiPayCapture',
             'AdminHiPayRefund',
             'AdminHiPayConfig',
-        ];
+        );
         foreach ($class_names as $class_name) {
             $id_tab = (int)Tab::getIdFromClassName($class_name);
 
@@ -381,8 +381,8 @@ class Hipay_Professional extends PaymentModule
             $sql = 'INSERT IGNORE INTO `' . _DB_PREFIX_ . 'module_currency` (`id_module`, `id_shop`, `id_currency`)
                     SELECT ' . (int)$this->id . ', "' . (int)$shop . '", `id_currency`
                     FROM `' . _DB_PREFIX_ . 'currency`
-                    WHERE `deleted` = \'0\' AND `iso_code` IN (\'' . implode($this->limited_currencies,
-                    '\',\'') . '\')';
+                    WHERE `deleted` = \'0\' AND `iso_code` IN (\'' .
+                implode($this->limited_currencies, '\',\'') . '\')';
 
             return (bool)Db::getInstance()->execute($sql);
         }
@@ -427,17 +427,22 @@ class Hipay_Professional extends PaymentModule
 
         if ((int)$order->getCurrentState() == (int)Configuration::get('HIPAY_OS_WAITING')) {
             // template Capture Order
-            $messages = Message::getMessagesByOrderId($order->id, true);
+            if (_PS_VERSION_ < '1.7.1') {
+                $messages = Message::getMessagesByOrderId($order->id, true);
+            } else {
+                $messages = CustomerThread::getCustomerMessagesOrder($order->getCustomer()->id, $order->id);
+            }
+
             $message = array_pop($messages);
             $details = Tools::jsonDecode($message['message']);
-            $params = http_build_query([
+            $params = http_build_query(array(
                 'id_order' => $order->id,
                 'sandbox' => (isset($details->Environment) && ($details->Environment != 'PRODUCTION') ? 1 : 0),
-            ]);
-            $this->smarty->assign([
+            ));
+            $this->smarty->assign(array(
                 'ajax_url' => $this->context->link->getAdminLink('AdminHiPayCapture&' . $params, true),
                 'details' => $details,
-            ]);
+            ));
             return $this->display(dirname(__FILE__), 'views/templates/hook/capture_manual.tpl');
         } else {
             // template Refund Order
@@ -799,13 +804,13 @@ class Hipay_Professional extends PaymentModule
                 $refund_files[] = $file;
             }
         }
-        return [
+        return array(
             'error' => $error_files,
             'infos' => $info_files,
             'callback' => $callback_files,
             'request' => $request_files,
             'refund' => $refund_files
-        ];
+        );
     }
 
     /**
@@ -867,10 +872,10 @@ class Hipay_Professional extends PaymentModule
                 $is_valid_password = (bool)Validate::isMd5($ws_password);
 
                 if ($is_valid_login && $is_valid_password) {
-                    $params = [
+                    $params = array(
                         'ws_login' => $ws_login,
                         'ws_password' => $ws_password,
-                    ];
+                    );
                     $user_account = new HipayUserAccount($this);
                     $account = $user_account->getAccountInfos($params, false, true);
 
@@ -914,10 +919,10 @@ class Hipay_Professional extends PaymentModule
                 $is_valid_password = (bool)Validate::isMd5($ws_password);
 
                 if ($is_valid_login && $is_valid_password) {
-                    $params = [
+                    $params = array(
                         'ws_login' => $ws_login,
                         'ws_password' => $ws_password,
-                    ];
+                    );
                     $user_account = new HipayUserAccount($this);
                     $account = $user_account->getAccountInfos($params, false);
                     if (isset($account->code) && ($account->code == 0)) {
@@ -963,10 +968,10 @@ class Hipay_Professional extends PaymentModule
 
             if (!empty($ws_login)) {
                 try {
-                    $params = [
+                    $params = array(
                         'ws_login' => $ws_login,
                         'ws_password' => $ws_password,
-                    ];
+                    );
                     $needLogin = false;
 
                     $user_account = new HipayUserAccount($this);
@@ -1005,33 +1010,33 @@ class Hipay_Professional extends PaymentModule
         // init array config values by currency
         foreach ($account->websites as $websiteDefault) {
             $user_mail[$account->currency][$websiteDefault->website_id] = $websiteDefault->website_email;
-            $data[$account->currency][$account->user_account_id][] = [
+            $data[$account->currency][$account->user_account_id][] = array(
                 'user_account_id' => $account->user_account_id,
                 'website_id' => $websiteDefault->website_id,
                 'user_mail' => $websiteDefault->website_email,
                 'callback_url' => (isset($account->callback_url) && !empty($account->callback_url)) ? $account->callback_url : '',
                 'callback_salt' => (isset($account->callback_salt) && !empty($account->callback_salt)) ? $account->callback_salt : '',
-            ];
+            );
         }
         if (isset($account->sub_accounts) && count($account->sub_accounts) > 0) {
             foreach ($account->sub_accounts as $sub_account) {
                 if (isset($sub_account->websites) && count($sub_account->websites) > 0) {
                     foreach ($sub_account->websites as $website) {
                         $user_mail[$sub_account->currency][$website->website_id] = $website->website_email;
-                        $data[$sub_account->currency][$sub_account->user_account_id][] = [
+                        $data[$sub_account->currency][$sub_account->user_account_id][] = array(
                             'user_account_id' => $sub_account->user_account_id,
                             'website_id' => $website->website_id,
                             'user_mail' => $website->website_email,
                             'callback_url' => (isset($sub_account->callback_url) && !empty($sub_account->callback_url)) ? $sub_account->callback_url : '',
                             'callback_salt' => (isset($sub_account->callback_salt) && !empty($sub_account->callback_salt)) ? $sub_account->callback_salt : '',
-                        ];
+                        );
                     }
                 }
             }
         }
 
         // init details for save configuration hipay in database
-        $details = [
+        $details = array(
             $prefix => $data,
             'user_mail' => $user_mail,
             $prefix . '_ws_login' => $params['ws_login'],
@@ -1041,7 +1046,7 @@ class Hipay_Professional extends PaymentModule
             'bank_info_validated' => $account->bank_info_validated,
             $prefix . '_entity' => $account->entity,
             'welcome_message_shown' => 1,
-        ];
+        );
 
         if ($sandbox) {
             unset($details['user_mail']);
@@ -1099,8 +1104,14 @@ class Hipay_Professional extends PaymentModule
         $id_shop_group = (int)Shop::getContextShopGroupID();
         // the config is stacked in JSON
         $this->configHipay->$key = $value;
-        if (Configuration::updateValue('HIPAY_CONFIG', Tools::jsonEncode($this->configHipay), false, $id_shop_group,
-            $id_shop)) {
+        if (Configuration::updateValue(
+            'HIPAY_CONFIG',
+            Tools::jsonEncode($this->configHipay),
+            false,
+            $id_shop_group,
+            $id_shop
+        )
+        ) {
             return true;
         } else {
             throw new Exception($this->l('Update failed, try again.'));
@@ -1120,8 +1131,14 @@ class Hipay_Professional extends PaymentModule
         $id_shop = (int)$this->context->shop->id;
         $id_shop_group = (int)Shop::getContextShopGroupID();
         // the config is stacked in JSON
-        if (Configuration::updateValue('HIPAY_CONFIG', Tools::jsonEncode($for_json_hipay), false, $id_shop_group,
-            $id_shop)) {
+        if (Configuration::updateValue(
+            'HIPAY_CONFIG',
+            Tools::jsonEncode($for_json_hipay),
+            false,
+            $id_shop_group,
+            $id_shop
+        )
+        ) {
             return true;
         } else {
             throw new Exception($this->l('Update failed, try again.'));
@@ -1233,31 +1250,31 @@ class Hipay_Professional extends PaymentModule
                 // production
                 $getProductionAccountId = Tools::getValue('settings_production_' . $key . '_user_account_id');
                 $getProductionWebsiteId = Tools::getValue('settings_production_' . $key . '_website_id');
-                $selectedCurrenciesProd[$key] = [
+                $selectedCurrenciesProd[$key] = array(
                     'accountID' => (int)$getProductionAccountId,
                     'websiteID' => (int)$getProductionWebsiteId,
-                ];
+                );
 
                 if (Tools::getValue('settings_sandbox_' . $key . '_user_account_id')) {
                     // sandbox
                     $getSandboxAccountId = Tools::getValue('settings_sandbox_' . $key . '_user_account_id');
                     $getSandboxWebsiteId = Tools::getValue('settings_sandbox_' . $key . '_website_id');
-                    $selectedCurrenciesSandbox[$key] = [
+                    $selectedCurrenciesSandbox[$key] = array(
                         'accountID' => (int)$getSandboxAccountId,
                         'websiteID' => (int)$getSandboxWebsiteId,
-                    ];
+                    );
                 }
             }
 
             // init array with all selected informations
-            $selected_config = [
+            $selected_config = array(
                 'rating_prod' => $selected_prod_rating,
                 'rating_sandbox' => $selected_sandbox_rating,
-                'currencies' => [
+                'currencies' => array(
                     'production' => $selectedCurrenciesProd,
                     'sandbox' => $selectedCurrenciesSandbox,
-                ]
-            ];
+                )
+            );
 
             // save configuration sandbox mode and select informations
             $this->setConfigHiPay('sandbox_mode', ($sandbox_mode ? 1 : 0));
@@ -1348,14 +1365,14 @@ class Hipay_Professional extends PaymentModule
                 return false;
             }
             // init params
-            $params = [
+            $params = array(
                 'email' => $email,
                 'first_name' => $first_name,
                 'last_name' => $last_name,
                 'captcha_id' => $captcha_id,
                 'captcha_code' => $captcha_code,
 
-            ];
+            );
             // create account by API REST HiPay Direct
             $user_account = new HipayUserAccount($this);
             $result = $user_account->createAccount($params);
@@ -1366,11 +1383,11 @@ class Hipay_Professional extends PaymentModule
 
                 // Get infos WS and setting config
                 $acc_id = $result->account_id;
-                $this->configHipay->production[$currency_code][$acc_id][] = [
+                $this->configHipay->production[$currency_code][$acc_id][] = array(
                     'user_account_id' => $result->account_id,
                     'website_id' => '',
                     'user_mail' => $result->email,
-                ];
+                );
                 $this->configHipay->sandbox_mode = 0;
                 $this->configHipay->production_status = $result->status;
                 $this->configHipay->production_ws_login = $result->wslogin;
@@ -1416,15 +1433,15 @@ class Hipay_Professional extends PaymentModule
                     // init config with website
                     $email = Configuration::get('PS_SHOP_EMAIL');
                     $user_mail[$currency_code][$website->website_id] = $email;
-                    $data[$currency_code][$website->account_id][] = [
+                    $data[$currency_code][$website->account_id][] = array(
                         'user_account_id' => $website->account_id,
                         'website_id' => $website->website_id,
                         'user_mail' => $email,
-                    ];
-                    $details = [
+                    );
+                    $details = array(
                         'production' => $data,
                         'user_mail' => $user_mail,
-                    ];
+                    );
 
                     // save configuration hipay in database
                     if ($this->saveConfigurationDetails($details)) {
@@ -1436,23 +1453,28 @@ class Hipay_Professional extends PaymentModule
                             if ($currency_code != $key) {
                                 $this->logs->logsHipay('---- >> duplicate main account to subaccount for the currency ' . $key);
                                 // duplicate the account / website
-                                $currency = [
+                                $currency = array(
                                     'currency' => $key,
-                                ];
+                                );
                                 $sub_account = $user_account->duplicateByCurrency($currency);
                                 if (!$sub_account) {
                                     $this->_errors[] = $this->l('error on the duplication of the account for the currency ') . $key;
                                 } else {
                                     // add website for subaccount
-                                    $website_sub = $user_account->createWebsite($key, $sub_account->subaccount_id,
-                                        $sub_account->parent_account_id, $currency_code);
+                                    $website_sub = $user_account->createWebsite(
+                                        $key,
+                                        $sub_account->subaccount_id,
+                                        $sub_account->parent_account_id,
+                                        $currency_code
+                                    );
+
                                     if ($website_sub) {
                                         $user_mail[$key][$website_sub->website_id] = $email;
-                                        $data[$key][$website_sub->account_id][] = [
+                                        $data[$key][$website_sub->account_id][] = array(
                                             'user_account_id' => $website_sub->account_id,
                                             'website_id' => $website_sub->website_id,
                                             'user_mail' => $email,
-                                        ];
+                                        );
                                         // save configuration hipay in database
                                         if (!$this->saveConfigurationDetails($details)) {
                                             $this->_errors[] = $this->l('error on the insert of the website for the currency ') . $key;
@@ -1476,8 +1498,10 @@ class Hipay_Professional extends PaymentModule
             } else {
                 // error validation code is incorrect
                 foreach ($this->configHipay->production->$currency_code as $key => $val) {
-                    $this->context->smarty->assign('email',
-                        $this->configHipay->production->$currency_code->$key[0]['user_email']);
+                    $this->context->smarty->assign(
+                        'email',
+                        $this->configHipay->production->$currency_code->$key[0]['user_email']
+                    );
                     break;
                 }
                 $this->_errors[] = $this->l('Validation code is incorrect, try again.');
@@ -1544,25 +1568,25 @@ class Hipay_Professional extends PaymentModule
         if (_PS_VERSION_ < '1.7.1') {
             $messages = Message::getMessagesByOrderId($order->id, true);
         } else {
-            $messages = CustomerThread::getCustomerMessagesOrder($order->getCustomer(), $order->id);
+            $messages = CustomerThread::getCustomerMessagesOrder($order->getCustomer()->id, $order->id);
         }
         $message = array_pop($messages);
         $details = Tools::jsonDecode($message['message']);
         $id_transaction = $this->getTransactionId($details);
 
-        $params = http_build_query([
+        $params = http_build_query(array(
             'id_order' => $order->id,
             'id_transaction' => $id_transaction,
             'sandbox' => (isset($details->Environment) && ($details->Environment != 'PRODUCTION')),
-        ]);
+        ));
 
-        $this->smarty->assign([
+        $this->smarty->assign(array(
             'currency' => $currency,
             'details' => $details,
             'order' => $order,
             'transaction_id' => $id_transaction,
             'refund_link' => $this->context->link->getAdminLink('AdminHiPayRefund&' . $params, true),
-        ]);
+        ));
 
         return $details;
     }
@@ -1600,7 +1624,7 @@ class Hipay_Professional extends PaymentModule
         foreach ($details as $key => $value) {
             $tmp_key = Tools::strtolower(str_replace(' ', false, $key));
 
-            if (in_array($tmp_key, ['transactionid', 'idtransaction'])) {
+            if (in_array($tmp_key, array('transactionid', 'idtransaction'))) {
                 return $value;
             }
         }
@@ -1624,10 +1648,10 @@ class Hipay_Professional extends PaymentModule
     {
         $history_states = $order->getHistory($this->context->language->id);
 
-        $states = Configuration::getMultiple([
+        $states = Configuration::getMultiple(array(
             'HIPAY_OS_PARTIALLY_REFUNDED',
             'HIPAY_OS_TOTALLY_REFUNDED',
-        ]);
+        ));
 
         foreach ($history_states as $state) {
             if ($key = array_search($state['id_order_state'], $states)) {
@@ -1644,14 +1668,14 @@ class Hipay_Professional extends PaymentModule
         $waiting_state_color = '#4169E1';
         $waiting_state_names = array();
 
-        $setup = [
+        $setup = array(
             'delivery' => false,
             'hidden' => false,
             'invoice' => false,
             'logable' => false,
             'module_name' => $this->name,
             'send_email' => false,
-        ];
+        );
 
         foreach (Language::getLanguages(false) as $language) {
             if (Tools::strtolower($language['iso_code']) == 'fr') {

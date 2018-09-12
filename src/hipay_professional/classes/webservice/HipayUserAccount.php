@@ -38,7 +38,7 @@ class HipayUserAccount extends HipayREST
      */
     public function getCaptcha()
     {
-        $params = [];
+        $params = array();
         $result = $this->sendApiRequest($this->client_tools . '/captcha', 'get', false, $params, false, true);
 
         if ($result->code == 0) {
@@ -54,9 +54,9 @@ class HipayUserAccount extends HipayREST
     public function checkCodeValidation($code, $currency_code)
     {
         // init val for webservice
-        $params = [
+        $params = array(
             'validation_code' => $code,
-        ];
+        );
         $result = $this->sendApiRequest($this->client_url . '/check/code', 'post', true, $params, false, false);
 
         if ($result->code == 0) {
@@ -85,10 +85,10 @@ class HipayUserAccount extends HipayREST
             'email' => $params['email'],
             'controle_type' => 'CAPTCHA',
             'captcha' =>
-                [
+                array(
                     'id' => $params['captcha_id'],
                     'phrase' => $params['captcha_code'],
-                ],
+                ),
             'firstname' => $params['first_name'],
             'lastname' => $params['last_name'],
             'currency' => $currency_code,
@@ -158,7 +158,7 @@ class HipayUserAccount extends HipayREST
         $ws_login = $this->module->configHipay->$login;
         $ws_password = $this->module->configHipay->$password;
 
-        $params = [
+        $params = array(
             'name' => Configuration::get('PS_SHOP_NAME'),
             'url' => Tools::getShopDomainSsl(true),
             'contact_email' => $email,
@@ -167,7 +167,7 @@ class HipayUserAccount extends HipayREST
             'php-auth-subaccount-id' => $account_id,
             'ws_login' => $ws_login,
             'ws_password' => $ws_password,
-        ];
+        );
 
         $this->module->logs->logsHipay(print_r($params, true));
         // call api and execute create website
@@ -178,7 +178,7 @@ class HipayUserAccount extends HipayREST
     /**
      * Check code to activate account merchant
      */
-    public function duplicateByCurrency($params = [], $sandbox = false)
+    public function duplicateByCurrency($params = array(), $sandbox = false)
     {
         $sandbox_mode = ($sandbox == 1 ? 'sandbox' : 'production');
         $login = $sandbox_mode . '_ws_login';
@@ -196,7 +196,7 @@ class HipayUserAccount extends HipayREST
     /**
      * get user informations saved in HiPay Direct / Wallet with WSlogin and WSpassword
      */
-    public function getAccountInfos($params = [], $needLogin = true, $needSandboxLogin = false)
+    public function getAccountInfos($params = array(), $needLogin = true, $needSandboxLogin = false)
     {
         $result = $this->sendApiRequest($this->client_url, 'get', $needLogin, $params, $needSandboxLogin);
         return $result;
