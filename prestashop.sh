@@ -33,7 +33,7 @@ fi
 
 if [ "$1" = 'init' ] && [ "$2" != '' ];then
      docker-compose -f docker-compose.dev.yml stop database smtp prestashop"$2"
-     docker-compose -f docker-compose.dev.yml rm database smtp -fv prestashop"$2"
+     docker-compose -f docker-compose.dev.yml rm database smtp prestashop"$2"
      rm -Rf data/
      rm -Rf web16/
      rm -Rf web17/
