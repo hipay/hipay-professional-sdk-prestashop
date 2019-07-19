@@ -8,7 +8,6 @@ stages:
  - package
  - build
  - deploy
- - sync
 
 variables:
   PROJECT_NAME_TEST: ${DOCKER_SERVICE}-${CI_COMMIT_REF_SLUG}-${CI_PIPELINE_ID}
@@ -121,16 +120,6 @@ deploy2recette:
     - sed -i -e "s|bin/docker/conf/acceptance/env17|env17|g" docker-compose.acceptance.yml
   script:
     - bash /tools/deployToDockerMachine.sh -e ./bin/docker/conf/acceptance/env -e ./bin/docker/conf/acceptance/env16 -e ./bin/docker/conf/acceptance/env17 -s docker-compose.acceptance.yml -n $DOCKER_STACK-$DOCKER_SERVICE-$CI_COMMIT_REF_SLUG
-  allow_failure: true
-  tags:
-    - pi-commerce-no-overlay
-
-sync:
-  stage: sync
-  script:
-    - git clone --mirror https://$GITLAB_USER:$GITLAB_PASSWORD@gitlab.hipay.org/pi-ecommerce/hipay-professional-sdk-prestashop.git
-    - cd hipay-professional-sdk-prestashop.git
-    - git push --mirror https://$GITHUB_USER:$GITHUB_PASSWORD@github.com/hipay/hipay-professional-sdk-prestashop.git
   allow_failure: true
   tags:
     - pi-commerce-no-overlay
