@@ -48,7 +48,7 @@ class Hipay_Professional extends PaymentModule
     {
         $this->name = 'hipay_professional';
         $this->tab = 'payments_gateways';
-        $this->version = '1.0.10';
+        $this->version = '1.0.11';
         $this->module_key = 'ab188f639335535838c7ee492a2e89f8';
         $this->ps_versions_compliancy = array('min' => '1.6', 'max' => _PS_VERSION_);
         $this->currencies = true;
@@ -433,8 +433,11 @@ class Hipay_Professional extends PaymentModule
                 $messages = CustomerThread::getCustomerMessagesOrder($order->getCustomer()->id, $order->id);
             }
 
-            $message = array_pop($messages);
-            $details = Tools::jsonDecode($message['message']);
+            do {
+                $message = array_pop($messages);
+                $details = Tools::jsonDecode($message['message']);
+            } while ($details === null && !empty($messages));
+
             $params = http_build_query(array(
                 'id_order' => $order->id,
                 'sandbox' => (isset($details->Environment) && ($details->Environment != 'PRODUCTION') ? 1 : 0),
@@ -1570,8 +1573,12 @@ class Hipay_Professional extends PaymentModule
         } else {
             $messages = CustomerThread::getCustomerMessagesOrder($order->getCustomer()->id, $order->id);
         }
-        $message = array_pop($messages);
-        $details = Tools::jsonDecode($message['message']);
+
+        do {
+            $message = array_pop($messages);
+            $details = Tools::jsonDecode($message['message']);
+        } while ($details === null && !empty($messages));
+
         $id_transaction = $this->getTransactionId($details);
 
         $params = http_build_query(array(

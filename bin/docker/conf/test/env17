@@ -1,2 +1,2 @@
-PS_DOMAIN={PS_DOMAIN}
+PS_DOMAIN=localhost:8077
 DB_NAME=prestashop17

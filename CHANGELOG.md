@@ -1,3 +1,7 @@
+# Version 1.0.11
+
+- **Fix**: PHP warning on order page
+
 # Version 1.0.10
 
 - Switch to old array syntax
