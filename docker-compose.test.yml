@@ -1,15 +1,9 @@
 version: "3.3"
 
-networks:
-  prestashop:
-    internal: true
-  outside:
-    external: true
-
 services:
   web17:
-    container_name: ${DOCKER_SERVICE}-${CI_COMMIT_REF_SLUG}-${CI_JOB_ID}_web-17
-    image: ${DOCKER_STACK}-${DOCKER_SERVICE}_web17:${CI_COMMIT_REF_SLUG}
+    container_name: prestashop_web_17
+    image: gcr.io/pi-dev-sandbox/test-jobs-${DOCKER_STACK}-${DOCKER_SERVICE}_web17:${CI_COMMIT_REF_SLUG}
     build:
       context: .
       dockerfile: ./bin/docker/images/prestashop/Dockerfile17
@@ -18,14 +12,12 @@ services:
     env_file:
       - ./bin/docker/conf/test/env
       - ./bin/docker/conf/test/env17
-    networks:
-      prestashop:
-      outside:
-        aliases:
-          - ${DOCKER_SERVICE}-${CI_COMMIT_REF_SLUG}-${CI_JOB_ID}-web-17
+    ports:
+      - "8077:80"
+
   web16:
-    container_name: ${DOCKER_SERVICE}-${CI_COMMIT_REF_SLUG}-${CI_JOB_ID}_web-16
-    image: ${DOCKER_STACK}-${DOCKER_SERVICE}_web16:${CI_COMMIT_REF_SLUG}
+    container_name: prestashop_web_17_16
+    image: gcr.io/pi-dev-sandbox/test-jobs-${DOCKER_STACK}-${DOCKER_SERVICE}_web16:${CI_COMMIT_REF_SLUG}
     build:
       context: .
       dockerfile: ./bin/docker/images/prestashop/Dockerfile16
@@ -34,28 +26,15 @@ services:
     env_file:
       - ./bin/docker/conf/test/env
       - ./bin/docker/conf/test/env16
-    networks:
-      prestashop:
-      outside:
-        aliases:
-          - ${DOCKER_SERVICE}-${CI_COMMIT_REF_SLUG}-${CI_JOB_ID}-web-16
+    ports:
+      - "8076:80"
+
   database:
     image: mysql:5.7
-    container_name: ${DOCKER_SERVICE}-${CI_COMMIT_REF_SLUG}-${CI_JOB_ID}_database
-    networks:
-      prestashop:
-        aliases:
-          - ${DOCKER_SERVICE}-${CI_COMMIT_REF_SLUG}-${CI_JOB_ID}_database
+    container_name: prestashop_database
     env_file:
       - ./bin/docker/conf/test/env
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       timeout: 20s
       retries: 10
-  smtp:
-    image: schickling/mailcatcher
-    container_name: ${DOCKER_SERVICE}-${CI_COMMIT_REF_SLUG}-${CI_JOB_ID}_smtp
-    networks:
-      prestashop:
-        aliases:
-          - ${DOCKER_SERVICE}-${CI_COMMIT_REF_SLUG}-${CI_JOB_ID}_smtp
